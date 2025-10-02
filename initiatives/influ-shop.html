@@ -1,0 +1,1207 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soller Shop | Sua Loja, Seus Seguidores, Suas Vendas</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #7C3AED;
+            --secondary: #EC4899;
+            --accent: #10B981;
+            --gold: #F59E0B;
+            --dark: #0F172A;
+            --darker: #020617;
+            --light: #FFFFFF;
+            --gradient: linear-gradient(135deg, #7C3AED, #EC4899);
+            --success: #10B981;
+            --danger: #EF4444;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--dark);
+            color: var(--light);
+            overflow-x: hidden;
+        }
+
+        /* Animated Background */
+        .animated-bg {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            background: linear-gradient(135deg, #0F172A 0%, #1E1B4B 100%);
+        }
+
+        .floating-shapes {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        .shape {
+            position: absolute;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(124, 58, 237, 0.1), rgba(236, 72, 153, 0.1));
+            animation: float 20s infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            33% { transform: translateY(-30px) rotate(120deg); }
+            66% { transform: translateY(30px) rotate(240deg); }
+        }
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1rem 2rem;
+            background: rgba(15, 23, 42, 0.9);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(124, 58, 237, 0.2);
+            z-index: 1000;
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--gradient);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .nav-link:hover {
+            color: var(--primary);
+        }
+
+        .live-indicator {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: rgba(239, 68, 68, 0.2);
+            border: 1px solid var(--danger);
+            border-radius: 20px;
+            animation: pulse-live 2s infinite;
+        }
+
+        @keyframes pulse-live {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        .live-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--danger);
+            border-radius: 50%;
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        /* Main Dashboard */
+        .dashboard-container {
+            margin-top: 80px;
+            padding: 2rem;
+            max-width: 1400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Stats Cards */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, rgba(124, 58, 237, 0.1), rgba(236, 72, 153, 0.1));
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(124, 58, 237, 0.3);
+            border-radius: 20px;
+            padding: 1.5rem;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(124, 58, 237, 0.3);
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--gradient);
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: whitesmoke;
+        }
+
+        .stat-change {
+            display: inline-block;
+            margin-top: 0.5rem;
+            padding: 0.2rem 0.6rem;
+            background: rgba(16, 185, 129, 0.2);
+            border: 1px solid var(--success);
+            border-radius: 12px;
+            font-size: 0.8rem;
+            color: var(--success);
+        }
+
+        /* Main Layout */
+        .main-layout {
+            display: grid;
+            grid-template-columns: 1fr 350px;
+            gap: 2rem;
+        }
+
+        /* Product Grid */
+        .products-section {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(124, 58, 237, 0.2);
+            border-radius: 20px;
+            padding: 2rem;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .add-product-btn {
+            padding: 0.8rem 1.5rem;
+            background: var(--gradient);
+            border: none;
+            border-radius: 12px;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .add-product-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(124, 58, 237, 0.4);
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .product-card {
+            background: rgba(30, 41, 59, 0.5);
+            border: 1px solid rgba(124, 58, 237, 0.2);
+            border-radius: 15px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .product-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 30px rgba(124, 58, 237, 0.4);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, rgba(124, 58, 237, 0.3), rgba(236, 72, 153, 0.3));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            position: relative;
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            padding: 0.3rem 0.8rem;
+            background: var(--success);
+            color: white;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .product-info {
+            padding: 1rem;
+        }
+
+        .product-name {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-price {
+            font-size: 1.2rem;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+
+        .product-stats {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* Live Shopping */
+        .live-shopping {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            border-radius: 20px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .live-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .live-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .viewers-count {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.3rem 0.8rem;
+            background: rgba(239, 68, 68, 0.2);
+            border-radius: 15px;
+            font-size: 0.9rem;
+        }
+
+        .live-preview {
+            width: 100%;
+            height: 180px;
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.2), rgba(236, 72, 153, 0.2));
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            margin-bottom: 1rem;
+        }
+
+        .play-button {
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .play-button:hover {
+            transform: scale(1.1);
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .live-products {
+            display: flex;
+            gap: 1rem;
+            overflow-x: auto;
+            padding: 1rem 0;
+        }
+
+        .live-product {
+            min-width: 100px;
+            padding: 0.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .live-product:hover {
+            background: rgba(239, 68, 68, 0.2);
+            border-color: var(--danger);
+        }
+
+        /* Integrations */
+        .integrations {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(124, 58, 237, 0.2);
+            border-radius: 20px;
+            padding: 1.5rem;
+        }
+
+        .integration-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            transition: all 0.3s;
+        }
+
+        .integration-item:hover {
+            background: rgba(124, 58, 237, 0.1);
+        }
+
+        .integration-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .integration-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--gradient);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .integration-status {
+            width: 8px;
+            height: 8px;
+            background: var(--success);
+            border-radius: 50%;
+        }
+
+        /* Quick Actions */
+        .quick-actions {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .action-btn {
+            width: 60px;
+            height: 60px;
+            background: var(--gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s;
+            font-size: 1.5rem;
+        }
+
+        .action-btn:hover {
+            transform: scale(1.1) rotate(360deg);
+            box-shadow: 0 15px 40px rgba(124, 58, 237, 0.5);
+        }
+
+        /* Orders Timeline */
+        .orders-timeline {
+            margin-top: 2rem;
+        }
+
+        .timeline-title {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .order-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.03);
+            border-left: 3px solid var(--primary);
+            margin-bottom: 1rem;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .order-item:hover {
+            background: rgba(124, 58, 237, 0.1);
+            transform: translateX(5px);
+        }
+
+        .order-time {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .order-details {
+            flex: 1;
+        }
+
+        .order-customer {
+            font-weight: 600;
+            margin-bottom: 0.2rem;
+        }
+
+        .order-product {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .order-value {
+            font-size: 1.1rem;
+            color: var(--success);
+            font-weight: 600;
+        }
+
+        /* WhatsApp Catalog */
+        .whatsapp-catalog {
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            width: 350px;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(37, 211, 102, 0.3);
+            border-radius: 20px;
+            padding: 1.5rem;
+            display: none;
+            animation: slideUp 0.5s;
+        }
+
+        .whatsapp-catalog.active {
+            display: block;
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .whatsapp-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(37, 211, 102, 0.2);
+        }
+
+        .whatsapp-icon {
+            width: 40px;
+            height: 40px;
+            background: #25D366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .catalog-items {
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .catalog-item {
+            display: flex;
+            gap: 1rem;
+            padding: 0.8rem;
+            background: rgba(37, 211, 102, 0.1);
+            border-radius: 12px;
+            margin-bottom: 0.8rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .catalog-item:hover {
+            background: rgba(37, 211, 102, 0.2);
+        }
+
+        .catalog-thumb {
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .catalog-info {
+            flex: 1;
+        }
+
+        .catalog-name {
+            font-weight: 600;
+            margin-bottom: 0.2rem;
+        }
+
+        .catalog-price {
+            color: #25D366;
+            font-weight: 600;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 1024px) {
+            .main-layout {
+                grid-template-columns: 1fr;
+            }
+            
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .whatsapp-catalog {
+                width: calc(100% - 2rem);
+                right: 1rem;
+                left: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="animated-bg">
+        <div class="floating-shapes" id="floatingShapes"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav">
+            <div class="logo">
+                <div class="logo-icon">🛍️</div>
+                <span>Soller Shop</span>
+            </div>
+            <div class="nav-menu">
+                <a href="#" class="nav-link">Dashboard</a>
+                <a href="#" class="nav-link">Produtos</a>
+                <a href="#" class="nav-link">Pedidos</a>
+                <a href="#" class="nav-link">Analytics</a>
+                <div class="live-indicator">
+                    <div class="live-dot"></div>
+                    <span>LIVE Shopping ON</span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Dashboard -->
+    <div class="dashboard-container">
+        <!-- Stats Cards -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-label">💰 Vendas Hoje</div>
+                <div class="stat-value">R$ 12.847</div>
+                <span class="stat-change">+34% vs ontem</span>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-label">📦 Pedidos</div>
+                <div class="stat-value">47</div>
+                <span class="stat-change">+12 na última hora</span>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-label">👁️ Visualizações</div>
+                <div class="stat-value">28.5K</div>
+                <span class="stat-change">Taxa conversão: 4.2%</span>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-label">⭐ Avaliação</div>
+                <div class="stat-value">4.9</div>
+                <span class="stat-change">287 reviews</span>
+            </div>
+        </div>
+
+        <!-- Main Layout -->
+        <div class="main-layout">
+            <!-- Left Column -->
+            <div>
+                <!-- Live Shopping Section -->
+                <div class="live-shopping">
+                    <div class="live-header">
+                        <div class="live-indicator">
+                            <div class="live-dot"></div>
+                            <span>AO VIVO</span>
+                        </div>
+                        <div class="live-title">Live Shopping com Marina</div>
+                        <div class="viewers-count">
+                            👁️ 3.2K assistindo
+                        </div>
+                    </div>
+                    
+                    <div class="live-preview">
+                        <div class="play-button">▶️</div>
+                    </div>
+                    
+                    <div class="live-products">
+                        <div class="live-product">
+                            <div>👗</div>
+                            <div>R$ 89</div>
+                        </div>
+                        <div class="live-product">
+                            <div>👠</div>
+                            <div>R$ 129</div>
+                        </div>
+                        <div class="live-product">
+                            <div>👜</div>
+                            <div>R$ 199</div>
+                        </div>
+                        <div class="live-product">
+                            <div>💄</div>
+                            <div>R$ 49</div>
+                        </div>
+                        <div class="live-product">
+                            <div>🕶️</div>
+                            <div>R$ 159</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Products Section -->
+                <div class="products-section">
+                    <div class="section-header">
+                        <h2 class="section-title">
+                            📦 Meus Produtos
+                        </h2>
+                        <button class="add-product-btn" onclick="addProduct()">
+                            + Adicionar Produto
+                        </button>
+                    </div>
+
+                    <div class="products-grid" id="productsGrid">
+                        <div class="product-card" onclick="viewProduct(1)">
+                            <div class="product-image">
+                                👗
+                                <span class="product-badge">BEST SELLER</span>
+                            </div>
+                            <div class="product-info">
+                                <div class="product-name">Vestido Summer</div>
+                                <div class="product-price">R$ 189,90</div>
+                                <div class="product-stats">
+                                    <span>234 vendas</span>
+                                    <span>⭐ 4.8</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="product-card" onclick="viewProduct(2)">
+                            <div class="product-image">
+                                💄
+                                <span class="product-badge" style="background: var(--danger);">10% OFF</span>
+                            </div>
+                            <div class="product-info">
+                                <div class="product-name">Kit Skincare</div>
+                                <div class="product-price">R$ 299,90</div>
+                                <div class="product-stats">
+                                    <span>189 vendas</span>
+                                    <span>⭐ 4.9</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="product-card" onclick="viewProduct(3)">
+                            <div class="product-image">
+                                👜
+                            </div>
+                            <div class="product-info">
+                                <div class="product-name">Bolsa Trendy</div>
+                                <div class="product-price">R$ 249,90</div>
+                                <div class="product-stats">
+                                    <span>156 vendas</span>
+                                    <span>⭐ 4.7</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="product-card" onclick="viewProduct(4)">
+                            <div class="product-image">
+                                🕶️
+                                <span class="product-badge" style="background: var(--gold);">NOVO</span>
+                            </div>
+                            <div class="product-info">
+                                <div class="product-name">Óculos Vintage</div>
+                                <div class="product-price">R$ 159,90</div>
+                                <div class="product-stats">
+                                    <span>89 vendas</span>
+                                    <span>⭐ 5.0</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="product-card" onclick="viewProduct(5)">
+                            <div class="product-image">
+                                👠
+                            </div>
+                            <div class="product-info">
+                                <div class="product-name">Salto Classic</div>
+                                <div class="product-price">R$ 199,90</div>
+                                <div class="product-stats">
+                                    <span>145 vendas</span>
+                                    <span>⭐ 4.6</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="product-card" onclick="viewProduct(6)">
+                            <div class="product-image">
+                                📱
+                                <span class="product-badge">AFILIADO</span>
+                            </div>
+                            <div class="product-info">
+                                <div class="product-name">Ring Light Pro</div>
+                                <div class="product-price">R$ 89,90</div>
+                                <div class="product-stats">
+                                    <span>78 vendas</span>
+                                    <span>💰 15% comissão</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column -->
+            <div>
+                <!-- Integrations -->
+                <div class="integrations">
+                    <h3 class="section-title">🔗 Integrações</h3>
+                    
+                    <div class="integration-item">
+                        <div class="integration-info">
+                            <div class="integration-icon">📷</div>
+                            <div>
+                                <div style="font-weight: 600;">Instagram Shop</div>
+                                <div style="font-size: 0.85rem; color: rgba(255,255,255,0.6);">
+                                    47 produtos sincronizados
+                                </div>
+                            </div>
+                        </div>
+                        <div class="integration-status"></div>
+                    </div>
+
+                    <div class="integration-item">
+                        <div class="integration-info">
+                            <div class="integration-icon" style="background: #25D366;">📱</div>
+                            <div>
+                                <div style="font-weight: 600;">Loja/Afiliações Amazon</div>
+                                <div style="font-size: 0.85rem; color: rgba(255,255,255,0.6);">
+                                    Catálogo ativo
+                                </div>
+                            </div>
+                        </div>
+                        <div class="integration-status"></div>
+                    </div>
+
+                    <div class="integration-item">
+                        <div class="integration-info">
+                            <div class="integration-icon" style="background: linear-gradient(135deg, #FF0000, #FF9900);">🎵</div>
+                            <div>
+                                <div style="font-weight: 600;">TikTok Shop</div>
+                                <div style="font-size: 0.85rem; color: rgba(255,255,255,0.6);">
+                                    23 produtos ativos
+                                </div>
+                            </div>
+                        </div>
+                        <div class="integration-status"></div>
+                    </div>
+
+                    <div class="integration-item">
+                        <div class="integration-info">
+                            <div class="integration-icon" style="background: #1877F2;">📘</div>
+                            <div>
+                                <div style="font-weight: 600;">Facebook Shop</div>
+                                <div style="font-size: 0.85rem; color: rgba(255,255,255,0.6);">
+                                    Conectado
+                                </div>
+                            </div>
+                        </div>
+                        <div class="integration-status"></div>
+                    </div>
+                </div>
+
+                <!-- Orders Timeline -->
+                <div class="orders-timeline">
+                    <h3 class="timeline-title">
+                        📊 Últimos Pedidos
+                    </h3>
+
+                    <div class="order-item" onclick="viewOrder(1)">
+                        <div>
+                            <div class="order-time">Agora</div>
+                        </div>
+                        <div class="order-details">
+                            <div class="order-customer">Ana Silva</div>
+                            <div class="order-product">Vestido Summer + Kit Skincare</div>
+                        </div>
+                        <div class="order-value">R$ 489,80</div>
+                    </div>
+
+                    <div class="order-item" onclick="viewOrder(2)">
+                        <div>
+                            <div class="order-time">5 min</div>
+                        </div>
+                        <div class="order-details">
+                            <div class="order-customer">João Pedro</div>
+                            <div class="order-product">Ring Light Pro</div>
+                        </div>
+                        <div class="order-value">R$ 89,90</div>
+                    </div>
+
+                    <div class="order-item" onclick="viewOrder(3)">
+                        <div>
+                            <div class="order-time">12 min</div>
+                        </div>
+                        <div class="order-details">
+                            <div class="order-customer">Maria Costa</div>
+                            <div class="order-product">Bolsa Trendy</div>
+                        </div>
+                        <div class="order-value">R$ 249,90</div>
+                    </div>
+
+                    <div class="order-item" onclick="viewOrder(4)">
+                        <div>
+                            <div class="order-time">18 min</div>
+                        </div>
+                        <div class="order-details">
+                            <div class="order-customer">Carlos Lima</div>
+                            <div class="order-product">Óculos Vintage x2</div>
+                        </div>
+                        <div class="order-value">R$ 319,80</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quick Actions -->
+    <div class="quick-actions">
+        <div class="action-btn" onclick="startLive()" title="Iniciar Live Shopping">
+            📹
+        </div>
+        <div class="action-btn" onclick="toggleWhatsApp()" title="WhatsApp Catálogo" style="background: #25D366;">
+            💬
+        </div>
+        <div class="action-btn" onclick="shareProducts()" title="Compartilhar">
+            📤
+        </div>
+    </div>
+
+    <!-- WhatsApp Catalog -->
+    <div class="whatsapp-catalog" id="whatsappCatalog">
+        <div class="whatsapp-header">
+            <div class="whatsapp-icon">💬</div>
+            <div>
+                <div style="font-weight: 600;">WhatsApp Catálogo</div>
+                <div style="font-size: 0.85rem; color: rgba(255,255,255,0.6);">12 mensagens não lidas</div>
+            </div>
+        </div>
+
+        <div class="catalog-items">
+            <div class="catalog-item">
+                <div class="catalog-thumb">👗</div>
+                <div class="catalog-info">
+                    <div class="catalog-name">Vestido Summer</div>
+                    <div class="catalog-price">R$ 189,90</div>
+                </div>
+            </div>
+
+            <div class="catalog-item">
+                <div class="catalog-thumb">💄</div>
+                <div class="catalog-info">
+                    <div class="catalog-name">Kit Skincare</div>
+                    <div class="catalog-price">R$ 299,90</div>
+                </div>
+            </div>
+
+            <div class="catalog-item">
+                <div class="catalog-thumb">👜</div>
+                <div class="catalog-info">
+                    <div class="catalog-name">Bolsa Trendy</div>
+                    <div class="catalog-price">R$ 249,90</div>
+                </div>
+            </div>
+
+            <div class="catalog-item">
+                <div class="catalog-thumb">🕶️</div>
+                <div class="catalog-info">
+                    <div class="catalog-name">Óculos Vintage</div>
+                    <div class="catalog-price">R$ 159,90</div>
+                </div>
+            </div>
+        </div>
+
+        <button style="width: 100%; padding: 0.8rem; background: #25D366; border: none; border-radius: 10px; color: white; font-weight: 600; margin-top: 1rem; cursor: pointer;">
+            Enviar Catálogo Completo
+        </button>
+    </div>
+
+    <script>
+        // Generate floating shapes
+        const shapesContainer = document.getElementById('floatingShapes');
+        for (let i = 0; i < 10; i++) {
+            const shape = document.createElement('div');
+            shape.className = 'shape';
+            shape.style.width = Math.random() * 200 + 100 + 'px';
+            shape.style.height = shape.style.width;
+            shape.style.left = Math.random() * 100 + '%';
+            shape.style.top = Math.random() * 100 + '%';
+            shape.style.animationDelay = Math.random() * 20 + 's';
+            shapesContainer.appendChild(shape);
+        }
+
+        // Toggle WhatsApp Catalog
+        function toggleWhatsApp() {
+            const catalog = document.getElementById('whatsappCatalog');
+            catalog.classList.toggle('active');
+        }
+
+        // Product functions
+        function addProduct() {
+            showNotification('🎉 Abrindo editor de produto...');
+            
+            // Simulate product creation
+            setTimeout(() => {
+                const productsGrid = document.getElementById('productsGrid');
+                const newProduct = document.createElement('div');
+                newProduct.className = 'product-card';
+                newProduct.innerHTML = `
+                    <div class="product-image">
+                        🆕
+                        <span class="product-badge" style="background: var(--gold);">NOVO</span>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-name">Novo Produto</div>
+                        <div class="product-price">R$ 0,00</div>
+                        <div class="product-stats">
+                            <span>0 vendas</span>
+                            <span>⭐ -</span>
+                        </div>
+                    </div>
+                `;
+                productsGrid.appendChild(newProduct);
+                showNotification('✅ Produto adicionado com sucesso!');
+            }, 1500);
+        }
+
+        function viewProduct(id) {
+            showNotification(`📦 Abrindo produto #${id}...`);
+        }
+
+        function viewOrder(id) {
+            showNotification(`📋 Visualizando pedido #${id}...`);
+        }
+
+        function startLive() {
+            showNotification('📹 Preparando Live Shopping...', 'warning');
+            
+            setTimeout(() => {
+                showNotification('🔴 Live Shopping iniciado! Compartilhe o link com seus seguidores.', 'success');
+                
+                // Update live indicator
+                const liveIndicator = document.querySelector('.live-indicator');
+                liveIndicator.style.background = 'rgba(239, 68, 68, 0.4)';
+                liveIndicator.style.animation = 'pulse-live 1s infinite';
+            }, 2000);
+        }
+
+        function shareProducts() {
+            const shareUrl = 'https://soller.shop/@seuuser';
+            
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Minha Loja Soller',
+                    text: 'Confira meus produtos exclusivos!',
+                    url: shareUrl
+                });
+            } else {
+                // Fallback - copy to clipboard
+                navigator.clipboard.writeText(shareUrl);
+                showNotification('🔗 Link copiado para a área de transferência!');
+            }
+        }
+
+        // Real-time order simulation
+        function simulateNewOrder() {
+            const customers = ['Pedro Santos', 'Julia Lima', 'Lucas Silva', 'Amanda Costa', 'Rafael Oliveira'];
+            const products = ['Vestido Summer', 'Kit Skincare', 'Bolsa Trendy', 'Óculos Vintage', 'Salto Classic'];
+            const prices = [189.90, 299.90, 249.90, 159.90, 199.90];
+            
+            const randomCustomer = customers[Math.floor(Math.random() * customers.length)];
+            const randomIndex = Math.floor(Math.random() * products.length);
+            const randomProduct = products[randomIndex];
+            const randomPrice = prices[randomIndex];
+            
+            showNotification(`💰 Nova venda! ${randomCustomer} comprou ${randomProduct}`, 'success');
+            
+            // Update stats
+            const statValue = document.querySelector('.stat-value');
+            const currentValue = parseFloat(statValue.textContent.replace('R$ ', '').replace('.', ''));
+            const newValue = currentValue + randomPrice;
+            statValue.textContent = 'R$ ' + newValue.toLocaleString('pt-BR', { minimumFractionDigits: 0 });
+        }
+
+        // Simulate orders every 30 seconds
+        setInterval(simulateNewOrder, 30000);
+
+        // Notification system
+        function showNotification(message, type = 'info') {
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 100px;
+                right: 30px;
+                padding: 1rem 2rem;
+                background: ${type === 'success' ? 'rgba(16, 185, 129, 0.2)' : 
+                             type === 'warning' ? 'rgba(245, 158, 11, 0.2)' : 
+                             'rgba(124, 58, 237, 0.2)'};
+                border: 1px solid ${type === 'success' ? '#10B981' : 
+                                   type === 'warning' ? '#F59E0B' : 
+                                   '#7C3AED'};
+                border-radius: 15px;
+                color: white;
+                z-index: 10000;
+                animation: slideIn 0.5s;
+            `;
+            notification.textContent = message;
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.style.animation = 'slideOut 0.5s';
+                setTimeout(() => notification.remove(), 500);
+            }, 3000);
+        }
+
+        // Add animations
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideIn {
+                from { transform: translateX(100%); opacity: 0; }
+                to { transform: translateX(0); opacity: 1; }
+            }
+            
+            @keyframes slideOut {
+                from { transform: translateX(0); opacity: 1; }
+                to { transform: translateX(100%); opacity: 0; }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Welcome message
+        setTimeout(() => {
+            showNotification('👋 Bem-vindo ao Soller Shop! Suas vendas estão crescendo 34% hoje.', 'success');
+        }, 1000);
+
+        // Auto-update live viewers
+        setInterval(() => {
+            const viewersCount = document.querySelector('.viewers-count');
+            if (viewersCount) {
+                const currentViewers = parseInt(viewersCount.textContent.match(/\d+\.?\d*/)[0].replace('.', ''));
+                const newViewers = currentViewers + Math.floor(Math.random() * 100 - 30);
+                viewersCount.innerHTML = `👁️ ${(newViewers / 1000).toFixed(1)}K assistindo`;
+            }
+        }, 5000);
+    </script>
+</body>
+</html>

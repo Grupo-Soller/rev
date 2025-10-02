@@ -1,0 +1,1057 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soller Trust - Certificação Blockchain para Influencers</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #0EA5E9;
+            --secondary: #10B981;
+            --warning: #F59E0B;
+            --danger: #EF4444;
+            --dark: #0F172A;
+            --gray: #1E293B;
+            --light: #F8FAFC;
+            --gradient: linear-gradient(135deg, #0EA5E9 0%, #10B981 100%);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--dark);
+            color: var(--light);
+            overflow-x: hidden;
+        }
+
+        /* Animated Background */
+        .bg-network {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            opacity: 0.1;
+        }
+
+        .network-line {
+            position: absolute;
+            background: var(--primary);
+            opacity: 0.3;
+            animation: pulse 3s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.6; }
+        }
+
+        /* Header */
+        .header {
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(14, 165, 233, 0.2);
+            padding: 1rem 2rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--gradient);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .shield-icon {
+            font-size: 1.5rem;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .nav-link:hover {
+            color: var(--primary);
+        }
+
+        .verify-btn {
+            background: var(--gradient);
+            padding: 0.75rem 1.5rem;
+            border-radius: 10px;
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .verify-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(14, 165, 233, 0.4);
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 80px;
+            padding: 6rem 2rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .trust-badge {
+            display: inline-block;
+            background: rgba(16, 185, 129, 0.2);
+            border: 1px solid var(--secondary);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+            color: var(--secondary);
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            background: var(--gradient);
+            color: whitesmoke;
+            line-height: 1.2;
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 3rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Verification Demo */
+        .verification-demo {
+            max-width: 1200px;
+            margin: -100px auto -100px;
+            padding: 2rem;
+        }
+
+        .demo-container {
+            background: rgba(30, 41, 59, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(14, 165, 233, 0.2);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .demo-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .demo-title {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .demo-subtitle {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .verification-form {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 1rem;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        .input-field {
+            background: rgba(15, 23, 42, 0.5);
+            border: 1px solid rgba(14, 165, 233, 0.3);
+            border-radius: 10px;
+            padding: 1rem;
+            color: white;
+            font-size: 1rem;
+        }
+
+        .input-field:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 20px rgba(14, 165, 233, 0.3);
+        }
+
+        .verify-button {
+            background: var(--gradient);
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .verify-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(14, 165, 233, 0.4);
+        }
+
+        /* Verification Results */
+        .verification-results {
+            display: none;
+            animation: slideIn 0.5s ease;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .profile-header {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            padding: 2rem;
+            background: rgba(15, 23, 42, 0.5);
+            border-radius: 15px;
+        }
+
+        .profile-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: var(--gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            position: relative;
+        }
+
+        .verified-badge {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 40px;
+            height: 40px;
+            background: var(--secondary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 3px solid var(--dark);
+        }
+
+        .profile-info {
+            flex: 1;
+        }
+
+        .profile-name {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .profile-handle {
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .trust-score {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .score-value {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: whitesmoke;
+        }
+
+        .score-label {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* Metrics Grid */
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .metric-card {
+            background: rgba(30, 41, 59, 0.5);
+            border: 1px solid rgba(14, 165, 233, 0.2);
+            border-radius: 15px;
+            padding: 1.5rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .metric-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--gradient);
+        }
+
+        .metric-status {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .status-verified { background: rgba(16, 185, 129, 0.2); color: var(--secondary); }
+        .status-warning { background: rgba(245, 158, 11, 0.2); color: var(--warning); }
+        .status-danger { background: rgba(239, 68, 68, 0.2); color: var(--danger); }
+
+        .metric-value {
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .metric-label {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+        }
+
+        /* Verification Details */
+        .verification-details {
+            background: rgba(30, 41, 59, 0.5);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .detail-section {
+            margin-bottom: 2rem;
+        }
+
+        .detail-title {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .check-list {
+            list-style: none;
+        }
+
+        .check-item {
+            padding: 0.75rem;
+            margin-bottom: 0.5rem;
+            background: rgba(15, 23, 42, 0.5);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .check-icon {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .check-pass { background: var(--secondary); }
+        .check-warning { background: var(--warning); }
+        .check-fail { background: var(--danger); }
+
+        .check-text {
+            flex: 1;
+        }
+
+        .check-value {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        /* Blockchain Certificate */
+        .certificate-section {
+            background: linear-gradient(135deg, rgba(14, 165, 233, 0.1), rgba(16, 185, 129, 0.1));
+            border: 2px solid rgba(14, 165, 233, 0.3);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .certificate-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .certificate-title {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .certificate-hash {
+            font-family: 'Courier New', monospace;
+            background: rgba(15, 23, 42, 0.5);
+            padding: 1rem;
+            border-radius: 10px;
+            margin: 1rem 0;
+            word-break: break-all;
+            font-size: 0.9rem;
+        }
+
+        .certificate-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 1.5rem;
+        }
+
+        .cert-btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .cert-btn-primary {
+            background: var(--gradient);
+            color: white;
+        }
+
+        .cert-btn-secondary {
+            background: transparent;
+            color: var(--primary);
+            border: 1px solid var(--primary);
+        }
+
+        /* Features Section */
+        .features {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .features-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: rgba(30, 41, 59, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(14, 165, 233, 0.2);
+            border-radius: 20px;
+            padding: 2rem;
+            transition: all 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+            box-shadow: 0 20px 40px rgba(14, 165, 233, 0.3);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--gradient);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-title {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-description {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.6;
+        }
+
+        /* Stats Section */
+        .stats {
+            background: rgba(30, 41, 59, 0.3);
+            padding: 4rem 2rem;
+        }
+
+        .stats-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .stat-card {
+            padding: 2rem;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: bold;
+            color: whitesmoke;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Pricing */
+        .pricing {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .pricing-title {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .pricing-card {
+            background: rgba(30, 41, 59, 0.6);
+            border: 1px solid rgba(14, 165, 233, 0.2);
+            border-radius: 20px;
+            padding: 2rem;
+            position: relative;
+            transition: all 0.3s;
+        }
+
+        .pricing-card.featured {
+            border-color: var(--primary);
+            transform: scale(1.05);
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(14, 165, 233, 0.3);
+        }
+
+        .plan-badge {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--gradient);
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .plan-name {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .plan-price {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .plan-price span {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .plan-description {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 2rem;
+        }
+
+        .plan-features {
+            list-style: none;
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+
+        .plan-features li {
+            padding: 0.5rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .plan-cta {
+            width: 100%;
+            padding: 0.8rem;
+            background: var(--gradient);
+            border: none;
+            border-radius: 10px;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .plan-cta:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(14, 165, 233, 0.4);
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            border-top: 1px solid rgba(14, 165, 233, 0.2);
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            .profile-header { flex-direction: column; text-align: center; }
+            .metrics-grid { grid-template-columns: 1fr; }
+            .features-grid { grid-template-columns: 1fr; }
+            .pricing-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Network Effect -->
+    <div class="bg-network" id="network"></div>
+
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav">
+            <div class="logo">
+                <div class="logo-icon">
+                    <span class="shield-icon">🛡️</span>
+                </div>
+                <span>Soller Trust</span>
+            </div>
+            
+            <div class="nav-menu">
+                <a href="#features" class="nav-link">Como Funciona</a>
+                <a href="#pricing" class="nav-link">Planos</a>
+                <a href="#stats" class="nav-link">Estatísticas</a>
+                <a href="#demo" class="verify-btn">Verificar Influencer</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="trust-badge">✅ Certificação Blockchain Inviolável</div>
+        <h1>A Verdade Sobre Cada Influencer</h1>
+        <p class="hero-subtitle">
+            Sistema de verificação e certificação blockchain que detecta fraudes,
+            valida métricas e garante autenticidade no marketing de influência.
+        </p>
+    </section>
+
+    <!-- Verification Demo -->
+    <section class="verification-demo" id="demo">
+        <div class="demo-container">
+            <div class="demo-header">
+                <h2 class="demo-title">🔍 Verificação em Tempo Real</h2>
+                <p class="demo-subtitle">Digite o @ do Instagram para análise completa</p>
+            </div>
+
+            <div class="verification-form">
+                <input type="text" class="input-field" placeholder="@influencer" id="influencerHandle">
+                <button class="verify-button" onclick="verifyInfluencer()">Verificar Agora</button>
+            </div>
+
+            <div class="verification-results" id="results">
+                <div class="profile-header">
+                    <div class="profile-avatar">
+                        👤
+                        <div class="verified-badge">✓</div>
+                    </div>
+                    <div class="profile-info">
+                        <h3 class="profile-name">Marina Silva</h3>
+                        <p class="profile-handle">@marinasilva</p>
+                        <div class="trust-score">
+                            <span class="score-value">92</span>
+                            <span class="score-label">/ 100 Trust Score</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <div class="metric-status status-verified">✓</div>
+                        <div class="metric-value">2.5M</div>
+                        <div class="metric-label">Seguidores Reais</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-status status-verified">✓</div>
+                        <div class="metric-value">4.8%</div>
+                        <div class="metric-label">Engajamento Autêntico</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-status status-warning">!</div>
+                        <div class="metric-value">12%</div>
+                        <div class="metric-label">Seguidores Suspeitos</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-status status-verified">✓</div>
+                        <div class="metric-value">A+</div>
+                        <div class="metric-label">Qualidade Audiência</div>
+                    </div>
+                </div>
+
+                <div class="verification-details">
+                    <div class="detail-section">
+                        <h3 class="detail-title">
+                            <span>🔐</span> Análise de Autenticidade
+                        </h3>
+                        <ul class="check-list">
+                            <li class="check-item">
+                                <span class="check-icon check-pass">✓</span>
+                                <span class="check-text">Crescimento orgânico nos últimos 90 dias</span>
+                                <span class="check-value">+3.2%</span>
+                            </li>
+                            <li class="check-item">
+                                <span class="check-icon check-pass">✓</span>
+                                <span class="check-text">Taxa de comentários autênticos</span>
+                                <span class="check-value">87%</span>
+                            </li>
+                            <li class="check-item">
+                                <span class="check-icon check-warning">⚠</span>
+                                <span class="check-text">Picos suspeitos de seguidores</span>
+                                <span class="check-value">2 eventos</span>
+                            </li>
+                            <li class="check-item">
+                                <span class="check-icon check-pass">✓</span>
+                                <span class="check-text">Histórico de campanhas verificadas</span>
+                                <span class="check-value">47 campanhas</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="detail-section">
+                        <h3 class="detail-title">
+                            <span>📊</span> Performance Histórica
+                        </h3>
+                        <ul class="check-list">
+                            <li class="check-item">
+                                <span class="check-icon check-pass">✓</span>
+                                <span class="check-text">ROI médio em campanhas</span>
+                                <span class="check-value">4.2x</span>
+                            </li>
+                            <li class="check-item">
+                                <span class="check-icon check-pass">✓</span>
+                                <span class="check-text">Taxa de conclusão de contratos</span>
+                                <span class="check-value">98%</span>
+                            </li>
+                            <li class="check-item">
+                                <span class="check-icon check-pass">✓</span>
+                                <span class="check-text">Tempo médio de resposta</span>
+                                <span class="check-value">2h</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="certificate-section">
+                    <div class="certificate-icon">🏆</div>
+                    <h3 class="certificate-title">Certificado Blockchain Verificado</h3>
+                    <p style="color: rgba(255,255,255,0.7); margin-bottom: 1rem;">
+                        Este influencer passou por verificação completa e está certificado na blockchain
+                    </p>
+                    <div class="certificate-hash">
+                        0x7f3b9c2d4e5a6f8h9j0k1l2m3n4o5p6q7r8s9t0u1v2w3x4y5z6
+                    </div>
+                    <div class="certificate-actions">
+                        <a href="#" class="cert-btn cert-btn-primary">Download PDF</a>
+                        <a href="#" class="cert-btn cert-btn-secondary">Ver na Blockchain</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section class="features" id="features">
+        <h2 class="features-title">Como Garantimos a Verdade</h2>
+        
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🤖</div>
+                <h3 class="feature-title">Análise por IA Avançada</h3>
+                <p class="feature-description">
+                    Machine learning analisa padrões de crescimento, engajamento e comportamento
+                    para detectar anomalias e bots com 99.7% de precisão.
+                </p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🔗</div>
+                <h3 class="feature-title">Certificação Blockchain</h3>
+                <p class="feature-description">
+                    Cada verificação gera um certificado imutável na blockchain,
+                    garantindo que os dados não podem ser alterados ou falsificados.
+                </p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">📊</div>
+                <h3 class="feature-title">200+ Métricas Analisadas</h3>
+                <p class="feature-description">
+                    Verificamos velocidade de crescimento, qualidade de comentários,
+                    distribuição geográfica, horários de atividade e muito mais.
+                </p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">⏱️</div>
+                <h3 class="feature-title">Monitoramento Contínuo</h3>
+                <p class="feature-description">
+                    Acompanhamento 24/7 com alertas automáticos sobre mudanças
+                    suspeitas ou comportamentos anômalos.
+                </p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🌍</div>
+                <h3 class="feature-title">Database Global</h3>
+                <p class="feature-description">
+                    Acesso ao maior banco de dados de fraudes e bots do mercado,
+                    com milhões de contas fake já identificadas.
+                </p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🏅</div>
+                <h3 class="feature-title">Trust Score Universal</h3>
+                <p class="feature-description">
+                    Score de 0-100 reconhecido pelo mercado que facilita
+                    a tomada de decisão em segundos.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats -->
+    <section class="stats" id="stats">
+        <div class="stats-container">
+            <h2 class="features-title">Protegendo o Mercado de Influência</h2>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">2.8M</div>
+                    <div class="stat-label">Influencers Verificados</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">127M</div>
+                    <div class="stat-label">Fakes Reconhecidos</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">47K</div>
+                    <div class="stat-label">Empresas Protegidas</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">99.7%</div>
+                    <div class="stat-label">Precisão da IA</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing -->
+    <section class="pricing" id="pricing">
+        <h2 class="pricing-title">Planos para Cada Necessidade</h2>
+        
+        <div class="pricing-grid">
+            <div class="pricing-card">
+                <h3 class="plan-name">Básico</h3>
+                <div class="plan-price">R$ 99<span>/mês</span></div>
+                <p class="plan-description">Para pequenas agências</p>
+                <ul class="plan-features">
+                    <li>✓ 10 verificações/mês</li>
+                    <li>✓ Trust Score básico</li>
+                    <li>✓ Relatório PDF</li>
+                    <li>✓ Suporte por email</li>
+                </ul>
+                <button class="plan-cta">Começar Agora</button>
+            </div>
+
+            <div class="pricing-card featured">
+                <div class="plan-badge">MAIS POPULAR</div>
+                <h3 class="plan-name">Profissional</h3>
+                <div class="plan-price">R$ 499<span>/mês</span></div>
+                <p class="plan-description">Para agências e marcas</p>
+                <ul class="plan-features">
+                    <li>✓ 100 verificações/mês</li>
+                    <li>✓ Análise completa</li>
+                    <li>✓ Certificado blockchain</li>
+                    <li>✓ API access</li>
+                    <li>✓ Monitoramento contínuo</li>
+                    <li>✓ Suporte prioritário</li>
+                </ul>
+                <button class="plan-cta">Teste Grátis 14 Dias</button>
+            </div>
+
+            <div class="pricing-card">
+                <h3 class="plan-name">Enterprise</h3>
+                <div class="plan-price">Custom</div>
+                <p class="plan-description">Soluções personalizadas</p>
+                <ul class="plan-features">
+                    <li>✓ Verificações ilimitadas</li>
+                    <li>✓ White label</li>
+                    <li>✓ Integração CRM</li>
+                    <li>✓ Database exclusivo</li>
+                    <li>✓ Machine learning custom</li>
+                    <li>✓ Account manager</li>
+                </ul>
+                <button class="plan-cta">Falar com Vendas</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>© 2025 Soller Trust - Sistema de Certificação Blockchain para Influencers</p>
+        <p style="margin-top: 0.5rem;">Protegendo a integridade do marketing de influência</p>
+    </footer>
+
+    <script>
+        // Generate network lines
+        const network = document.getElementById('network');
+        for (let i = 0; i < 20; i++) {
+            const line = document.createElement('div');
+            line.className = 'network-line';
+            line.style.width = Math.random() * 200 + 'px';
+            line.style.height = '1px';
+            line.style.left = Math.random() * 100 + '%';
+            line.style.top = Math.random() * 100 + '%';
+            line.style.transform = `rotate(${Math.random() * 360}deg)`;
+            line.style.animationDelay = Math.random() * 3 + 's';
+            network.appendChild(line);
+        }
+
+        // Verify influencer function
+        function verifyInfluencer() {
+            const handle = document.getElementById('influencerHandle').value;
+            if (!handle) {
+                alert('Por favor, digite um @handle');
+                return;
+            }
+
+            // Show loading animation
+            const button = document.querySelector('.verify-button');
+            button.innerHTML = 'Analisando...';
+            button.disabled = true;
+
+            // Simulate verification process
+            setTimeout(() => {
+                document.getElementById('results').style.display = 'block';
+                button.innerHTML = 'Verificar Outro';
+                button.disabled = false;
+                
+                // Scroll to results
+                document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
+            }, 2000);
+        }
+
+        // Animate numbers on scroll
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const numbers = entry.target.querySelectorAll('.stat-number');
+                    numbers.forEach(num => {
+                        const final = num.textContent;
+                        let current = 0;
+                        const increment = final / 30;
+                        const timer = setInterval(() => {
+                            current += increment;
+                            if (current >= final) {
+                                num.textContent = final;
+                                clearInterval(timer);
+                            }
+                        }, 50);
+                    });
+                }
+            });
+        }, observerOptions);
+
+        // Observe stats section
+        const statsSection = document.querySelector('.stats-grid');
+        if (statsSection) {
+            observer.observe(statsSection);
+        }
+    </script>
+</body>
+</html>
