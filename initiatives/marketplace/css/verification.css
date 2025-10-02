@@ -1,0 +1,524 @@
+/**
+ * Soller - Verification Page Styles
+ * Sistema de verificação por código de 4 dígitos
+ */
+
+/* ============================================
+   1. VERIFICATION HEADER
+   ============================================ */
+
+.verification-header {
+    background: white;
+    border-bottom: 1px solid var(--gray-100);
+    padding: 1.5rem 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+}
+
+.verification-header .logo {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--gray-900);
+    text-decoration: none;
+}
+
+.verification-header .logo img {
+    width: 40px;
+    height: 40px;
+}
+
+/* ============================================
+   2. VERIFICATION SECTION
+   ============================================ */
+
+.verification-section {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #667EEA 0%, #764BA2 100%);
+    padding: 6rem 0 3rem;
+    display: flex;
+    align-items: center;
+}
+
+.verification-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+/* ============================================
+   3. VERIFICATION CARD
+   ============================================ */
+
+.verification-card {
+    background: white;
+    border-radius: 1.5rem;
+    padding: 3rem 2.5rem;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+    text-align: center;
+    width: 100%;
+    animation: slideUp 0.5s ease;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ============================================
+   4. VERIFICATION ICON
+   ============================================ */
+
+.verification-icon {
+    position: relative;
+    margin: 0 auto 2rem;
+    width: 80px;
+    height: 80px;
+}
+
+.icon-circle {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, rgba(124, 58, 237, 0.1), rgba(236, 72, 153, 0.1));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 2;
+}
+
+.icon-circle i {
+    font-size: 2rem;
+    color: var(--primary);
+}
+
+.pulse-ring {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 80px;
+    height: 80px;
+    border: 2px solid var(--primary);
+    border-radius: 50%;
+    opacity: 0;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        opacity: 0.5;
+    }
+    100% {
+        transform: scale(1.5);
+        opacity: 0;
+    }
+}
+
+/* ============================================
+   5. VERIFICATION CONTENT
+   ============================================ */
+
+.verification-title {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--gray-900);
+    margin-bottom: 0.75rem;
+}
+
+.verification-subtitle {
+    color: var(--gray-600);
+    font-size: 1rem;
+    margin-bottom: 1rem;
+}
+
+.verification-email {
+    background: var(--gray-50);
+    padding: 1rem 1.5rem;
+    border-radius: 0.75rem;
+    font-weight: 600;
+    color: var(--primary);
+    font-size: 1.125rem;
+    margin-bottom: 2rem;
+    border: 2px solid var(--gray-100);
+}
+
+/* ============================================
+   6. CODE INPUTS
+   ============================================ */
+
+.code-inputs {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.code-digit {
+    width: 60px;
+    height: 60px;
+    text-align: center;
+    font-size: 1.75rem;
+    font-weight: 700;
+    border: 3px solid var(--gray-200);
+    border-radius: 1rem;
+    background: white;
+    color: var(--gray-900);
+    transition: all 0.3s ease;
+    caret-color: var(--primary);
+}
+
+.code-digit:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 4px rgba(124, 58, 237, 0.1);
+    transform: scale(1.05);
+}
+
+.code-digit.filled {
+    border-color: var(--primary);
+    background: linear-gradient(135deg, rgba(124, 58, 237, 0.05), rgba(236, 72, 153, 0.05));
+}
+
+.code-digit.error {
+    border-color: var(--error);
+    animation: shake 0.5s;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+    20%, 40%, 60%, 80% { transform: translateX(5px); }
+}
+
+/* Remove spin buttons from number inputs */
+.code-digit::-webkit-inner-spin-button,
+.code-digit::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* ============================================
+   7. MESSAGES
+   ============================================ */
+
+.message-container {
+    margin-bottom: 1.5rem;
+    min-height: 2rem;
+}
+
+.error-message,
+.success-message,
+.info-message {
+    padding: 0.875rem 1rem;
+    border-radius: 0.75rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    animation: fadeIn 0.3s ease;
+}
+
+.error-message {
+    background: #FEE2E2;
+    color: #DC2626;
+    border: 1px solid #FECACA;
+}
+
+.success-message {
+    background: #D1FAE5;
+    color: #065F46;
+    border: 1px solid #A7F3D0;
+}
+
+.info-message {
+    background: #DBEAFE;
+    color: #1E40AF;
+    border: 1px solid #BFDBFE;
+}
+
+/* ============================================
+   8. BUTTONS
+   ============================================ */
+
+.btn-verify {
+    width: 100%;
+    padding: 1rem;
+    background: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 0.75rem;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    position: relative;
+    transition: all var(--transition-base);
+    margin-bottom: 1.5rem;
+}
+
+.btn-verify:hover:not(:disabled) {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(124, 58, 237, 0.2);
+}
+
+.btn-verify:disabled {
+    background: var(--gray-300);
+    cursor: not-allowed;
+    transform: none;
+}
+
+.btn-loading {
+    display: none;
+}
+
+.btn-verify.loading .btn-text {
+    visibility: hidden;
+}
+
+.btn-verify.loading .btn-loading {
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* ============================================
+   9. RESEND SECTION
+   ============================================ */
+
+.resend-section {
+    padding: 1.5rem 0;
+    border-top: 1px solid var(--gray-100);
+    margin-bottom: 1rem;
+}
+
+.resend-text {
+    color: var(--gray-600);
+    font-size: 0.875rem;
+    margin-bottom: 0.75rem;
+}
+
+.btn-resend {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: none;
+    border: none;
+    color: var(--primary);
+    font-weight: 600;
+    font-size: 0.875rem;
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    transition: all var(--transition-base);
+}
+
+.btn-resend:hover:not(:disabled) {
+    background: rgba(124, 58, 237, 0.1);
+}
+
+.btn-resend:disabled {
+    color: var(--gray-400);
+    cursor: not-allowed;
+}
+
+.countdown {
+    font-size: 0.75rem;
+    color: var(--gray-500);
+    margin-top: 0.5rem;
+    min-height: 1.25rem;
+}
+
+/* ============================================
+   10. HELP SECTION
+   ============================================ */
+
+.help-section {
+    margin-bottom: 1.5rem;
+}
+
+.help-text {
+    font-size: 0.875rem;
+    color: var(--gray-500);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.help-text i {
+    color: var(--gray-400);
+}
+
+/* ============================================
+   11. BACK LINK
+   ============================================ */
+
+.back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--gray-600);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.875rem;
+    transition: color var(--transition-base);
+}
+
+.back-link:hover {
+    color: var(--primary);
+}
+
+/* ============================================
+   12. SUCCESS CARD
+   ============================================ */
+
+.success-card {
+    background: white;
+    border-radius: 1.5rem;
+    padding: 3rem 2.5rem;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+    text-align: center;
+    width: 100%;
+    animation: slideUp 0.5s ease;
+}
+
+.success-animation {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto 2rem;
+}
+
+/* Checkmark Animation */
+.checkmark {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    display: block;
+    stroke-width: 2;
+    stroke: #10B981;
+    stroke-miterlimit: 10;
+    box-shadow: inset 0px 0px 0px #10B981;
+    animation: fill .4s ease-in-out .4s forwards, scale .3s ease-in-out .9s both;
+}
+
+.checkmark-circle {
+    stroke-dasharray: 166;
+    stroke-dashoffset: 166;
+    stroke-width: 2;
+    stroke-miterlimit: 10;
+    stroke: #10B981;
+    fill: none;
+    animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+}
+
+.checkmark-check {
+    transform-origin: 50% 50%;
+    stroke-dasharray: 48;
+    stroke-dashoffset: 48;
+    animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
+}
+
+@keyframes stroke {
+    100% {
+        stroke-dashoffset: 0;
+    }
+}
+
+@keyframes scale {
+    0%, 100% {
+        transform: none;
+    }
+    50% {
+        transform: scale3d(1.1, 1.1, 1);
+    }
+}
+
+@keyframes fill {
+    100% {
+        box-shadow: inset 0px 0px 0px 30px #10B981;
+    }
+}
+
+.success-title {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--gray-900);
+    margin-bottom: 0.75rem;
+}
+
+.success-text {
+    color: var(--gray-600);
+    font-size: 1rem;
+    margin-bottom: 2rem;
+}
+
+.btn-continue {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem 2rem;
+    background: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 0.75rem;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition-base);
+}
+
+.btn-continue:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(124, 58, 237, 0.2);
+}
+
+/* ============================================
+   13. RESPONSIVE
+   ============================================ */
+
+@media (max-width: 640px) {
+    .verification-card,
+    .success-card {
+        padding: 2rem 1.5rem;
+    }
+    
+    .verification-title,
+    .success-title {
+        font-size: 1.5rem;
+    }
+    
+    .code-inputs {
+        gap: 0.75rem;
+    }
+    
+    .code-digit {
+        width: 50px;
+        height: 50px;
+        font-size: 1.5rem;
+    }
+    
+    .verification-email {
+        font-size: 1rem;
+        padding: 0.875rem 1rem;
+    }
+}
