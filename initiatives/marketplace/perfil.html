@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Empresarial - Soller Marketplace</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" href="assets/logo.ico" type="image/x-icon">
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/perfil_modals.css">
+</head>
+
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo">
+                    <div class="logo-container">
+                        <img src="assets/logo.png" alt="Soller">
+                    </div>
+                    <span>Marketplace</span>
+                </a>
+                
+                <nav class="nav-menu">
+                    <div class="nav-tabs">
+                        <a href="index.html" class="nav-tab">
+                            <span class="tab-icon">✨</span>
+                            Influenciadores
+                        </a>
+                        <a href="empresas.html" class="nav-tab active">
+                            <span class="tab-icon">🏢</span>
+                            Empresas
+                        </a>
+                        <a href="agencias.html" class="nav-tab">
+                            <span class="tab-icon">🤝</span>
+                            Agências
+                        </a>
+                    </div>
+                </nav>
+                
+                <div class="nav-actions">
+                    <button class="icon-btn" onclick="dashboard.openNotifications()">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-badge">2</span>
+                    </button>
+                    
+                    <div class="user-dropdown">
+                        <button class="user-button" onclick="toggleDropdown()">
+                            <div class="user-avatar">TC</div>
+                            <span>TechCorp</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="dropdown-menu">
+                            <div class="dropdown-header">
+                                <div class="company-info-dropdown">
+                                    <strong>TechCorp Brasil</strong>
+                                    <span>Plano Premium</span>
+                                </div>
+                            </div>
+                            <div class="dropdown-divider"></div>
+                            <a href="#settings"><i class="fas fa-cog"></i> Configurações</a>
+                            <a href="#billing"><i class="fas fa-credit-card"></i> Faturamento</a>
+                            <a href="#team"><i class="fas fa-users"></i> Equipe</a>
+                            <div class="dropdown-divider"></div>
+                            <a href="#help"><i class="fas fa-question-circle"></i> Ajuda</a>
+                            <a href="#logout" class="logout"><i class="fas fa-sign-out-alt"></i> Sair</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <div class="company-info">
+                <div class="company-logo">TC</div>
+                <div class="company-name">TechCorp Brasil</div>
+                <div class="company-plan">
+                    <span class="plan-badge">Premium</span>
+                    <span class="plan-usage">45% usado</span>
+                </div>
+                <div class="budget-indicator">
+                    <div class="budget-bar">
+                        <div class="budget-progress" style="width: 65%"></div>
+                    </div>
+                    <div class="budget-info">
+                        <span>R$ 32.5k de R$ 50k</span>
+                        <span class="budget-label">Orçamento</span>
+                    </div>
+                </div>
+            </div>
+            
+            <nav>
+                <ul class="nav-menu-sidebar">
+                    <li class="nav-item">
+                        <a href="#dashboard" class="nav-link active">
+                            <i class="fas fa-th-large"></i>
+                            Dashboard
+                            <span class="nav-indicator"></span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#proposals" class="nav-link">
+                            <i class="fas fa-file-alt"></i>
+                            Propostas
+                            <span class="nav-badge">8</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#campaigns" class="nav-link">
+                            <i class="fas fa-bullhorn"></i>
+                            Campanhas
+                            <span class="nav-badge active">5</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#influencers" class="nav-link">
+                            <i class="fas fa-users"></i>
+                            Influenciadores
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#analytics" class="nav-link">
+                            <i class="fas fa-chart-bar"></i>
+                            Analytics
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#settings" class="nav-link">
+                            <i class="fas fa-cog"></i>
+                            Configurações
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="sidebar-footer">
+                <div class="help-card">
+    <div class="help-content">
+        
+        <h4>Precisa de ajuda?</h4>
+        <p>Fale com a nossa equipe</p>
+    </div>
+    <a href="https://api.whatsapp.com/send?phone=5511999999999" class="btn-secondary btn-icon-only">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+</div>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            </main>
+    </div>
+
+    <div class="fab-container">
+        <button class="fab" onclick="dashboard.openQuickActions()">
+            <i class="fas fa-plus"></i>
+        </button>
+    </div>
+
+    <div class="toast-container"></div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@3.0.1/dist/chartjs-plugin-annotation.min.js"></script>
+    <script src="js/mockData.js"></script>
+    <script src="js/dashboard.js"></script>
+    <script src="js/perfil_modals.js"></script>
+    <script src="js/analytics-charts.js"></script>
+    <script>
+        function toggleDropdown() {
+            const dropdown = document.querySelector('.user-dropdown');
+            dropdown.classList.toggle('active');
+        }
+
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.user-dropdown')) {
+                document.querySelector('.user-dropdown').classList.remove('active');
+            }
+            
+            // FAB Menu (agora controlado pelo JS)
+            const fab = document.querySelector('.fab');
+            const fabMenu = document.querySelector('.fab-menu');
+            if (!e.target.closest('.fab-container') && fab && fabMenu) {
+                fab.classList.remove('active');
+                fabMenu.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>
