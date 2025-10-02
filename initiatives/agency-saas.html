@@ -1,0 +1,1076 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soller Agency OS - O Sistema Operacional das Agências Vencedoras</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --purple: #8B5CF6;
+            --pink: #EC4899;
+            --blue: #3B82F6;
+            --green: #10B981;
+            --yellow: #F59E0B;
+            --dark: #0F172A;
+            --light: #F8FAFC;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--dark);
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        /* Animated gradient background */
+        .bg-animation {
+            position: fixed;
+            width: 200%;
+            height: 200%;
+            top: -50%;
+            left: -50%;
+            z-index: -1;
+            background: linear-gradient(45deg, #8B5CF6, #3B82F6, #EC4899, #F59E0B);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            opacity: 0.1;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(139, 92, 246, 0.2);
+            z-index: 1000;
+            padding: 1rem 2rem;
+        }
+
+        .nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--purple), var(--pink));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: #94A3B8;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .nav-link:hover {
+            color: var(--purple);
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, var(--purple), var(--pink));
+            padding: 0.75rem 1.5rem;
+            border-radius: 10px;
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(139, 92, 246, 0.4);
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 80px;
+            padding: 6rem 2rem 4rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(139, 92, 246, 0.2);
+            border: 1px solid var(--purple);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(
+  135deg,
+  color-mix(in srgb, white 50%, transparent),
+  color-mix(in srgb, var(--purple) 50%, transparent)
+);
+            color: whitesmoke;
+            line-height: 1.2;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: #94A3B8;
+            margin-bottom: 1.5rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Demo Dashboard */
+        .demo-section {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .dashboard-container {
+            background: rgba(30, 41, 59, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .dashboard-header {
+            background: rgba(15, 23, 42, 0.8);
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(139, 92, 246, 0.2);
+        }
+
+        .agency-selector {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .agency-logo {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--blue), var(--purple));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .agency-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .agency-name {
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .agency-tier {
+            font-size: 0.85rem;
+            color: var(--yellow);
+        }
+
+        .dashboard-tabs {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .tab {
+            padding: 0.5rem 1rem;
+            background: rgba(139, 92, 246, 0.2);
+            border: 1px solid transparent;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .tab.active {
+            background: var(--purple);
+            border-color: var(--purple);
+        }
+
+        /* Multi-tenant Dashboard */
+        .dashboard-content {
+            padding: 2rem;
+        }
+
+        .clients-overview {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .client-card {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            border-radius: 15px;
+            padding: 1.5rem;
+            position: relative;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .client-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--purple);
+            box-shadow: 0 10px 30px rgba(139, 92, 246, 0.3);
+        }
+
+        .client-status {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            width: 10px;
+            height: 10px;
+            background: var(--green);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(16, 185, 129, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+        }
+
+        .client-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .client-metrics {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .metric {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .metric-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--purple);
+        }
+
+        .metric-label {
+            font-size: 0.85rem;
+            color: #94A3B8;
+        }
+
+        /* Campaign Pipeline */
+        .pipeline-section {
+            background: rgba(15, 23, 42, 0.6);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .pipeline-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .pipeline-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        .pipeline-value {
+            font-size: 1.5rem;
+            color: var(--green);
+            font-weight: bold;
+        }
+
+        .pipeline-stages {
+            display: flex;
+            gap: 1rem;
+            overflow-x: auto;
+            padding-bottom: 1rem;
+        }
+
+        .stage {
+            min-width: 250px;
+            background: rgba(30, 41, 59, 0.6);
+            border-radius: 10px;
+            padding: 1rem;
+        }
+
+        .stage-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid rgba(139, 92, 246, 0.2);
+        }
+
+        .stage-name {
+            font-weight: 600;
+        }
+
+        .stage-count {
+            background: var(--purple);
+            padding: 0.25rem 0.5rem;
+            border-radius: 5px;
+            font-size: 0.85rem;
+        }
+
+        .campaign-item {
+            background: rgba(15, 23, 42, 0.6);
+            padding: 0.75rem;
+            border-radius: 8px;
+            margin-bottom: 0.5rem;
+            transition: all 0.3s;
+            cursor: move;
+        }
+
+        .campaign-item:hover {
+            background: rgba(139, 92, 246, 0.2);
+            transform: translateX(5px);
+        }
+
+        .campaign-brand {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .campaign-info {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            color: #94A3B8;
+        }
+
+        /* AI Assistant */
+        .ai-assistant {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 350px;
+            background: rgba(15, 23, 42, 0.95);
+            border: 1px solid var(--purple);
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+
+        .ai-header {
+            background: linear-gradient(135deg, var(--purple), var(--pink));
+            padding: 1rem;
+            border-radius: 15px 15px 0 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .ai-avatar {
+            width: 30px;
+            height: 30px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .ai-messages {
+            padding: 1rem;
+            height: 110px;
+            overflow-y: auto;
+        }
+
+        .ai-message {
+            background: rgba(139, 92, 246, 0.2);
+            padding: 0.75rem;
+            border-radius: 10px;
+            margin-bottom: 0.5rem;
+            animation: slideUp 0.3s ease;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Features Grid */
+        .features {
+            max-width: 1400px;
+            margin: 4rem auto;
+            padding: 2rem;
+        }
+
+        .features-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: rgba(30, 41, 59, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            border-radius: 15px;
+            padding: 2rem;
+            transition: all 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--purple);
+            box-shadow: 0 20px 40px rgba(139, 92, 246, 0.3);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--purple), var(--pink));
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-title {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-description {
+            color: #94A3B8;
+            line-height: 1.6;
+        }
+
+        /* Pricing Section */
+        .pricing {
+            max-width: 1200px;
+            margin: 4rem auto;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .pricing-title {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .pricing-subtitle {
+            color: #94A3B8;
+            font-size: 1.2rem;
+            margin-bottom: 3rem;
+        }
+
+        .pricing-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .pricing-card {
+            background: rgba(30, 41, 59, 0.6);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            border-radius: 20px;
+            padding: 2rem;
+            position: relative;
+            transition: all 0.3s;
+        }
+
+        .pricing-card.featured {
+            border-color: var(--purple);
+            transform: scale(1.05);
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(139, 92, 246, 0.3);
+        }
+
+        .pricing-badge {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, var(--purple), var(--pink));
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .pricing-name {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .pricing-price {
+            font-size: 3rem;
+            font-weight: bold;
+            color: var(--purple);
+            margin-bottom: 0.5rem;
+        }
+
+        .pricing-price span {
+            font-size: 1rem;
+            color: #94A3B8;
+        }
+
+        .pricing-revenue {
+            color: var(--green);
+            font-weight: 600;
+            margin-bottom: 2rem;
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .pricing-features li {
+            padding: 0.5rem 0;
+            color: #CBD5E1;
+        }
+
+        .pricing-features li::before {
+            content: "✓ ";
+            color: var(--green);
+            font-weight: bold;
+        }
+
+        .pricing-cta {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, var(--purple), var(--pink));
+            border: none;
+            border-radius: 10px;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .pricing-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(139, 92, 246, 0.4);
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 3rem;
+            margin-top: 4rem;
+            border-top: 1px solid rgba(139, 92, 246, 0.2);
+            color: #64748B;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .hero-subtitle { font-size: 1.1rem; }
+            .features-grid { grid-template-columns: 1fr; }
+            .pricing-cards { grid-template-columns: 1fr; }
+            .ai-assistant { width: 90%; right: 5%; }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-animation"></div>
+
+    <header class="header">
+        <nav class="nav">
+            <div class="logo">
+                <div class="logo-icon">🚀</div>
+                <span>Soller Agency OS</span>
+            </div>
+            <div class="nav-menu">
+                <a href="#features" class="nav-link">Recursos</a>
+                <a href="#pricing" class="nav-link">Planos</a>
+                <a href="#demo" class="nav-link">Demo</a>
+                <a href="#" class="cta-button">Começar Agora</a>
+            </div>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>O Sistema Operacional<br>das Agências Digitais</h1>
+        <p class="hero-subtitle">
+            Transforme sua agência tradicional em uma máquina de marketing de influência!<br>
+            Dashboard de empresas e influenciadores com IA preditiva para maior eficiência operacional.
+        </p>
+    </section>
+
+    <section class="demo-section" id="demo">
+        <div class="dashboard-container">
+            <div class="dashboard-header">
+                <div class="agency-selector">
+                    <div class="agency-logo">DM</div>
+                    <div class="agency-info">
+                        <span class="agency-name">Digital Makers Agency</span>
+                        <span class="agency-tier">⭐ Partner Gold • 47 clientes ativos</span>
+                    </div>
+                </div>
+                <div class="dashboard-tabs">
+                    <div class="tab active">Overview</div>
+                    <div class="tab">Clientes</div>
+                    <div class="tab">Campanhas</div>
+                    <div class="tab">Financeiro</div>
+                    <div class="tab">White Label</div>
+                </div>
+            </div>
+
+            <div class="dashboard-content">
+                <!-- Multi-client Overview -->
+                <div class="clients-overview">
+                    <div class="client-card">
+                        <div class="client-status"></div>
+                        <div class="client-name">Nike Brasil</div>
+                        <div class="client-metrics">
+                            <div class="metric">
+                                <span class="metric-value">R$ 450K</span>
+                                <span class="metric-label">Budget Mensal</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">4.8x</span>
+                                <span class="metric-label">ROI Atual</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">12</span>
+                                <span class="metric-label">Campanhas Ativas</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">89%</span>
+                                <span class="metric-label">Health Score</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="client-card">
+                        <div class="client-status"></div>
+                        <div class="client-name">O Boticário</div>
+                        <div class="client-metrics">
+                            <div class="metric">
+                                <span class="metric-value">R$ 280K</span>
+                                <span class="metric-label">Budget Mensal</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">3.9x</span>
+                                <span class="metric-label">ROI Atual</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">8</span>
+                                <span class="metric-label">Campanhas Ativas</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">92%</span>
+                                <span class="metric-label">Health Score</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="client-card">
+                        <div class="client-status" style="background: var(--yellow);"></div>
+                        <div class="client-name">Zara</div>
+                        <div class="client-metrics">
+                            <div class="metric">
+                                <span class="metric-value">R$ 180K</span>
+                                <span class="metric-label">Budget Mensal</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">2.8x</span>
+                                <span class="metric-label">ROI Atual</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">5</span>
+                                <span class="metric-label">Campanhas Ativas</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">67%</span>
+                                <span class="metric-label">Health Score</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Campaign Pipeline -->
+                <div class="pipeline-section">
+                    <div class="pipeline-header">
+                        <h3 class="pipeline-title">Pipeline de Campanhas</h3>
+                        <div class="pipeline-value">R$ 2.4M</div>
+                    </div>
+                    <div class="pipeline-stages">
+                        <div class="stage">
+                            <div class="stage-header">
+                                <span class="stage-name">Briefing</span>
+                                <span class="stage-count">8</span>
+                            </div>
+                            <div class="campaign-item">
+                                <div class="campaign-brand">Samsung</div>
+                                <div class="campaign-info">
+                                    <span>R$ 120K</span>
+                                    <span>Tech</span>
+                                </div>
+                            </div>
+                            <div class="campaign-item">
+                                <div class="campaign-brand">Natura</div>
+                                <div class="campaign-info">
+                                    <span>R$ 85K</span>
+                                    <span>Beauty</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="stage">
+                            <div class="stage-header">
+                                <span class="stage-name">Curadoria</span>
+                                <span class="stage-count">12</span>
+                            </div>
+                            <div class="campaign-item">
+                                <div class="campaign-brand">Nike</div>
+                                <div class="campaign-info">
+                                    <span>R$ 200K</span>
+                                    <span>Sports</span>
+                                </div>
+                            </div>
+                            <div class="campaign-item">
+                                <div class="campaign-brand">McDonald's</div>
+                                <div class="campaign-info">
+                                    <span>R$ 150K</span>
+                                    <span>Food</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="stage">
+                            <div class="stage-header">
+                                <span class="stage-name">Negociação</span>
+                                <span class="stage-count">6</span>
+                            </div>
+                            <div class="campaign-item">
+                                <div class="campaign-brand">Adidas</div>
+                                <div class="campaign-info">
+                                    <span>R$ 180K</span>
+                                    <span>Sports</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="stage">
+                            <div class="stage-header">
+                                <span class="stage-name">Produção</span>
+                                <span class="stage-count">15</span>
+                            </div>
+                            <div class="campaign-item">
+                                <div class="campaign-brand">O Boticário</div>
+                                <div class="campaign-info">
+                                    <span>R$ 95K</span>
+                                    <span>Beauty</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="stage">
+                            <div class="stage-header">
+                                <span class="stage-name">Live</span>
+                                <span class="stage-count">22</span>
+                            </div>
+                            <div class="campaign-item">
+                                <div class="campaign-brand">Coca-Cola</div>
+                                <div class="campaign-info">
+                                    <span>R$ 300K</span>
+                                    <span>Beverage</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Assistant -->
+    <div class="ai-assistant">
+        <div class="ai-header">
+            <div class="ai-avatar">🤖</div>
+            <span>Soller AI Assistant</span>
+        </div>
+        <div class="ai-messages">
+            <div class="ai-message">
+                👋 Oi! Detectei que o cliente Zara tem health score baixo (67%). Sugiro uma reunião de alinhamento.
+            </div>
+            <div class="ai-message">
+                📈 Oportunidade: Nike tem budget disponível de R$ 120K para campanha de verão. 5 influencers perfeitos identificados.
+            </div>
+            <div class="ai-message">
+                ⚠️ Alerta: Influencer @marisilva teve queda de 15% no engajamento. Considere substituição na campanha Samsung.
+            </div>
+        </div>
+    </div>
+
+    <!-- Features -->
+    <section class="features" id="features">
+        <h2 class="features-title">Tudo que sua agência precisa em um só lugar</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🎯</div>
+                <h3 class="feature-title">Multi-tenant Dashboard</h3>
+                <p class="feature-description">
+                    Gerencie todos os seus clientes em uma única plataforma. Visão 360° de cada conta, 
+                    campanhas, budgets e performance em tempo real.
+                </p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🤖</div>
+                <h3 class="feature-title">IA Preditiva</h3>
+                <p class="feature-description">
+                    Preveja ROI, identifique riscos de churn e receba sugestões automáticas de influencers
+                    baseadas em 200+ variáveis analisadas.
+                </p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🏷️</div>
+                <h3 class="feature-title">White Label Completo</h3>
+                <p class="feature-description">
+                    Personalize com sua marca, domínio próprio e identidade visual. 
+                    Seus clientes acessam "SuaAgencia.com.br".
+                </p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">💰</div>
+                <h3 class="feature-title">Revenue Share Inteligente</h3>
+                <p class="feature-description">
+                    Quanto mais você vende, menos paga. Comissões progressivas de 30% até 10% 
+                    baseadas no volume mensal.
+                </p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">📊</div>
+                <h3 class="feature-title">Relatórios Automáticos</h3>
+                <p class="feature-description">
+                    PDFs personalizados gerados automaticamente. Dashboards em tempo real 
+                    que impressionam clientes.
+                </p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🔄</div>
+                <h3 class="feature-title">Workflow Automation</h3>
+                <p class="feature-description">
+                    Automatize briefings, aprovações, pagamentos e follow-ups. 
+                    Reduza 70% do trabalho operacional.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing -->
+    <section class="pricing" id="pricing">
+        <h2 class="pricing-title">Planos que crescem com sua agência</h2>
+        <p class="pricing-subtitle">Revenue share progressivo: quanto mais você vende, mais você ganha</p>
+        
+        <div class="pricing-cards">
+            <div class="pricing-card">
+                <h3 class="pricing-name">Starter</h3>
+                <div class="pricing-price">30%<span>/revenue share</span></div>
+                <div class="pricing-revenue">Até R$ 100K/mês em GMV</div>
+                <ul class="pricing-features">
+                    <li>Até 10 clientes</li>
+                    <li>Dashboard básico</li>
+                    <li>50 influencers/mês</li>
+                    <li>Relatórios mensais</li>
+                    <li>Suporte em horário comercial</li>
+                </ul>
+                <button class="pricing-cta">Começar Grátis</button>
+            </div>
+
+            <div class="pricing-card featured">
+                <div class="pricing-badge">MAIS POPULAR</div>
+                <h3 class="pricing-name">Growth</h3>
+                <div class="pricing-price">20%<span>/revenue share</span></div>
+                <div class="pricing-revenue">R$ 100K - 500K/mês</div>
+                <ul class="pricing-features">
+                    <li>Até 50 clientes</li>
+                    <li>Dashboard avançado</li>
+                    <li>500 influencers/mês</li>
+                    <li>White label básico</li>
+                    <li>IA preditiva</li>
+                    <li>Suporte prioritário</li>
+                    <li>Treinamento incluído</li>
+                </ul>
+                <button class="pricing-cta">Falar com Vendas</button>
+            </div>
+
+            <div class="pricing-card">
+                <h3 class="pricing-name">Enterprise</h3>
+                <div class="pricing-price">10%<span>/revenue share</span></div>
+                <div class="pricing-revenue">Acima de R$ 500K/mês</div>
+                <ul class="pricing-features">
+                    <li>Clientes ilimitados</li>
+                    <li>Dashboard customizado</li>
+                    <li>Influencers ilimitados</li>
+                    <li>White label completo</li>
+                    <li>API access</li>
+                    <li>Account manager dedicado</li>
+                    <li>SLA garantido</li>
+                    <li>Desenvolvimento custom</li>
+                </ul>
+                <button class="pricing-cta">Contato Empresarial</button>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>🚀 Soller Agency OS - Transformando agências em potências digitais</p>
+        <p style="margin-top: 0.5rem;">© 2025 Soller. Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+        // Animate dashboard metrics
+        const animateValue = (element, start, end, duration) => {
+            const startTimestamp = Date.now();
+            const step = () => {
+                const timestamp = Date.now();
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                const value = Math.floor(progress * (end - start) + start);
+                element.textContent = value.toLocaleString('pt-BR');
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
+        };
+
+        // Simulate real-time updates
+        setInterval(() => {
+            const metrics = document.querySelectorAll('.metric-value');
+            const randomMetric = metrics[Math.floor(Math.random() * metrics.length)];
+            
+            if (randomMetric.textContent.includes('R$')) {
+                const currentValue = parseInt(randomMetric.textContent.replace(/\D/g, ''));
+                const newValue = currentValue + Math.floor(Math.random() * 10000);
+                randomMetric.textContent = `R$ ${newValue.toLocaleString('pt-BR')}`;
+                randomMetric.style.color = '#10B981';
+                setTimeout(() => {
+                    randomMetric.style.color = '';
+                }, 1000);
+            }
+        }, 3000);
+
+        // AI Assistant messages
+        const aiMessages = [
+            "🎯 Cliente Natura solicitou 5 novos influencers para campanha de Natal.",
+            "💡 Sugestão: Campanha Nike pode ter 35% mais ROI com ajuste de targeting.",
+            "📈 Parabéns! ROI médio da agência subiu 12% este mês.",
+            "⚡ 3 novos briefings chegaram. Prioridade: Samsung (R$ 200K).",
+            "✅ Campanha O Boticário aprovada! 15 influencers confirmados.",
+            "🔥 Trending: #sustentabilidade subindo 450% - oportunidade para Natura."
+        ];
+
+        let messageIndex = 0;
+        setInterval(() => {
+            const messagesContainer = document.querySelector('.ai-messages');
+            const newMessage = document.createElement('div');
+            newMessage.className = 'ai-message';
+            newMessage.textContent = aiMessages[messageIndex % aiMessages.length];
+            messagesContainer.appendChild(newMessage);
+            
+            // Keep only last 3 messages
+            if (messagesContainer.children.length > 3) {
+                messagesContainer.removeChild(messagesContainer.firstChild);
+            }
+            
+            messageIndex++;
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }, 8000);
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Tab switching
+        document.querySelectorAll('.tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
+        // Client card interactions
+        document.querySelectorAll('.client-card').forEach(card => {
+            card.addEventListener('click', function() {
+                this.style.transform = 'scale(1.05)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 300);
+            });
+        });
+    </script>
+</body>
+</html>
