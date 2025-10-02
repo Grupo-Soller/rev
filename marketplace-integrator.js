@@ -15,7 +15,8 @@ document.addEventListener('DOMContentLoaded', function() {
         <div class="rec-content" style="display: flex; flex-direction: column; width: 100%;">
             <h4>Transição para Product-Led Growth</h4>
             <p>
-                Começar desenvolvimento do Marketplace em um MVP unidirecional focado em casting, pequenos influenciadores ou empresas.
+                Começar desenvolvimento do <a href="https://grupo-soller.github.io/marketplace-mvp/" target="_blank" rel="noopener" style="color: #a78bfa; text-decoration: none;">
+                    Marketplace</a> em um MVP unidirecional focado em casting, pequenos influenciadores ou empresas.
                 <a href="https://influencermarketinghub.com/micro-influencer-platform/" target="_blank" rel="noopener" style="color: #a78bfa; text-decoration: none;">
                     Matéria</a>
                 e
