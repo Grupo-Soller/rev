@@ -831,7 +831,7 @@ updateContributions(contributions, month, monthData, impacts) {
         const capitalNecessario = (gmvMedian / 24) * 2.5; // ~2.5 meses de operação
         insights.push({ 
             type: 'warning',
-            message: `💸 Working Capital: Necessário R$${(capitalNecessario/1000000).toFixed(0)}M para sustentar crescimento. 82% das falências = má gestão de cashflow`
+            message: `💸 Provável Working Capital necessário para sustentar crescimento. 82% das falências = má gestão de cashflow`
         });
     }
     
@@ -853,7 +853,7 @@ updateContributions(contributions, month, monthData, impacts) {
     if (!params.selfServicePlatform) {
         insights.push({ 
             type: 'info',
-            message: `🤖 Self-Service: -60% custo operacional, escala 10x capacidade. Investment: R$800k, payback 8 meses`
+            message: `🤖 Self-Service: -60% custo operacional, escala 10x capacidade.`
         });
     }
     
@@ -917,7 +917,7 @@ updateContributions(contributions, month, monthData, impacts) {
     if (params.churnRate > 50) {
         insights.push({ 
             type: 'critical',
-            message: `🔴 Risco Existencial: Churn ${params.churnRate.toFixed(0)}% inviabiliza qualquer projeção. Benchmark: <30% em 3 meses ou pivotear modelo`
+            message: `🔴 Risco Existencial: Churn ${params.churnRate.toFixed(0)}% inviabiliza qualquer projeção. Benchmark: <30% em B2B`
         });
     }
     
@@ -963,7 +963,7 @@ updateContributions(contributions, month, monthData, impacts) {
     
     insights.push({ 
         type: 'action',
-        message: `⚡ Next Step Imediato: ${nextStep}`
+        message: `⚡ Next Step: ${nextStep}`
     });
     
     return insights;
@@ -988,6 +988,4 @@ updateContributions(contributions, month, monthData, impacts) {
     }
 }
 
-
 window.SollerProjections = SollerProjections;
-
