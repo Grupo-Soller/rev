@@ -91,7 +91,7 @@ const SollerData = {
     1635470.65, 1986742.3, 1585550.02, 2019521.65, 2068804.88, 2309449.4,
     // 2025
     2257375.98, 2607915.45, 2239703.33, 2284695.93, 2473741.14, 3433297.418,
-    2870545.95, 2431881.79, 2154966.79, 0, 0, 0
+    2870545.95, 0, 0, 0, 0, 0
 ],
 values2: [
         // 2023
@@ -102,7 +102,7 @@ values2: [
         411953, 351539.9, 382525.0012, 407293.53, 412715.29, 390969.6868,
         // 2025 (dados reais até agosto, projeções depois)
         443538.66, 552197.738, 527452.86, 558588.394, 543182.21, 667244.2756,
-        598682.416, 599810.35, 525221.97, 0, 0, 0
+        598682.416, 3600, 0, 0, 0, 0
     ],
 
     values3: [
@@ -114,7 +114,7 @@ values2: [
     25.20, 17.70, 24.10, 20.20, 19.90, 16.90,
     // 2025 (dados reais até agosto, projeções depois)
     19.60, 21.20, 23.60, 24.40, 22.00, 19.40,
-    20.90, 24.70, 23.40, 0.00, 0.00, 0.00
+    20.90, 0.00, 0.00, 0.00, 0.00, 0.00
     ],
 
         monthly: {
@@ -1449,7 +1449,10 @@ values2: [
             { name: 'RD Station', status: 'implementing', category: 'CRM' },
             { name: 'Monday.com', status: 'implementing', adoption: 100, category: 'Project Management' },
             { name: 'D4Sign', status: 'active', adoption: 100, category: 'Communication', risk: '' },
-            { name: 'Omie ERP', status: 'active', adoption: 100, category: 'Financial' }
+            { name: 'Omie ERP', status: 'active', adoption: 100, category: 'Financial' },
+            { name: 'Oitchau', status: 'active', adoption: 100, category: 'Financial' },
+            { name: 'Espresso', status: 'active', adoption: 100, category: 'Financial' },
+            { name: 'Tl;dv', status: 'active', adoption: 100, category: 'Financial' },
         ],
         future: [
             { name: 'Azure Synapse', status: 'planned', quarter: 'Q3 2025', category: 'Data Lake' },
