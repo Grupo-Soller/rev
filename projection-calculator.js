@@ -956,7 +956,7 @@ updateContributions(contributions, month, monthData, impacts) {
     const nextStep = churnCritico ? 
         'War room anti-churn HOJE - meta 30 dias para <50%' :
         !params.customerSuccessTeam ? 
-        'Contratar Head of CS sênior em 15 dias' :
+        'Foco no desenvolvimento de Customer Success' :
         !params.crmImplementation ? 
         'Implementar RD Station/HubSpot em 30 dias' :
         'Iniciar desenvolvimento marketplace MVP';
@@ -987,5 +987,6 @@ updateContributions(contributions, month, monthData, impacts) {
         return `R$ ${value.toFixed(0)}`;
     }
 }
+
 
 window.SollerProjections = SollerProjections;
