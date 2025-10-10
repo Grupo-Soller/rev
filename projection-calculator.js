@@ -958,7 +958,7 @@ updateContributions(contributions, month, monthData, impacts) {
         !params.customerSuccessTeam ? 
         'Foco no desenvolvimento de Customer Success' :
         !params.crmImplementation ? 
-        'Implementar RD Station/HubSpot em 30 dias' :
+        'Refinar a implementação do RD Station' :
         'Iniciar desenvolvimento marketplace MVP';
     
     insights.push({ 
@@ -990,3 +990,4 @@ updateContributions(contributions, month, monthData, impacts) {
 
 
 window.SollerProjections = SollerProjections;
+
