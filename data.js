@@ -1451,8 +1451,6 @@ values2: [
             { name: 'D4Sign', status: 'active', adoption: 100, category: 'Communication', risk: '' },
             { name: 'Omie ERP', status: 'active', adoption: 100, category: 'Financial' },
             { name: 'Oitchau', status: 'active', adoption: 100, category: 'Financial' },
-            { name: 'Espresso', status: 'active', adoption: 100, category: 'Financial' },
-            { name: 'Copilot & tl;dv', status: 'active', adoption: 100, category: 'Financial' },
         ],
         future: [
             { name: 'Azure Synapse', status: 'planned', quarter: 'Q3 2025', category: 'Data Lake' },
@@ -1511,4 +1509,3 @@ function prepareChartData() {
 // Exportar dados globalmente - APENAS UMA VEZ no final do arquivo
 window.SollerData = SollerData;
 window.prepareChartData = prepareChartData;
-
