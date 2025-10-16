@@ -26,15 +26,15 @@
                 <div class="header-stats">
                     <div class="header-stat">
                         <span class="stat-label">GMV Total</span>
-                        <span class="stat-value">R$ 54.8M</span>
+                        <span class="stat-value">R$ 59.4M</span>
                     </div>
                     <div class="header-stat">
                         <span class="stat-label">Lucro Bruto</span>
-                        <span class="stat-value">R$ 11.2M</span>
+                        <span class="stat-value">R$ 12.4M</span>
                     </div>
                     <div class="header-stat">
                         <span class="stat-label">Contratos</span>
-                        <span class="stat-value">2.987</span>
+                        <span class="stat-value">3.244</span>
                     </div>
                     <div class="header-stat">
                         <span class="stat-label">Ticket Médio</span>
@@ -59,6 +59,10 @@
                 <span class="nav-icon">💰</span>
                 Performance Atual
             </button>
+            <button class="nav-item" data-section="finops" onclick="showSection('finops', event)">
+    <span class="nav-icon">💎</span>
+    FinOps
+</button>
             <button class="nav-item" data-section="acquisition" onclick="showSection('acquisition', event)">
                 <span class="nav-icon">🎯</span>
                 Aquisição & Retenção
@@ -131,18 +135,18 @@
                             </div>
                         </div>
 
-                            <div class="kpi-card info" onclick="window.open(window.SollerData.dataSources.top61Influencers, '_blank')" style="cursor: pointer;">
-                                <div class="kpi-header">
-                                    <span class="kpi-label">Influs Top 5</span>
-                                    <span class="kpi-badge">Risco</span>
-                                </div>
-                                <div class="kpi-value">39%</div>
-                                <div class="kpi-detail">do Valor Soller</div>
-                                <div class="kpi-trend negative">
-                                    <span class="trend-icon">↑</span>
-                                    <span>023: 39% | 024: 37% | 025: 42%</span>
-                                </div>
+                        <div class="kpi-card info" onclick="window.open(window.SollerData.dataSources.top61Influencers, '_blank')" style="cursor: pointer;">
+                            <div class="kpi-header">
+                                <span class="kpi-label">Influs Top 20%</span>
+                                <span class="kpi-badge">Risco</span>
                             </div>
+                            <div class="kpi-value">86%</div>
+                            <div class="kpi-detail">do Valor Soller</div>
+                            <div class="kpi-trend neutral">
+                                <span class="trend-icon">→</span>
+                                <span>023: 83% | 024: 77% | 025: 81%</span>
+                            </div>
+                        </div>
 
                         <div class="kpi-card success" onclick="window.open(window.SollerData.dataSources.margemAgencia, '_blank')" style="cursor: pointer;">
                             <div class="kpi-header">
@@ -201,6 +205,277 @@
 </div>
 
             </section>
+
+
+            <!-- Seção: FinOps & Controle Financeiro -->
+<section id="finops" class="content-section">
+    <h2 class="section-title">
+        <span class="title-icon">💎</span>
+        FinOps & Controle Financeiro
+    </h2>
+
+    <!-- Alert BPO Decision -->
+    <div class="alert alert-warning">
+        <div class="alert-icon">⚠️</div>
+        <div class="alert-content">
+            <h3>Decisão Estratégica Pendente</h3>
+            <p>Avaliação BPO vs Funcionário Interno em andamento. Impacto direto em custos fixos e escalabilidade operacional.</p>
+        </div>
+    </div>
+
+    <!-- Volumetria e Cash Flow -->
+    <div class="subsection">
+        <h3>Volumetria Financeira & Cash Flow</h3>
+        <div class="finops-metrics-grid">
+            <div class="finops-card">
+                <div class="finops-icon">📊</div>
+                <div class="finops-content">
+                    <h4>Volumetria de Lançamentos</h4>
+                    <div class="volume-stats">
+                        <div class="volume-item">
+                            <span class="volume-label">Receitas</span>
+                            <span class="volume-value positive">290</span>
+                        </div>
+                        <div class="volume-item">
+                            <span class="volume-label">Despesas</span>
+                            <span class="volume-value negative">230</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="finops-card">
+                <div class="finops-icon">💰</div>
+                <div class="finops-content">
+                    <h4>Aging de Recebíveis</h4>
+                    <div class="aging-metrics">
+                        <div class="aging-item">
+                            <span>À Vista (40.1%)</span>
+                            <span class="aging-days">0 dias</span>
+                        </div>
+                        <div class="aging-item">
+                            <span>Parcelado (59.9%)</span>
+                            <span class="aging-days warning">5m 28d</span>
+                        </div>
+                        <div class="aging-item">
+                            <span>Aging Médio</span>
+                            <span class="aging-days">3m 29d</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="finops-card">
+                <div class="finops-icon">🎯</div>
+                <div class="finops-content">
+                    <h4>Pontos de Atenção</h4>
+                    <ul class="attention-list">
+                        <li class="critical">Clientes inadimplentes</li>
+                        <li class="warning">Compromissos Jan/26 vs caixa</li>
+                        <li class="info">Fundo de emergência</li>
+                        <li class="success">Alocação em aplicações</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Comparativo BPO vs Interno -->
+    <div class="subsection">
+        <h3>Análise BPO vs Funcionário Interno</h3>
+        <div class="bpo-comparison">
+            <div class="comparison-table">
+                <table class="finops-table">
+                    <thead>
+                        <tr>
+                            <th>Critério</th>
+                            <th class="bpo-column">BPO Financeiro</th>
+                            <th>Funcionário Interno</th>
+                            <th>Recomendação</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Custos</td>
+                            <td class="bpo-column">
+                                <span class="badge success">Redução custos fixos</span>
+                            </td>
+                            <td>
+                                <span class="badge warning">Custos trabalhistas</span>
+                            </td>
+                            <td><span class="recommend-bpo">BPO ✓</span></td>
+                        </tr>
+                        <tr>
+                            <td>Escalabilidade</td>
+                            <td class="bpo-column">
+                                <span class="badge success">Alta escalabilidade</span>
+                            </td>
+                            <td>
+                                <span class="badge danger">Menor escalabilidade</span>
+                            </td>
+                            <td><span class="recommend-bpo">BPO ✓</span></td>
+                        </tr>
+                        <tr>
+                            <td>Controle</td>
+                            <td class="bpo-column">
+                                <span class="badge warning">Dependência fornecedor</span>
+                            </td>
+                            <td>
+                                <span class="badge success">Controle total</span>
+                            </td>
+                            <td><span class="recommend-internal">Interno ✓</span></td>
+                        </tr>
+                        <tr>
+                            <td>Expertise</td>
+                            <td class="bpo-column">
+                                <span class="badge success">Acesso a especialistas</span>
+                            </td>
+                            <td>
+                                <span class="badge warning">Requer capacitação</span>
+                            </td>
+                            <td><span class="recommend-bpo">BPO ✓</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="bpo-recommendation">
+                <h4>💡 Conclusão & Recomendação</h4>
+                <p>Para empresas em <strong>crescimento acelerado</strong> como a Soller, o BPO oferece melhor custo-benefício com redução de custos fixos, acesso a especialistas e tecnologia automatizada.</p>
+                <div class="decision-score">
+                    <div class="score-bar">
+                        <div class="score-bpo" style="width: 75%">BPO 75%</div>
+                        <div class="score-internal" style="width: 25%">Interno 25%</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Metas e Cronograma -->
+    <div class="subsection">
+        <h3>Metas até Dezembro 2025</h3>
+        <div class="goals-timeline">
+            <div class="timeline-container">
+                <div class="timeline-item completed">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <h4>✅ Revisão (Concluído)</h4>
+                        <ul>
+                            <li>Cronograma BPO e Padoque confirmado</li>
+                            <li>Fechamento contábil adequado</li>
+                            <li>Impostos e obrigações em dia</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="timeline-item in-progress">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <h4>🔄 BPO (Em execução)</h4>
+                        <ul>
+                            <li>Fluidez nas informações</li>
+                            <li>Horários bancários otimizados</li>
+                            <li>Correções e classificações</li>
+                            <li>Fechamento até dia 08</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="timeline-item pending">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <h4>📅 Padoque (Pendente)</h4>
+                        <ul>
+                            <li>Fluxo de caixa (semanal/mensal/anual)</li>
+                            <li>Fechamento dia 15</li>
+                            <li>Análise orçado x realizado</li>
+                            <li>Planejamento 2026</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Unit Economics Dashboard -->
+    <div class="subsection">
+        <h3>Unit Economics & Métricas Financeiras</h3>
+        <div class="unit-economics">
+            <div class="ue-card">
+                <h4>CAC Médio</h4>
+                <div class="ue-value">R$ 2.8K</div>
+                <div class="ue-trend positive">↓ -12% vs Q1</div>
+            </div>
+            <div class="ue-card">
+                <h4>LTV/CAC Ratio</h4>
+                <div class="ue-value">2.4x</div>
+                <div class="ue-trend warning">Meta: 3x</div>
+            </div>
+            <div class="ue-card">
+                <h4>Payback</h4>
+                <div class="ue-value">8.2 meses</div>
+                <div class="ue-trend warning">Meta: 6 meses</div>
+            </div>
+            <div class="ue-card">
+                <h4>Burn Rate</h4>
+                <div class="ue-value">R$185K/m</div>
+                <div class="ue-trend negative">↑ +8% vs Q1</div>
+            </div>
+            <div class="ue-card">
+                <h4>Runway</h4>
+                <div class="ue-value">14 meses</div>
+                <div class="ue-trend info">Com caixa atual</div>
+            </div>
+            <div class="ue-card">
+                <h4>Margem</h4>
+                <div class="ue-value">31.2%</div>
+                <div class="ue-trend positive">↑ +2.1pp vs Q1</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notas Fiscais e Compliance -->
+    <div class="subsection">
+        <h3>Compliance Fiscal & Emissão de NFs</h3>
+        <div class="compliance-grid">
+            <div class="compliance-card">
+                <h4>🧾 Status Notas Fiscais</h4>
+                <div class="nf-status">
+                    <div class="nf-progress">
+                        <div class="nf-bar">
+                            <div class="nf-fill" style="width: 78%"></div>
+                        </div>
+                        <span>78% em conformidade</span>
+                    </div>
+                    <ul class="nf-actions">
+                        <li>✅ Novo fluxo implementado</li>
+                        <li>🔄 Aditivos PF para PJ (em andamento pelo jurídico)</li>
+                        <li>⚠️ Lembrete automático WhatsApp</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="compliance-card">
+                <h4>🎯 Obrigatoriedades de NF</h4>
+                <div class="pending-items">
+                    <div class="pending-item">
+                        <span>PJs</span>
+                        <span class="badge warning">Pendente</span>
+                    </div>
+                    <div class="pending-item">
+                        <span>Cursos</span>
+                        <span class="badge warning">Pendente</span>
+                    </div>
+                    <div class="pending-item">
+                        <span>Mentorias</span>
+                        <span class="badge warning">Pendente</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
             <!-- Seção: Aquisição & Retenção -->
             <section id="acquisition" class="content-section">
@@ -293,13 +568,13 @@
                     <div class="gmv-insights">
                         <div class="insight-box">
                             <h4>GMV Total Histórico</h4>
-                            <p class="big-number"> R$ 54.801.082</p>
-                            <p class="detail">023: 16.086.290 | 024: 19.907.604 | 025: 18.167.275</p>
+                            <p class="big-number"> R$ 59.387.930</p>
+                            <p class="detail">023: 16.086.290 | 024: 19.907.604 | 025: 22.754.123</p>
                         </div>
                         <div class="insight-box">
                             <h4>Valor Soller Histórico</h4>
-                            <p class="big-number">R$ 11.225.383</p>
-                            <p class="detail">023: 3.262.105 | 024: 4.068.791 | 025: 3.894.486</p>
+                            <p class="big-number">R$ 12.350.415</p>
+                            <p class="detail">023: 3.262.105 | 024: 4.068.791 | 025: 5.019.518</p>
                         </div>
                         <div class="insight-box">
                             <h4>Forma de Pagamento</h4>
@@ -523,32 +798,30 @@
                     <div class="roadmap-timeline" id="techRoadmap">
                         <!-- Q2 2025 (Atual) será inserido via JavaScript -->
                         <div class="roadmap-phase">
-                            <h4>Q3 2025</h4>
+                            <h4>Q3 2025 (Imediato)</h4>
                             <ul>
-                                <li>Espresso</li>
-                                <li>Copilot & tl;dv</li>
                                 <li>RD Station CRM ↔ MKT</li>
+                                <li>WhatsApp Business API</li>
                                 <li>RD CRM ↔ Monday ↔ Omie</li>
-                                <li>RD APIs → Azure</li>
+                                <li>RD APIs → Azure → Power BI</li>
                             </ul>
                         </div>
                         <div class="roadmap-phase">
-                            <h4>Q4 2025</h4>
+                            <h4>Q4 2025 (Curto Prazo)</h4>
                             <ul>
                                 <li>Azure com todas as APIs</li>
+                                <li>Calculadora ROI vendas</li>
                                 <li>Portal self-service v2</li>
                                 <li>Power BI dashboards</li>
-                                <li>WhatsApp Business API</li>
                             </ul>
                         </div>
                         <div class="roadmap-phase">
-                            <h4>Q1 2026</h4>
+                            <h4>Q1 2026 (Médio Prazo)</h4>
                             <ul>
                                 <li>Marketplace MVP</li>
-                                <li>Calculadora ROI vendas</li>
-                                <li>API do MVP no Azure</li>
+                                <li>APIs customizadas</li>
+                                <li>ML para matching</li>
                                 <li>App mobile</li>
-
                             </ul>
                         </div>
                     </div>
