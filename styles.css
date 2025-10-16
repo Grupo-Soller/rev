@@ -4310,3 +4310,480 @@ input:checked + .toggle-slider:before {
 .forecast-metrics-summary.loading .metric-card {
     opacity: 0.5;
 }
+
+/* ========== FinOps Section Styles ========== */
+
+/* FinOps Metrics Grid */
+.finops-metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: var(--spacing-xl);
+    margin-top: var(--spacing-xl);
+}
+
+.finops-card {
+    background: var(--gray-50);
+    border-radius: 12px;
+    padding: var(--spacing-xl);
+    display: flex;
+    gap: var(--spacing-lg);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid var(--gray-200);
+}
+
+.finops-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+}
+
+.finops-icon {
+    font-size: 2.5rem;
+    filter: grayscale(0.2);
+}
+
+.finops-content {
+    flex: 1;
+}
+
+.finops-content h4 {
+    font-size: 1.125rem;
+    color: var(--gray-800);
+    margin-bottom: var(--spacing-md);
+}
+
+/* Volume Stats */
+.volume-stats {
+    display: flex;
+    gap: var(--spacing-xl);
+    margin-bottom: var(--spacing-md);
+}
+
+.volume-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.volume-label {
+    font-size: 0.875rem;
+    color: var(--gray-600);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.volume-value {
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.volume-value.positive {
+    color: var(--success-green);
+}
+
+.volume-value.negative {
+    color: var(--danger-red);
+}
+
+.volume-ratio {
+    margin-top: var(--spacing-md);
+}
+
+.ratio-bar {
+    height: 8px;
+    background: var(--gray-200);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: var(--spacing-sm);
+}
+
+.ratio-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--success-green) 0%, var(--success-green-light) 100%);
+}
+
+.ratio-text {
+    font-size: 0.875rem;
+    color: var(--gray-600);
+}
+
+/* Aging Metrics */
+.aging-metrics {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+
+.aging-item {
+    display: flex;
+    justify-content: space-between;
+    padding: var(--spacing-sm) 0;
+    border-bottom: 1px solid var(--gray-200);
+}
+
+.aging-days {
+    font-weight: 600;
+    color: var(--gray-700);
+}
+
+.aging-days.warning {
+    color: var(--warning-yellow);
+}
+
+/* Attention List */
+.attention-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+}
+
+.attention-list li {
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: 6px;
+    font-size: 0.9rem;
+}
+
+.attention-list li.critical {
+    background: var(--danger-red-light);
+    color: var(--danger-red);
+}
+
+.attention-list li.warning {
+    background: var(--warning-yellow-light);
+    color: var(--warning-yellow);
+}
+
+.attention-list li.info {
+    background: var(--info-blue-light);
+    color: var(--info-blue);
+}
+
+.attention-list li.success {
+    background: rgba(14, 168, 70, 0.1);
+    color: var(--success-green);
+}
+
+/* BPO Comparison */
+.bpo-comparison {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: var(--spacing-2xl);
+    margin-top: var(--spacing-xl);
+}
+
+.finops-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+}
+
+.finops-table th {
+    background: var(--gray-100);
+    padding: var(--spacing-md) var(--spacing-lg);
+    text-align: left;
+    font-weight: 600;
+    color: var(--gray-700);
+    font-size: 0.875rem;
+    text-transform: uppercase;
+}
+
+.finops-table td {
+    padding: var(--spacing-md) var(--spacing-lg);
+    border-bottom: 1px solid var(--gray-200);
+}
+
+.bpo-column {
+    background: rgba(124, 58, 237, 0.02);
+}
+
+.badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.badge.success {
+    background: var(--success-green);
+    color: white;
+}
+
+.badge.warning {
+    background: var(--warning-yellow);
+    color: white;
+}
+
+.badge.danger {
+    background: var(--danger-red);
+    color: white;
+}
+
+.recommend-bpo {
+    color: var(--accent-purple);
+    font-weight: 700;
+}
+
+.recommend-internal {
+    color: var(--info-blue);
+    font-weight: 700;
+}
+
+/* BPO Recommendation */
+.bpo-recommendation {
+    background: linear-gradient(135deg, var(--accent-purple) 0%, var(--accent-purple-dark) 100%);
+    color: white;
+    padding: var(--spacing-xl);
+    border-radius: 12px;
+}
+
+.bpo-recommendation h4 {
+    font-size: 1.25rem;
+    margin-bottom: var(--spacing-md);
+}
+
+.decision-score {
+    margin-top: var(--spacing-lg);
+}
+
+.score-bar {
+    display: flex;
+    height: 40px;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.score-bpo {
+    background: var(--success-green);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+}
+
+.score-internal {
+    background: var(--info-blue);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+}
+
+/* Timeline */
+.goals-timeline {
+    margin-top: var(--spacing-xl);
+}
+
+.timeline-container {
+    position: relative;
+    padding-left: 40px;
+}
+
+.timeline-container::before {
+    content: '';
+    position: absolute;
+    left: 15px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--gray-300);
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: var(--spacing-2xl);
+}
+
+.timeline-marker {
+    position: absolute;
+    left: -30px;
+    top: 5px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    border: 3px solid white;
+    background: var(--gray-400);
+}
+
+.timeline-item.completed .timeline-marker {
+    background: var(--success-green);
+}
+
+.timeline-item.in-progress .timeline-marker {
+    background: var(--info-blue);
+}
+
+.timeline-item.pending .timeline-marker {
+    background: var(--gray-400);
+}
+
+.timeline-content {
+    background: var(--gray-50);
+    padding: var(--spacing-lg);
+    border-radius: 8px;
+}
+
+.timeline-content h4 {
+    font-size: 1.125rem;
+    margin-bottom: var(--spacing-md);
+}
+
+.timeline-content ul {
+    list-style: none;
+    margin-left: var(--spacing-md);
+}
+
+.timeline-content li {
+    padding: var(--spacing-xs) 0;
+    font-size: 0.9rem;
+    color: var(--gray-700);
+}
+
+/* Unit Economics */
+.unit-economics {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--spacing-lg);
+    margin-top: var(--spacing-xl);
+}
+
+.ue-card {
+    background: white;
+    border: 1px solid var(--gray-200);
+    border-radius: 8px;
+    padding: var(--spacing-lg);
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.ue-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--accent-purple);
+}
+
+.ue-card h4 {
+    font-size: 0.875rem;
+    color: var(--gray-600);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: var(--spacing-sm);
+}
+
+.ue-value {
+    font-size: 1.875rem;
+    font-weight: 700;
+    color: var(--gray-800);
+    margin-bottom: var(--spacing-sm);
+}
+
+.ue-trend {
+    font-size: 0.875rem;
+    font-weight: 600;
+}
+
+.ue-trend.positive {
+    color: var(--success-green);
+}
+
+.ue-trend.negative {
+    color: var(--danger-red);
+}
+
+.ue-trend.warning {
+    color: var(--warning-yellow);
+}
+
+.ue-trend.info {
+    color: var(--info-blue);
+}
+
+/* Compliance Grid */
+.compliance-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: var(--spacing-xl);
+    margin-top: var(--spacing-xl);
+}
+
+.compliance-card {
+    background: var(--gray-50);
+    padding: var(--spacing-xl);
+    border-radius: 12px;
+    border: 1px solid var(--gray-200);
+}
+
+.compliance-card h4 {
+    font-size: 1.125rem;
+    margin-bottom: var(--spacing-lg);
+}
+
+.nf-progress {
+    margin-bottom: var(--spacing-lg);
+}
+
+.nf-bar {
+    height: 12px;
+    background: var(--gray-200);
+    border-radius: 6px;
+    overflow: hidden;
+    margin-bottom: var(--spacing-sm);
+}
+
+.nf-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--success-green) 0%, var(--accent-purple) 100%);
+    transition: width 1s ease;
+}
+
+.nf-actions {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+}
+
+.nf-actions li {
+    padding: var(--spacing-sm);
+    background: white;
+    border-radius: 6px;
+    font-size: 0.9rem;
+}
+
+.pending-items {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+
+.pending-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--spacing-md);
+    background: white;
+    border-radius: 6px;
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+    .bpo-comparison {
+        grid-template-columns: 1fr;
+    }
+    
+    .finops-metrics-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .unit-economics {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .compliance-grid {
+        grid-template-columns: 1fr;
+    }
+}
