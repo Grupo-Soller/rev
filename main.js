@@ -89,6 +89,120 @@ function renderAgencyAnalysis() {
     renderTable();
 }
 
+// FinOps Dashboard Functions
+function initializeFinOps() {
+    // Animar progresso das barras quando a seção for visível
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                animateFinOpsMetrics();
+            }
+        });
+    });
+
+    const finopsSection = document.getElementById('finops');
+    if (finopsSection) {
+        observer.observe(finopsSection);
+    }
+    
+    // Atualizar métricas dinâmicas
+    updateFinOpsMetrics();
+    
+    // Criar gráfico de evolução de custos
+    createCostEvolutionChart();
+}
+
+function animateFinOpsMetrics() {
+    // Animar barras de progresso
+    document.querySelectorAll('.ratio-fill, .nf-fill').forEach(bar => {
+        const width = bar.style.width;
+        bar.style.width = '0';
+        setTimeout(() => {
+            bar.style.width = width;
+        }, 100);
+    });
+    
+    // Animar números
+    document.querySelectorAll('.ue-value').forEach(value => {
+        animateValue(value);
+    });
+}
+
+function animateValue(element) {
+    const finalValue = element.textContent;
+    const isCurrenty = finalValue.includes('R$');
+    const numericValue = parseFloat(finalValue.replace(/[^0-9.]/g, ''));
+    let current = 0;
+    const increment = numericValue / 50;
+    
+    const timer = setInterval(() => {
+        current += increment;
+        if (current >= numericValue) {
+            clearInterval(timer);
+            element.textContent = finalValue;
+        } else {
+            if (isCurrenty) {
+                element.textContent = `R$ ${current.toFixed(0)}K`;
+            } else {
+                element.textContent = current.toFixed(1) + finalValue.replace(/[0-9.]/g, '');
+            }
+        }
+    }, 20);
+}
+
+function updateFinOpsMetrics() {
+    // Calcular métricas baseadas nos dados existentes
+    const gmvTotal = 59387930;
+    const valorSoller = 12350415;
+    const contracts = 3244;
+    
+    // CAC calculation
+    const marketingCost = valorSoller * 0.15; // 15% do valor Soller
+    const cac = marketingCost / contracts;
+    
+    // Update DOM if elements exist
+    const cacElement = document.querySelector('.ue-card:nth-child(1) .ue-value');
+    if (cacElement) {
+        cacElement.textContent = `R$ ${(cac/1000).toFixed(1)}K`;
+    }
+}
+
+function createCostEvolutionChart() {
+    const ctx = document.getElementById('costEvolutionChart');
+    if (!ctx) return;
+    
+    new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul'],
+            datasets: [
+                {
+                    label: 'Despesas',
+                    data: [210, 220, 230, 225, 235, 240, 230],
+                    borderColor: '#dc2626',
+                    backgroundColor: 'rgba(220, 38, 38, 0.1)'
+                },
+                {
+                    label: 'Receitas',
+                    data: [250, 260, 270, 280, 285, 290, 290],
+                    borderColor: '#0ea846',
+                    backgroundColor: 'rgba(14, 168, 70, 0.1)'
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    display: true,
+                    position: 'top'
+                }
+            }
+        }
+    });
+}
+
 // Função para criar o gráfico de nichos com verificação
 function createNichesChart() {
     const nichesCtx = document.getElementById('nichesChart');
@@ -712,3 +826,8 @@ if (document.readyState === 'loading') {
     // DOM já está carregado
     setTimeout(initializeDashboard, 100); // Pequeno delay para garantir que todos os scripts foram carregados
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+    // ... código existente ...
+    initializeFinOps();
+});
