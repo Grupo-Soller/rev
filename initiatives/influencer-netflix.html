@@ -1,0 +1,1190 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soller+ | O Streaming da Creator Economy</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --red: #E50914;
+            --dark: #141414;
+            --gray: #222222;
+            --light-gray: #757575;
+            --white: #FFFFFF;
+            --gold: #FFD700;
+            --purple: #8B5CF6;
+        }
+
+        body {
+            font-family: 'Netflix Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--dark);
+            color: var(--white);
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.9) 0%, transparent 100%);
+            padding: 1rem 3rem;
+            z-index: 1000;
+            transition: background 0.3s;
+        }
+
+        .header.scrolled {
+            background: rgba(20, 20, 20, 0.95);
+            backdrop-filter: blur(10px);
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--red);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo-plus {
+            background: linear-gradient(135deg, var(--red), var(--purple));
+            padding: 0.2rem 0.5rem;
+            border-radius: 5px;
+            font-size: 1.5rem;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: color 0.3s;
+            font-size: 0.9rem;
+        }
+
+        .nav-link:hover {
+            color: var(--white);
+        }
+
+        .user-menu {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .search-icon, .notification-icon {
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: color 0.3s;
+        }
+
+        .search-icon:hover, .notification-icon:hover {
+            color: var(--red);
+        }
+
+        .user-avatar {
+            width: 35px;
+            height: 35px;
+            border-radius: 5px;
+            background: linear-gradient(135deg, var(--red), var(--purple));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            padding: 0 3rem;
+            background: linear-gradient(to right, rgba(0,0,0,0.8) 50%, transparent 100%),
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080"><rect fill="%23141414"/></svg>');
+            background-size: cover;
+        }
+
+        .hero-content {
+            max-width: 600px;
+            z-index: 2;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: var(--red);
+            padding: 0.3rem 0.8rem;
+            border-radius: 3px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 2rem;
+            line-height: 1.5;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .btn {
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background: var(--red);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background: #C50912;
+            transform: scale(1.05);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.2);
+            color: var(--white);
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .hero-meta {
+            display: flex;
+            gap: 2rem;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .rating {
+            color: var(--gold);
+        }
+
+        /* Content Categories */
+        .content-section {
+            padding: 3rem;
+            position: relative;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .see-all {
+            color: var(--red);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        .see-all:hover {
+            color: #FF0000;
+        }
+
+        /* Content Carousel */
+        .content-carousel {
+            display: flex;
+            gap: 1rem;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            padding-bottom: 1rem;
+        }
+
+        .content-carousel::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        .content-carousel::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+        }
+
+        .content-carousel::-webkit-scrollbar-thumb {
+            background: var(--red);
+            border-radius: 4px;
+        }
+
+        .content-card {
+            min-width: 250px;
+            cursor: pointer;
+            transition: transform 0.3s;
+            position: relative;
+        }
+
+        .content-card:hover {
+            transform: scale(1.05);
+            z-index: 10;
+        }
+
+        .content-thumbnail {
+            width: 100%;
+            height: 140px;
+            background: var(--gray);
+            border-radius: 8px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .content-badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: var(--red);
+            padding: 0.25rem 0.5rem;
+            border-radius: 3px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .play-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 60px;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .content-card:hover .play-overlay {
+            opacity: 1;
+        }
+
+        .play-icon {
+            width: 0;
+            height: 0;
+            border-left: 20px solid var(--white);
+            border-top: 12px solid transparent;
+            border-bottom: 12px solid transparent;
+            margin-left: 5px;
+        }
+
+        .content-info {
+            padding: 0.75rem 0;
+        }
+
+        .content-title {
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .content-meta {
+            display: flex;
+            gap: 1rem;
+            font-size: 0.85rem;
+            color: var(--light-gray);
+        }
+
+        .match-score {
+            color: #46D369;
+            font-weight: 600;
+        }
+
+        /* Live Section */
+        .live-section {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(229, 9, 20, 0.1));
+            border-radius: 10px;
+            padding: 2rem;
+            margin: 2rem 3rem;
+        }
+
+        .live-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .live-badge {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--red);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(229, 9, 20, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(229, 9, 20, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(229, 9, 20, 0); }
+        }
+
+        .live-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--white);
+            border-radius: 50%;
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0%, 50%, 100% { opacity: 1; }
+            25%, 75% { opacity: 0; }
+        }
+
+        .live-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .live-card {
+            background: rgba(34, 34, 34, 0.8);
+            border-radius: 10px;
+            padding: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 1px solid transparent;
+        }
+
+        .live-card:hover {
+            border-color: var(--red);
+            transform: translateY(-5px);
+        }
+
+        .live-instructor {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .instructor-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--red), var(--purple));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .instructor-info {
+            flex: 1;
+        }
+
+        .instructor-name {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .instructor-handle {
+            color: var(--light-gray);
+            font-size: 0.85rem;
+        }
+
+        .live-viewers {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--red);
+            font-size: 0.9rem;
+        }
+
+        .live-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .live-description {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+
+        /* Learning Path */
+        .learning-path {
+            background: var(--gray);
+            border-radius: 10px;
+            padding: 2rem;
+            margin: 2rem 3rem;
+        }
+
+        .path-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .path-title {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .path-subtitle {
+            color: var(--light-gray);
+        }
+
+        .path-steps {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .path-line {
+            position: absolute;
+            top: 30px;
+            left: 10%;
+            right: 10%;
+            height: 2px;
+            background: linear-gradient(to right, var(--red), var(--purple));
+            z-index: 0;
+        }
+
+        .path-step {
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            flex: 1;
+        }
+
+        .step-circle {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--dark);
+            border: 3px solid var(--red);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .step-circle.completed {
+            background: var(--red);
+        }
+
+        .step-title {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .step-duration {
+            color: var(--light-gray);
+            font-size: 0.85rem;
+        }
+
+        /* Pricing */
+        .pricing-section {
+            padding: 4rem 3rem;
+            text-align: center;
+        }
+
+        .pricing-header {
+            margin-bottom: 3rem;
+        }
+
+        .pricing-title {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .pricing-subtitle {
+            color: var(--light-gray);
+            font-size: 1.1rem;
+        }
+
+        .pricing-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .pricing-card {
+            background: var(--gray);
+            border-radius: 10px;
+            padding: 2rem;
+            position: relative;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .pricing-card.featured {
+            border-color: var(--red);
+            transform: scale(1.05);
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .plan-badge {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--red);
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .plan-name {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .plan-price {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .plan-price span {
+            font-size: 1rem;
+            color: var(--light-gray);
+        }
+
+        .plan-description {
+            color: var(--light-gray);
+            margin-bottom: 2rem;
+        }
+
+        .plan-features {
+            list-style: none;
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+
+        .plan-features li {
+            padding: 0.5rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .check-icon {
+            color: var(--red);
+        }
+
+        .plan-cta {
+            width: 100%;
+            padding: 0.8rem;
+            background: var(--red);
+            border: none;
+            border-radius: 5px;
+            color: var(--white);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .plan-cta:hover {
+            background: #C50912;
+            transform: scale(1.05);
+        }
+
+        /* Footer */
+        .footer {
+            padding: 3rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        .footer-column h4 {
+            margin-bottom: 1rem;
+            color: var(--light-gray);
+            font-size: 0.9rem;
+        }
+
+        .footer-link {
+            display: block;
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            padding: 0.25rem 0;
+            font-size: 0.85rem;
+            transition: color 0.3s;
+        }
+
+        .footer-link:hover {
+            color: var(--white);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--light-gray);
+            font-size: 0.85rem;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .hero-title { font-size: 2rem; }
+            .content-carousel { gap: 0.5rem; }
+            .content-card { min-width: 150px; }
+            .pricing-cards { grid-template-columns: 1fr; }
+            .path-steps { flex-direction: column; }
+            .path-line { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header" id="header">
+        <nav class="nav">
+            <a href="#" class="logo">
+                SOLLER<span class="logo-plus">+</span>
+            </a>
+            
+            <div class="nav-menu">
+                <a href="#" class="nav-link">Início</a>
+                <a href="#" class="nav-link">Séries</a>
+                <a href="#" class="nav-link">Documentários</a>
+                <a href="#" class="nav-link">Masterclass</a>
+                <a href="#" class="nav-link">Reality Shows</a>
+                <a href="#" class="nav-link">Ao Vivo</a>
+            </div>
+            
+            <div class="user-menu">
+                <span class="search-icon">🔍</span>
+                <span class="notification-icon">🔔</span>
+                <div class="user-avatar">👤</div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">🔥 ESTREIA EXCLUSIVA</div>
+            <h1 class="hero-title">Os Bastidores do Viral</h1>
+            <p class="hero-subtitle">
+                Documentário exclusivo sobre como Virgínia Fonseca construiu um império de 50M de seguidores
+                e fatura R$ 5M por mês.
+            </p>
+            <div class="hero-buttons">
+                <button class="btn btn-primary">
+                    ▶ Assistir Agora
+                </button>
+                <button class="btn btn-secondary">
+                    ℹ️ Mais Informações
+                </button>
+            </div>
+            <div class="hero-meta">
+                <span class="meta-item rating">⭐ 4.9</span>
+                <span class="meta-item">2h 15min</span>
+                <span class="meta-item">2025</span>
+                <span class="meta-item">HD</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Live Now -->
+    <div class="live-section">
+        <div class="live-header">
+            <div>
+                <h2 style="margin-bottom: 0.5rem;">Acontecendo Agora</h2>
+                <p style="color: var(--light-gray);">Masterclasses ao vivo com os maiores creators</p>
+            </div>
+            <div class="live-badge">
+                <div class="live-dot"></div>
+                <span>AO VIVO</span>
+            </div>
+        </div>
+        
+        <div class="live-grid">
+            <div class="live-card">
+                <div class="live-instructor">
+                    <div class="instructor-avatar">🎯</div>
+                    <div class="instructor-info">
+                        <div class="instructor-name">Felipe Neto</div>
+                        <div class="instructor-handle">@felipeneto</div>
+                    </div>
+                    <div class="live-viewers">
+                        <span>●</span> 12.4K assistindo
+                    </div>
+                </div>
+                <div class="live-title">Como Criar Conteúdo Viral no YouTube</div>
+                <div class="live-description">
+                    Estratégias avançadas de algoritmo, thumbnail e retenção de audiência
+                </div>
+            </div>
+            
+            <div class="live-card">
+                <div class="live-instructor">
+                    <div class="instructor-avatar">💄</div>
+                    <div class="instructor-info">
+                        <div class="instructor-name">Bianca Andrade</div>
+                        <div class="instructor-handle">@bianca</div>
+                    </div>
+                    <div class="live-viewers">
+                        <span>●</span> 8.7K assistindo
+                    </div>
+                </div>
+                <div class="live-title">De Creator a CEO: Boca Rosa Beauty</div>
+                <div class="live-description">
+                    Como transformei minha influência em uma marca de R$ 100M
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Continue Watching -->
+    <section class="content-section">
+        <div class="section-header">
+            <h2 class="section-title">Continue Assistindo</h2>
+            <a href="#" class="see-all">Ver Tudo →</a>
+        </div>
+        
+        <div class="content-carousel">
+            <div class="content-card">
+                <div class="content-thumbnail">
+                    <div class="content-badge">EP 3</div>
+                    <div class="play-overlay">
+                        <div class="play-icon"></div>
+                    </div>
+                </div>
+                <div class="content-info">
+                    <div class="content-title">Creator Wars: A Batalha dos Likes</div>
+                    <div class="content-meta">
+                        <span class="match-score">85% assistido</span>
+                        <span>Reality</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="content-card">
+                <div class="content-thumbnail">
+                    <div class="content-badge">45min</div>
+                    <div class="play-overlay">
+                        <div class="play-icon"></div>
+                    </div>
+                </div>
+                <div class="content-info">
+                    <div class="content-title">Instagram Reels: O Guia Definitivo</div>
+                    <div class="content-meta">
+                        <span class="match-score">62% assistido</span>
+                        <span>Curso</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="content-card">
+                <div class="content-thumbnail">
+                    <div class="content-badge">NOVO</div>
+                    <div class="play-overlay">
+                        <div class="play-icon"></div>
+                    </div>
+                </div>
+                <div class="content-info">
+                    <div class="content-title">Whindersson: Do Zero aos Milhões</div>
+                    <div class="content-meta">
+                        <span class="match-score">15% assistido</span>
+                        <span>Documentário</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Masterclasses -->
+    <section class="content-section">
+        <div class="section-header">
+            <h2 class="section-title">🎓 Masterclasses Exclusivas</h2>
+            <a href="#" class="see-all">Ver Tudo →</a>
+        </div>
+        
+        <div class="content-carousel">
+            <div class="content-card">
+                <div class="content-thumbnail">
+                    <div class="content-badge">CERTIFICADO</div>
+                    <div class="play-overlay">
+                        <div class="play-icon"></div>
+                    </div>
+                </div>
+                <div class="content-info">
+                    <div class="content-title">TikTok Advanced com Ruivinha de Marte</div>
+                    <div class="content-meta">
+                        <span>12 aulas</span>
+                        <span>4h total</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="content-card">
+                <div class="content-thumbnail">
+                    <div class="content-badge">BEST SELLER</div>
+                    <div class="play-overlay">
+                        <div class="play-icon"></div>
+                    </div>
+                </div>
+                <div class="content-info">
+                    <div class="content-title">Monetização no YouTube - Manual Completo</div>
+                    <div class="content-meta">
+                        <span>24 aulas</span>
+                        <span>8h total</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="content-card">
+                <div class="content-thumbnail">
+                    <div class="content-badge">EXCLUSIVO</div>
+                    <div class="play-overlay">
+                        <div class="play-icon"></div>
+                    </div>
+                </div>
+                <div class="content-info">
+                    <div class="content-title">Negociação com Marcas - Isabela Soller</div>
+                    <div class="content-meta">
+                        <span>8 aulas</span>
+                        <span>3h total</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="content-card">
+                <div class="content-thumbnail">
+                    <div class="content-badge">TRENDING</div>
+                    <div class="play-overlay">
+                        <div class="play-icon"></div>
+                    </div>
+                </div>
+                <div class="content-info">
+                    <div class="content-title">IA para Creators - Ferramentas e Estratégias</div>
+                    <div class="content-meta">
+                        <span>10 aulas</span>
+                        <span>5h total</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reality Shows -->
+    <section class="content-section">
+        <div class="section-header">
+            <h2 class="section-title">📺 Reality Shows</h2>
+            <a href="#" class="see-all">Ver Tudo →</a>
+        </div>
+        
+        <div class="content-carousel">
+            <div class="content-card">
+                <div class="content-thumbnail">
+                    <div class="content-badge">S2 E5</div>
+                    <div class="play-overlay">
+                        <div class="play-icon"></div>
+                    </div>
+                </div>
+                <div class="content-info">
+                    <div class="content-title">A Casa dos Influencers</div>
+                    <div class="content-meta">
+                        <span class="match-score">98% match</span>
+                        <span>Reality</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="content-card">
+                <div class="content-thumbnail">
+                    <div class="content-badge">FINAL</div>
+                    <div class="play-overlay">
+                        <div class="play-icon"></div>
+                    </div>
+                </div>
+                <div class="content-info">
+                    <div class="content-title">Brand Deal Challenge</div>
+                    <div class="content-meta">
+                        <span>Competição</span>
+                        <span>45min</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="content-card">
+                <div class="content-thumbnail">
+                    <div class="content-badge">NOVO</div>
+                    <div class="play-overlay">
+                        <div class="play-icon"></div>
+                    </div>
+                </div>
+                <div class="content-info">
+                    <div class="content-title">De Zero a Viral em 30 Dias</div>
+                    <div class="content-meta">
+                        <span>Experimento Social</span>
+                        <span>8 eps</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Learning Path -->
+    <div class="learning-path">
+        <div class="path-header">
+            <h2 class="path-title">🎯 Sua Jornada Creator</h2>
+            <p class="path-subtitle">Trilha personalizada baseada no seu perfil</p>
+        </div>
+        
+        <div class="path-steps">
+            <div class="path-line"></div>
+            
+            <div class="path-step">
+                <div class="step-circle completed">✓</div>
+                <div class="step-title">Iniciante</div>
+                <div class="step-duration">0-1K seguidores</div>
+            </div>
+            
+            <div class="path-step">
+                <div class="step-circle completed">✓</div>
+                <div class="step-title">Crescimento</div>
+                <div class="step-duration">1K-10K seguidores</div>
+            </div>
+            
+            <div class="path-step">
+                <div class="step-circle">3</div>
+                <div class="step-title">Monetização</div>
+                <div class="step-duration">10K-100K seguidores</div>
+            </div>
+            
+            <div class="path-step">
+                <div class="step-circle">4</div>
+                <div class="step-title">Autoridade</div>
+                <div class="step-duration">100K+ seguidores</div>
+            </div>
+            
+            <div class="path-step">
+                <div class="step-circle">5</div>
+                <div class="step-title">Império</div>
+                <div class="step-duration">1M+ seguidores</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pricing -->
+    <section class="pricing-section">
+        <div class="pricing-header">
+            <h2 class="pricing-title">Escolha seu plano</h2>
+            <p class="pricing-subtitle">Cancele quando quiser, sem multas</p>
+        </div>
+        
+        <div class="pricing-cards">
+            <div class="pricing-card">
+                <h3 class="plan-name">Básico</h3>
+                <div class="plan-price">R$ 19,90<span>/mês</span></div>
+                <p class="plan-description">Para quem está começando</p>
+                <ul class="plan-features">
+                    <li><span class="check-icon">✓</span> Documentários ilimitados</li>
+                    <li><span class="check-icon">✓</span> 5 masterclasses/mês</li>
+                    <li><span class="check-icon">✓</span> Comunidade básica</li>
+                    <li><span class="check-icon">✓</span> Qualidade HD</li>
+                </ul>
+                <button class="plan-cta">Começar Agora</button>
+            </div>
+            
+            <div class="pricing-card featured">
+                <div class="plan-badge">MAIS POPULAR</div>
+                <h3 class="plan-name">Creator Pro</h3>
+                <div class="plan-price">R$ 39,90<span>/mês</span></div>
+                <p class="plan-description">O plano dos profissionais</p>
+                <ul class="plan-features">
+                    <li><span class="check-icon">✓</span> Todo conteúdo ilimitado</li>
+                    <li><span class="check-icon">✓</span> Lives exclusivas</li>
+                    <li><span class="check-icon">✓</span> Certificados inclusos</li>
+                    <li><span class="check-icon">✓</span> Download offline</li>
+                    <li><span class="check-icon">✓</span> Mentorias em grupo</li>
+                    <li><span class="check-icon">✓</span> Qualidade 4K</li>
+                </ul>
+                <button class="plan-cta">Teste 7 Dias Grátis</button>
+            </div>
+            
+            <div class="pricing-card">
+                <h3 class="plan-name">Business</h3>
+                <div class="plan-price">R$ 99,90<span>/mês</span></div>
+                <p class="plan-description">Para agências e empresas</p>
+                <ul class="plan-features">
+                    <li><span class="check-icon">✓</span> 5 contas de equipe</li>
+                    <li><span class="check-icon">✓</span> Conteúdo exclusivo B2B</li>
+                    <li><span class="check-icon">✓</span> Analytics avançado</li>
+                    <li><span class="check-icon">✓</span> API de conteúdo</li>
+                    <li><span class="check-icon">✓</span> Suporte prioritário</li>
+                    <li><span class="check-icon">✓</span> White label</li>
+                </ul>
+                <button class="plan-cta">Falar com Vendas</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-column">
+                <h4>Conteúdo</h4>
+                <a href="#" class="footer-link">Documentários</a>
+                <a href="#" class="footer-link">Masterclasses</a>
+                <a href="#" class="footer-link">Reality Shows</a>
+                <a href="#" class="footer-link">Podcasts</a>
+                <a href="#" class="footer-link">Lives</a>
+            </div>
+            
+            <div class="footer-column">
+                <h4>Categorias</h4>
+                <a href="#" class="footer-link">Instagram</a>
+                <a href="#" class="footer-link">TikTok</a>
+                <a href="#" class="footer-link">YouTube</a>
+                <a href="#" class="footer-link">LinkedIn</a>
+                <a href="#" class="footer-link">Twitter</a>
+            </div>
+            
+            <div class="footer-column">
+                <h4>Recursos</h4>
+                <a href="#" class="footer-link">Certificados</a>
+                <a href="#" class="footer-link">Comunidade</a>
+                <a href="#" class="footer-link">Eventos</a>
+                <a href="#" class="footer-link">Blog</a>
+                <a href="#" class="footer-link">Newsletter</a>
+            </div>
+            
+            <div class="footer-column">
+                <h4>Empresa</h4>
+                <a href="#" class="footer-link">Sobre</a>
+                <a href="#" class="footer-link">Carreiras</a>
+                <a href="#" class="footer-link">Imprensa</a>
+                <a href="#" class="footer-link">Parceiros</a>
+                <a href="#" class="footer-link">Contato</a>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>© 2025 Soller+. Todos os direitos reservados. | Termos de Uso | Política de Privacidade</p>
+        </div>
+    </footer>
+
+    <script>
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth scroll for carousel
+        const carousels = document.querySelectorAll('.content-carousel');
+        carousels.forEach(carousel => {
+            let isDown = false;
+            let startX;
+            let scrollLeft;
+
+            carousel.addEventListener('mousedown', (e) => {
+                isDown = true;
+                startX = e.pageX - carousel.offsetLeft;
+                scrollLeft = carousel.scrollLeft;
+            });
+
+            carousel.addEventListener('mouseleave', () => {
+                isDown = false;
+            });
+
+            carousel.addEventListener('mouseup', () => {
+                isDown = false;
+            });
+
+            carousel.addEventListener('mousemove', (e) => {
+                if (!isDown) return;
+                e.preventDefault();
+                const x = e.pageX - carousel.offsetLeft;
+                const walk = (x - startX) * 2;
+                carousel.scrollLeft = scrollLeft - walk;
+            });
+        });
+
+        // Play button animation
+        document.querySelectorAll('.content-card').forEach(card => {
+            card.addEventListener('click', function() {
+                console.log('Playing content:', this.querySelector('.content-title').textContent);
+            });
+        });
+    </script>
+</body>
+</html>

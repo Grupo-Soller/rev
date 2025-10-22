@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verificação | Soller - Marketplace de Marketing de Influência</title>
+    <meta name="description" content="Verifique sua conta Soller">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" href="assets/logo.ico" type="image/x-icon" />
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/verification.css">
+</head>
+<body>
+    <!-- Header Simplificado -->
+    <header class="verification-header">
+        <div class="container">
+            <a href="index.html" class="logo">
+    <div class="logo-container">
+        <img src="assets/logo.png" alt="Soller">
+    </div>
+    <span>Marketplace</span>
+</a>
+        </div>
+    </header>
+
+    <!-- Verification Container -->
+    <section class="verification-section">
+        <div class="container">
+            <div class="verification-wrapper">
+                <div class="verification-card">
+                    <!-- Icon Animation -->
+                    <div class="verification-icon">
+                        <div class="icon-circle">
+                            <i class="fas fa-envelope" id="verification-icon"></i>
+                        </div>
+                        <div class="pulse-ring"></div>
+                    </div>
+
+                    <!-- Title -->
+                    <h1 class="verification-title" id="verification-title">
+                        Verificar Email
+                    </h1>
+                    
+                    <p class="verification-subtitle" id="verification-subtitle">
+                        Digite o código de 4 dígitos enviado para:
+                    </p>
+                    
+                    <div class="verification-email" id="verification-email">
+                        exemplo@email.com
+                    </div>
+
+                    <!-- Code Input -->
+                    <form id="verification-form">
+                        <div class="code-inputs">
+                            <input 
+                                type="text" 
+                                class="code-digit" 
+                                maxlength="1" 
+                                pattern="[0-9]" 
+                                inputmode="numeric"
+                                id="digit-1"
+                                data-index="0"
+                                autocomplete="off"
+                            >
+                            <input 
+                                type="text" 
+                                class="code-digit" 
+                                maxlength="1" 
+                                pattern="[0-9]" 
+                                inputmode="numeric"
+                                id="digit-2"
+                                data-index="1"
+                                autocomplete="off"
+                            >
+                            <input 
+                                type="text" 
+                                class="code-digit" 
+                                maxlength="1" 
+                                pattern="[0-9]" 
+                                inputmode="numeric"
+                                id="digit-3"
+                                data-index="2"
+                                autocomplete="off"
+                            >
+                            <input 
+                                type="text" 
+                                class="code-digit" 
+                                maxlength="1" 
+                                pattern="[0-9]" 
+                                inputmode="numeric"
+                                id="digit-4"
+                                data-index="3"
+                                autocomplete="off"
+                            >
+                        </div>
+
+                        <!-- Error/Success Messages -->
+                        <div id="message-container" class="message-container"></div>
+
+                        <!-- Verify Button -->
+                        <button type="submit" class="btn-verify" id="verify-button">
+                            <span class="btn-text">Verificar Código</span>
+                            <span class="btn-loading">
+                                <i class="fas fa-spinner fa-spin"></i>
+                            </span>
+                        </button>
+                    </form>
+
+                    <!-- Resend Section -->
+                    <div class="resend-section">
+                        <p class="resend-text">
+                            Não recebeu o código?
+                        </p>
+                        <button type="button" class="btn-resend" id="resend-button">
+                            <i class="fas fa-redo"></i>
+                            Reenviar código
+                        </button>
+                        <div class="countdown" id="countdown"></div>
+                    </div>
+
+                    <!-- Help Text -->
+                    <div class="help-section">
+                        <p class="help-text">
+                            <i class="fas fa-info-circle"></i>
+                            O código expira em 15 minutos. Verifique sua caixa de spam.
+                        </p>
+                    </div>
+
+                    <!-- Back Link -->
+                    <a href="auth.html" class="back-link">
+                        <i class="fas fa-arrow-left"></i>
+                        Voltar para login
+                    </a>
+                </div>
+
+                <!-- Success State (Hidden by default) -->
+                <div class="success-card" id="success-card" style="display: none;">
+                    <div class="success-animation">
+                        <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+                            <circle class="checkmark-circle" cx="26" cy="26" r="25" fill="none"/>
+                            <path class="checkmark-check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+                        </svg>
+                    </div>
+                    
+                    <h2 class="success-title" id="success-title">
+                        Email Verificado!
+                    </h2>
+                    
+                    <p class="success-text" id="success-text">
+                        Sua conta foi verificada com sucesso. Você será redirecionado...
+                    </p>
+                    
+                    <button class="btn-continue" id="continue-button">
+                        Continuar
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Scripts -->
+    <script src="js/verification.js"></script>
+</body>
+</html>

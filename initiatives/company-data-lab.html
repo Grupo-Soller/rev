@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soller AI Influence Predictor™ - Revolucionando o Marketing de Influência</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #6366f1;
+            --purple: #8B5CF6;
+            --secondary: #f59e0b;
+            --success: #10b981;
+            --danger: #ef4444;
+            --dark: #0f172a;
+            --light: #f8fafc;
+            --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --glow: 0 0 40px rgba(99, 102, 241, 0.4);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: #000;
+            color: #fff;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Animated Background */
+        .background {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            background: linear-gradient(to bottom, #0a0e27 0%, #000 100%);
+        }
+
+        .particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: rgba(99, 102, 241, 0.8);
+            border-radius: 50%;
+            animation: float 20s infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) translateX(0); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100vh) translateX(100px); opacity: 0; }
+        }
+
+        /* Header */
+        .header {
+            padding: 1.5rem 2rem;
+            background: rgba(15, 15, 15, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(124, 58, 237, 0.2);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: whitesmoke;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo::before {
+            content: "⚡";
+            font-size: 2rem;
+        }
+
+        .status {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .status-item {
+            padding: 0.5rem 1rem;
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            border-radius: 20px;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .pulse {
+            width: 8px;
+            height: 8px;
+            background: #10b981;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(16, 185, 129, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 4rem 2rem;
+            text-align: center;
+            max-width: 1400px;
+            margin: 0 auto;
+            margin-top: 50px;
+            position: relative;
+            margin-bottom: -70px;
+        }
+
+        .hero h1 {
+            font-size: 3.0rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(
+  135deg,
+  color-mix(in srgb, white 50%, transparent),
+  color-mix(in srgb, var(--purple) 50%, transparent)
+);
+            color: whitesmoke;
+            animation: gradient-shift 3s ease infinite;
+        }
+
+        @keyframes gradient-shift {
+            0%, 100% { filter: hue-rotate(0deg); }
+            50% { filter: hue-rotate(30deg); }
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            color: #94a3b8;
+            margin-bottom: 2rem;
+        }
+
+        /* Main Dashboard */
+        .dashboard {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 2rem;
+        }
+
+        /* AI Prediction Panel */
+        .prediction-panel {
+            grid-column: span 2;
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            border-radius: 20px;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .prediction-panel::before {
+            content: "";
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: var(--gradient);
+            border-radius: 20px;
+            opacity: 0.3;
+            z-index: -1;
+            animation: rotate 10s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .panel-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .panel-title {
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .ai-badge {
+            background: linear-gradient(135deg, #f59e0b, #ef4444);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            animation: glow 2s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(245, 158, 11, 0.5); }
+            50% { box-shadow: 0 0 40px rgba(245, 158, 11, 0.8); }
+        }
+
+        /* Campaign Predictor */
+        .predictor-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .form-group label {
+            font-size: 0.9rem;
+            color: #94a3b8;
+        }
+
+        .form-group input, .form-group select {
+            padding: 0.75rem;
+            background: rgba(30, 41, 59, 0.5);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            border-radius: 10px;
+            color: #fff;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .form-group input:focus, .form-group select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 20px rgba(99, 102, 241, 0.3);
+        }
+
+        .predict-btn {
+            grid-column: span 2;
+            padding: 1rem 2rem;
+            background: var(--gradient);
+            border: none;
+            border-radius: 10px;
+            color: #fff;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .predict-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 40px rgba(99, 102, 241, 0.5);
+        }
+
+        .predict-btn::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .predict-btn:active::after {
+            width: 300px;
+            height: 300px;
+        }
+
+        /* Prediction Results */
+        .prediction-results {
+            display: none;
+            animation: slideIn 0.5s ease;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .result-card {
+            background: rgba(30, 41, 59, 0.5);
+            padding: 1.5rem;
+            border-radius: 15px;
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .result-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.3);
+        }
+
+        .result-value {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .result-label {
+            color: #94a3b8;
+            font-size: 0.9rem;
+        }
+
+        .success { color: #10b981; }
+        .warning { color: #f59e0b; }
+        .danger { color: #ef4444; }
+
+        /* Live Analytics */
+        .analytics-panel {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            border-radius: 20px;
+            padding: 2rem;
+        }
+
+        .metric-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .metric-item {
+            padding: 1rem;
+            background: rgba(30, 41, 59, 0.5);
+            border-radius: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s;
+        }
+
+        .metric-item:hover {
+            background: rgba(99, 102, 241, 0.1);
+            transform: translateX(5px);
+        }
+
+        .metric-name {
+            color: #94a3b8;
+            font-size: 0.9rem;
+        }
+
+        .metric-value {
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        /* Influencer Matching */
+        .matching-section {
+            grid-column: span 3;
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+
+        .influencer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .influencer-card {
+            background: rgba(30, 41, 59, 0.5);
+            border-radius: 15px;
+            padding: 1.5rem;
+            text-align: center;
+            position: relative;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .influencer-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(99, 102, 241, 0.4);
+        }
+
+        .match-score {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background: var(--gradient);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.1rem;
+            box-shadow: 0 5px 20px rgba(99, 102, 241, 0.5);
+        }
+
+        .influencer-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            background: var(--gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+        }
+
+        .influencer-name {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .influencer-stats {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(99, 102, 241, 0.2);
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        .stat-label {
+            font-size: 0.75rem;
+            color: #94a3b8;
+        }
+
+        /* Real-time Sentiment */
+        .sentiment-tracker {
+            grid-column: span 3;
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+
+        .sentiment-graph {
+            height: 200px;
+            background: linear-gradient(180deg, rgba(99, 102, 241, 0.1) 0%, transparent 100%);
+            border-radius: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .sentiment-line {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 60%;
+            background: linear-gradient(90deg, #10b981, #f59e0b, #ef4444);
+            clip-path: polygon(
+                0% 80%,
+                10% 70%,
+                20% 60%,
+                30% 40%,
+                40% 45%,
+                50% 30%,
+                60% 35%,
+                70% 25%,
+                80% 20%,
+                90% 15%,
+                100% 10%,
+                100% 100%,
+                0% 100%
+            );
+            animation: wave 3s ease-in-out infinite;
+        }
+
+        @keyframes wave {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(-20px); }
+        }
+
+        /* Alert System */
+        .alert-system {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            width: 300px;
+            z-index: 1000;
+        }
+
+        .alert {
+            background: rgba(15, 23, 42, 0.95);
+            border: 1px solid rgba(99, 102, 241, 0.5);
+            border-radius: 10px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            animation: slideInRight 0.5s ease;
+        }
+
+        @keyframes slideInRight {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        .alert-title {
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .alert-success { border-color: #10b981; }
+        .alert-warning { border-color: #f59e0b; }
+        .alert-danger { border-color: #ef4444; }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            margin-top: 4rem;
+            border-top: 1px solid rgba(99, 102, 241, 0.2);
+            color: #64748b;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            .dashboard { grid-template-columns: 1fr; }
+            .prediction-panel { grid-column: span 1; }
+            .predictor-form { grid-template-columns: 1fr; }
+            .predict-btn { grid-column: span 1; }
+            .matching-section { grid-column: span 1; }
+            .sentiment-tracker { grid-column: span 1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="background">
+        <div class="particles" id="particles"></div>
+    </div>
+
+    <header class="header">
+        <nav class="nav">
+            <div class="logo">Soller BizAI Predictor</div>
+            <div class="status">
+                <div class="status-item">
+                    <div class="pulse"></div>
+                    <span>AI Online</span>
+                </div>
+                <div class="status-item">
+                    <span>⚡ 2.3ms</span>
+                </div>
+                <div class="status-item">
+                    <span>🔥 v3.0 Beta</span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>Preveja o Sucesso Antecipadamente</h1>
+        <p>IA preditiva que analisa 200+ variáveis em tempo real para garantir ROI máximo</p>
+    </section>
+
+    <div class="dashboard">
+        <!-- AI Prediction Panel -->
+        <div class="prediction-panel">
+            <div class="panel-header">
+                <h2 class="panel-title">
+                    🤖 Simulador de Campanha
+                    <span class="ai-badge">POWERED BY GPT-4</span>
+                </h2>
+            </div>
+
+            <form class="predictor-form" id="predictorForm">
+                <div class="form-group">
+                    <label>Segmento da Marca</label>
+                    <select id="brandSegment">
+                        <option>Beleza & Cosméticos</option>
+                        <option>Moda & Lifestyle</option>
+                        <option>Tecnologia</option>
+                        <option>Alimentação</option>
+                        <option>Fitness & Saúde</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Orçamento (R$)</label>
+                    <input type="number" id="budget" placeholder="50000" value="50000">
+                </div>
+                <div class="form-group">
+                    <label>Objetivo Principal</label>
+                    <select id="objective">
+                        <option>Awareness</option>
+                        <option>Conversão</option>
+                        <option>Engajamento</option>
+                        <option>Lançamento</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Duração (dias)</label>
+                    <input type="number" id="duration" placeholder="30" value="30">
+                </div>
+                <button type="submit" class="predict-btn">
+                    🚀 Prever Performance
+                </button>
+            </form>
+
+            <div class="prediction-results" id="results">
+                <h3 style="margin-bottom: 1rem;">📊 Previsão de Performance</h3>
+                <div class="results-grid">
+                    <div class="result-card">
+                        <div class="result-value success" id="roiValue">4.2x</div>
+                        <div class="result-label">ROI Esperado</div>
+                    </div>
+                    <div class="result-card">
+                        <div class="result-value warning" id="reachValue">2.5M</div>
+                        <div class="result-label">Alcance Total</div>
+                    </div>
+                    <div class="result-card">
+                        <div class="result-value success" id="conversionValue">3.8%</div>
+                        <div class="result-label">Taxa Conversão</div>
+                    </div>
+                    <div class="result-card">
+                        <div class="result-value" id="engagementValue">5.2%</div>
+                        <div class="result-label">Engajamento</div>
+                    </div>
+                    <div class="result-card">
+                        <div class="result-value success" id="confidenceValue">92%</div>
+                        <div class="result-label">Confiança IA</div>
+                    </div>
+                    <div class="result-card">
+                        <div class="result-value" id="riskValue">Baixo</div>
+                        <div class="result-label">Nível de Risco</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Live Analytics -->
+        <div class="analytics-panel">
+            <h2 style="margin-bottom: 1.5rem;">⚡ Métricas em Tempo Real</h2>
+            <div class="metric-list">
+                <div class="metric-item">
+                    <span class="metric-name">Campanhas Ativas</span>
+                    <span class="metric-value success">247</span>
+                </div>
+                <div class="metric-item">
+                    <span class="metric-name">ROI Médio Hoje</span>
+                    <span class="metric-value">3.8x</span>
+                </div>
+                <div class="metric-item">
+                    <span class="metric-name">Sentiment Score</span>
+                    <span class="metric-value success">+87</span>
+                </div>
+                <div class="metric-item">
+                    <span class="metric-name">Churn Previsto</span>
+                    <span class="metric-value danger">-42%</span>
+                </div>
+                <div class="metric-item">
+                    <span class="metric-name">GMV Projetado</span>
+                    <span class="metric-value">R$ 8.2M</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Influencer Matching -->
+        <div class="matching-section">
+            <h2 style="margin-bottom: 1rem;">🎯 Match Inteligente de Influenciadores</h2>
+            <p style="color: #94a3b8; margin-bottom: 1rem;">IA seleciona os melhores perfis baseado em 200+ variáveis</p>
+            
+            <div class="influencer-grid" id="influencerGrid">
+                <!-- Cards serão inseridos dinamicamente -->
+            </div>
+        </div>
+
+        <!-- Sentiment Tracker -->
+        <div class="sentiment-tracker">
+            <h2 style="margin-bottom: 1rem;">📈 Análise de Sentimento em Tempo Real</h2>
+            <p style="color: #94a3b8; margin-bottom: 1rem;">Monitoramento contínuo de menções e engajamento</p>
+            
+            <div class="sentiment-graph">
+                <div class="sentiment-line"></div>
+            </div>
+            
+            <div style="display: flex; justify-content: space-around; margin-top: 1rem;">
+                <div>
+                    <span style="color: #10b981;">● Positivo: 67%</span>
+                </div>
+                <div>
+                    <span style="color: #f59e0b;">● Neutro: 24%</span>
+                </div>
+                <div>
+                    <span style="color: #ef4444;">● Negativo: 9%</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Alert System -->
+    <div class="alert-system" id="alertSystem"></div>
+
+    <footer class="footer">
+        <p>🚀 Soller AI Predictor™ - Transformando dados em decisões inteligentes</p>
+        <p style="margin-top: 0.5rem;">Powered by Machine Learning & Real-time Analytics</p>
+    </footer>
+
+    <script>
+        // Generate particles
+        const particlesContainer = document.getElementById('particles');
+        for (let i = 0; i < 50; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.animationDelay = Math.random() * 20 + 's';
+            particle.style.animationDuration = (15 + Math.random() * 10) + 's';
+            particlesContainer.appendChild(particle);
+        }
+
+        // Influencer data
+        const influencers = [
+            { name: 'Marina Silva', avatar: '👩', followers: '2.5M', engagement: '4.8%', roi: '5.2x', match: 98 },
+            { name: 'João Tech', avatar: '👨‍💻', followers: '1.8M', engagement: '6.2%', roi: '4.8x', match: 95 },
+            { name: 'Ana Fitness', avatar: '💪', followers: '890K', engagement: '8.5%', roi: '6.1x', match: 92 },
+            { name: 'Pedro Style', avatar: '🕴️', followers: '1.2M', engagement: '5.9%', roi: '4.5x', match: 89 },
+            { name: 'Carla Beauty', avatar: '💄', followers: '3.1M', engagement: '3.2%', roi: '3.8x', match: 87 },
+            { name: 'Lucas Food', avatar: '🍔', followers: '670K', engagement: '9.2%', roi: '7.2x', match: 85 }
+        ];
+
+        // Populate influencer grid
+        const influencerGrid = document.getElementById('influencerGrid');
+        influencers.forEach(inf => {
+            const card = document.createElement('div');
+            card.className = 'influencer-card';
+            card.innerHTML = `
+                <div class="match-score">${inf.match}%</div>
+                <div class="influencer-avatar">${inf.avatar}</div>
+                <div class="influencer-name">${inf.name}</div>
+                <div class="influencer-stats">
+                    <div class="stat">
+                        <div class="stat-value">${inf.followers}</div>
+                        <div class="stat-label">Seguidores</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-value">${inf.engagement}</div>
+                        <div class="stat-label">Engajamento</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-value">${inf.roi}</div>
+                        <div class="stat-label">ROI Médio</div>
+                    </div>
+                </div>
+            `;
+            influencerGrid.appendChild(card);
+        });
+
+        // Form submission
+        document.getElementById('predictorForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Show loading state
+            const btn = e.target.querySelector('.predict-btn');
+            btn.innerHTML = '⏳ Analisando...';
+            btn.disabled = true;
+            
+            // Simulate AI processing
+            setTimeout(() => {
+                // Show results
+                document.getElementById('results').style.display = 'block';
+                
+                // Randomize some values for demo
+                const roi = (3 + Math.random() * 3).toFixed(1);
+                const reach = (1.5 + Math.random() * 3).toFixed(1);
+                const conversion = (2 + Math.random() * 4).toFixed(1);
+                const engagement = (3 + Math.random() * 5).toFixed(1);
+                const confidence = Math.floor(85 + Math.random() * 15);
+                
+                document.getElementById('roiValue').textContent = roi + 'x';
+                document.getElementById('reachValue').textContent = reach + 'M';
+                document.getElementById('conversionValue').textContent = conversion + '%';
+                document.getElementById('engagementValue').textContent = engagement + '%';
+                document.getElementById('confidenceValue').textContent = confidence + '%';
+                
+                // Reset button
+                btn.innerHTML = '🚀 Prever Performance';
+                btn.disabled = false;
+                
+                // Show alert
+                showAlert('success', '✅ Análise Completa', 'Previsão gerada com 200+ variáveis analisadas');
+                
+                // Update influencer matches
+                updateInfluencerMatches();
+            }, 2000);
+        });
+
+        // Alert system
+        function showAlert(type, title, message) {
+            const alertSystem = document.getElementById('alertSystem');
+            const alert = document.createElement('div');
+            alert.className = `alert alert-${type}`;
+            alert.innerHTML = `
+                <div class="alert-title">
+                    ${type === 'success' ? '✅' : type === 'warning' ? '⚠️' : '❌'} ${title}
+                </div>
+                <div>${message}</div>
+            `;
+            alertSystem.appendChild(alert);
+            
+            setTimeout(() => {
+                alert.style.opacity = '0';
+                setTimeout(() => alert.remove(), 300);
+            }, 5000);
+        }
+
+        // Update influencer matches
+        function updateInfluencerMatches() {
+            const cards = document.querySelectorAll('.influencer-card');
+            cards.forEach((card, index) => {
+                setTimeout(() => {
+                    card.style.transform = 'scale(1.05)';
+                    setTimeout(() => {
+                        card.style.transform = 'scale(1)';
+                    }, 300);
+                }, index * 100);
+            });
+        }
+
+        // Simulate real-time updates
+        setInterval(() => {
+            // Update random metrics
+            const metrics = document.querySelectorAll('.metric-value');
+            const randomMetric = metrics[Math.floor(Math.random() * metrics.length)];
+            
+            // Animate the change
+            randomMetric.style.transform = 'scale(1.2)';
+            randomMetric.style.color = '#f59e0b';
+            
+            setTimeout(() => {
+                randomMetric.style.transform = 'scale(1)';
+                randomMetric.style.color = '';
+            }, 500);
+        }, 3000);
+
+        // Show periodic alerts
+        const alertMessages = [
+            { type: 'success', title: 'Nova Campanha', message: 'Nike iniciou campanha com 5 influenciadores' },
+            { type: 'warning', title: 'Alerta de Tendência', message: 'Hashtag #sustentavel subindo 450% esta semana' },
+            { type: 'success', title: 'Meta Atingida', message: 'Campanha Natura ultrapassou ROI em 23%' },
+            { type: 'success', title: 'Match Perfeito', message: 'Gil do Vigor disponível para sua categoria' }
+        ];
+
+        let alertIndex = 0;
+        setInterval(() => {
+            const alert = alertMessages[alertIndex % alertMessages.length];
+            showAlert(alert.type, alert.title, alert.message);
+            alertIndex++;
+        }, 15000);
+
+        // Initial alert
+        setTimeout(() => {
+            showAlert('success', '🚀 Sistema Inicializado', 'IA pronta para análise preditiva');
+        }, 1000);
+    </script>
+</body>
+</html>

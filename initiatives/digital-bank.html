@@ -1,0 +1,1071 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soller Bank - O Banco Digital dos Creators</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #7C3AED;
+            --secondary: #EC4899;
+            --success: #10B981;
+            --warning: #F59E0B;
+            --dark: #0F0F0F;
+            --gray: #1F1F1F;
+            --light: #FFFFFF;
+            --gradient: linear-gradient(135deg, #7C3AED 0%, #EC4899 100%);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--dark);
+            color: var(--light);
+            overflow-x: hidden;
+        }
+
+        /* Animated Background */
+        .animated-bg {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .gradient-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(100px);
+            opacity: 0.4;
+            animation: float 20s infinite ease-in-out;
+        }
+
+        .orb1 {
+            width: 600px;
+            height: 600px;
+            background: var(--primary);
+            top: -200px;
+            left: -200px;
+        }
+
+        .orb2 {
+            width: 400px;
+            height: 400px;
+            background: var(--secondary);
+            bottom: -100px;
+            right: -100px;
+            animation-delay: 5s;
+        }
+
+        .orb3 {
+            width: 300px;
+            height: 300px;
+            background: var(--success);
+            top: 50%;
+            left: 50%;
+            animation-delay: 10s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(30px, -30px) scale(1.1); }
+            66% { transform: translate(-20px, 20px) scale(0.9); }
+        }
+
+        /* Header */
+        .header {
+            padding: 1.5rem 2rem;
+            background: rgba(15, 15, 15, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(124, 58, 237, 0.2);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .logo-icon {
+            width: 45px;
+            height: 45px;
+            background: var(--gradient);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .nav-link:hover {
+            color: var(--light);
+        }
+
+        .app-button {
+            background: var(--gradient);
+            padding: 0.75rem 1.5rem;
+            border-radius: 12px;
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .app-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(124, 58, 237, 0.4);
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 80px;
+            margin-bottom: -60px;
+            padding: 6rem 2rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(124, 58, 237, 0.2);
+            border: 1px solid var(--primary);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+            animation: glow 2s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(124, 58, 237, 0.3); }
+            50% { box-shadow: 0 0 40px rgba(124, 58, 237, 0.6); }
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            background: var(--gradient);
+            color: whitesmoke;
+            line-height: 1.2;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 3rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 3rem;
+        }
+
+        .cta-primary {
+            background: var(--gradient);
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .cta-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(124, 58, 237, 0.4);
+        }
+
+        .cta-secondary {
+            background: transparent;
+            border: 1px solid rgba(124, 58, 237, 0.5);
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+        }
+
+        .cta-secondary:hover {
+            background: rgba(124, 58, 237, 0.1);
+            border-color: var(--primary);
+        }
+
+        /* Phone Mockup */
+        .phone-showcase {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            padding: 2rem;
+        }
+
+        .phone-mockup {
+            width: 320px;
+            height: 640px;
+            background: #1A1A1A;
+            border-radius: 40px;
+            padding: 10px;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+            position: relative;
+            transform: rotate(-5deg);
+            transition: transform 0.3s;
+        }
+
+        .phone-mockup:hover {
+            transform: rotate(0deg) scale(1.05);
+        }
+
+        .phone-screen {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, #1F1F1F 0%, #0F0F0F 100%);
+            border-radius: 30px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .phone-header {
+            padding: 1rem;
+            background: rgba(124, 58, 237, 0.1);
+            border-bottom: 1px solid rgba(124, 58, 237, 0.2);
+        }
+
+        .balance-card {
+            margin: 1rem;
+            padding: 1.5rem;
+            background: var(--gradient);
+            border-radius: 20px;
+            color: white;
+        }
+
+        .balance-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-bottom: 0.5rem;
+        }
+
+        .balance-amount {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .balance-stats {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .stat-label {
+            font-size: 0.75rem;
+            opacity: 0.8;
+        }
+
+        .quick-actions {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            padding: 1rem;
+        }
+
+        .action-btn {
+            background: rgba(124, 58, 237, 0.1);
+            border: 1px solid rgba(124, 58, 237, 0.3);
+            border-radius: 15px;
+            padding: 1rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .action-btn:hover {
+            background: rgba(124, 58, 237, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .action-icon {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .action-label {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* Features Section */
+        .features {
+            padding: 4rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: rgba(31, 31, 31, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(124, 58, 237, 0.2);
+            border-radius: 20px;
+            padding: 2rem;
+            transition: all 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+            box-shadow: 0 20px 40px rgba(124, 58, 237, 0.3);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--gradient);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-title {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-description {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.6;
+        }
+
+        .feature-highlight {
+            display: inline-block;
+            background: rgba(16, 185, 129, 0.2);
+            color: var(--success);
+            padding: 0.25rem 0.5rem;
+            border-radius: 5px;
+            font-size: 0.85rem;
+            margin-top: 1rem;
+        }
+
+        /* Revenue Calculator */
+        .calculator {
+            padding: 4rem 2rem;
+            background: rgba(31, 31, 31, 0.3);
+        }
+
+        .calculator-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(31, 31, 31, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(124, 58, 237, 0.2);
+            border-radius: 20px;
+            padding: 2rem;
+        }
+
+        .calculator-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .calculator-inputs {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .input-label {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+
+        .input-field {
+            background: rgba(15, 15, 15, 0.5);
+            border: 1px solid rgba(124, 58, 237, 0.3);
+            border-radius: 10px;
+            padding: 0.75rem;
+            color: white;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .input-field:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 20px rgba(124, 58, 237, 0.3);
+        }
+
+        .slider {
+            width: 100%;
+            height: 6px;
+            border-radius: 3px;
+            background: rgba(124, 58, 237, 0.3);
+            outline: none;
+        }
+
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--gradient);
+            cursor: pointer;
+        }
+
+        .calculator-results {
+            background: var(--gradient);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .result-title {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            opacity: 0.9;
+        }
+
+        .result-amount {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .result-details {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 1.5rem;
+        }
+
+        .detail-item {
+            text-align: center;
+        }
+
+        .detail-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .detail-label {
+            font-size: 0.85rem;
+            opacity: 0.8;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .testimonial-card {
+            background: rgba(31, 31, 31, 0.6);
+            border: 1px solid rgba(124, 58, 237, 0.2);
+            border-radius: 20px;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .testimonial-quote {
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .author-info {
+            flex: 1;
+        }
+
+        .author-name {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .author-handle {
+            color: var(--primary);
+            font-size: 0.9rem;
+        }
+
+        .author-followers {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.85rem;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 6rem 2rem;
+            text-align: center;
+            background: rgba(124, 58, 237, 0.1);
+            margin-top: 4rem;
+        }
+
+        .cta-title {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-subtitle {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .waitlist-form {
+            display: flex;
+            gap: 1rem;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .waitlist-input {
+            flex: 1;
+            background: rgba(15, 15, 15, 0.5);
+            border: 1px solid rgba(124, 58, 237, 0.3);
+            border-radius: 12px;
+            padding: 1rem;
+            color: white;
+            font-size: 1rem;
+        }
+
+        .waitlist-btn {
+            background: var(--gradient);
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .waitlist-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(124, 58, 237, 0.4);
+        }
+
+        /* Footer */
+        .footer {
+            padding: 3rem 2rem;
+            text-align: center;
+            border-top: 1px solid rgba(124, 58, 237, 0.2);
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .phone-showcase { flex-direction: column; align-items: center; }
+            .features-grid { grid-template-columns: 1fr; }
+            .calculator-inputs { grid-template-columns: 1fr; }
+            .waitlist-form { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+    <div class="animated-bg">
+        <div class="gradient-orb orb1"></div>
+        <div class="gradient-orb orb2"></div>
+        <div class="gradient-orb orb3"></div>
+    </div>
+
+    <header class="header">
+        <nav class="nav">
+            <div class="logo">
+                <div class="logo-icon">💳</div>
+                <span>Soller Bank</span>
+            </div>
+            <div class="nav-links">
+                <a href="#features" class="nav-link">Recursos</a>
+                <a href="#calculator" class="nav-link">Simulador</a>
+                <a href="#testimonials" class="nav-link">Depoimentos</a>
+                <a href="#" class="app-button">Baixar App</a>
+            </div>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">🚀 Lançamento: Lista de espera aberta!</div>
+            <h1>O Banco dos Creators</h1>
+            <p class="hero-subtitle">
+                Receba pagamentos em 1 dia, não em 90. Cartão com 5% cashback.
+                Crédito baseado em seus contratos futuros.
+            </p>
+            <div class="hero-cta">
+                <a href="#waitlist" class="cta-primary">
+                    Entrar na Lista de Espera
+                    <span>→</span>
+                </a>
+                <a href="#calculator" class="cta-secondary">
+                    Calcular Economia
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="phone-showcase">
+        <div class="phone-mockup">
+            <div class="phone-screen">
+                <div class="phone-header">
+                    <div style="text-align: center; color: white; font-weight: 600;">
+                        Soller Bank
+                    </div>
+                </div>
+                
+                <div class="balance-card">
+                    <div class="balance-label">Saldo Disponível</div>
+                    <div class="balance-amount">R$ 47.842,00</div>
+                    <div class="balance-stats">
+                        <div class="stat-item">
+                            <div class="stat-value">R$ 12.5K</div>
+                            <div class="stat-label">A receber</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">5.2x</div>
+                            <div class="stat-label">ROI médio</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">23</div>
+                            <div class="stat-label">Campanhas</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="quick-actions">
+                    <div class="action-btn">
+                        <div class="action-icon">⚡</div>
+                        <div class="action-label">Pix</div>
+                    </div>
+                    <div class="action-btn">
+                        <div class="action-icon">💸</div>
+                        <div class="action-label">Antecipar</div>
+                    </div>
+                    <div class="action-btn">
+                        <div class="action-icon">📊</div>
+                        <div class="action-label">Invoices</div>
+                    </div>
+                    <div class="action-btn">
+                        <div class="action-icon">💳</div>
+                        <div class="action-label">Cartão</div>
+                    </div>
+                    <div class="action-btn">
+                        <div class="action-icon">💰</div>
+                        <div class="action-label">Crédito</div>
+                    </div>
+                    <div class="action-btn">
+                        <div class="action-icon">📈</div>
+                        <div class="action-label">Investir</div>
+                    </div>
+                </div>
+
+                <div style="padding: 1rem;">
+                    <div style="background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 10px; padding: 1rem; margin-bottom: 1rem;">
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <div>
+                                <div style="color: #10B981; font-weight: 600;">+ R$ 8.500,00</div>
+                                <div style="font-size: 0.85rem; color: rgba(255,255,255,0.6);">Nike Brasil • Antecipado</div>
+                            </div>
+                            <div style="font-size: 0.85rem; color: rgba(255,255,255,0.5);">Agora</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="phone-mockup" style="transform: rotate(5deg);">
+            <div class="phone-screen">
+                <div style="padding: 2rem; text-align: center;">
+                    <div style="font-size: 1.5rem; margin-bottom: 2rem; color: white;">Antecipação de Recebíveis</div>
+                    
+                    <div style="background: rgba(124, 58, 237, 0.1); border: 1px solid rgba(124, 58, 237, 0.3); border-radius: 15px; padding: 1.5rem; margin-bottom: 1.5rem;">
+                        <div style="color: rgba(255,255,255,0.7); margin-bottom: 0.5rem;">Invoice #2847</div>
+                        <div style="font-size: 2rem; font-weight: bold; color: white; margin-bottom: 0.5rem;">R$ 25.000,00</div>
+                        <div style="color: rgba(255,255,255,0.6); font-size: 0.9rem;">O Boticário • Vence em 75 dias</div>
+                    </div>
+
+                    <div style="background: rgba(31, 31, 31, 0.6); border-radius: 15px; padding: 1.5rem; margin-bottom: 1.5rem;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 1rem;">
+                            <span style="color: rgba(255,255,255,0.7);">Valor Original</span>
+                            <span style="color: white;">R$ 25.000,00</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 1rem;">
+                            <span style="color: rgba(255,255,255,0.7);">Taxa (2.9%)</span>
+                            <span style="color: white;">- R$ 725,00</span>
+                        </div>
+                        <div style="border-top: 1px solid rgba(124, 58, 237, 0.2); padding-top: 1rem; display: flex; justify-content: space-between;">
+                            <span style="color: rgba(255,255,255,0.9); font-weight: 600;">Você recebe hoje</span>
+                            <span style="color: #10B981; font-size: 1.3rem; font-weight: bold;">R$ 24.275,00</span>
+                        </div>
+                    </div>
+
+                    <button style="width: 100%; background: linear-gradient(135deg, #7C3AED 0%, #EC4899 100%); border: none; padding: 1rem; border-radius: 12px; color: white; font-weight: 600; font-size: 1.1rem; cursor: pointer;">
+                        Antecipar Agora
+                    </button>
+
+                    <div style="margin-top: 1rem; color: rgba(255,255,255,0.5); font-size: 0.85rem;">
+                        💡 Dica: Empresas grandes sempre pagam
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="features" id="features">
+        <h2 class="section-title">Tudo que você precisa em um só app</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <h3 class="feature-title">Pagamento em 1 Dia</h3>
+                <p class="feature-description">
+                    Chega de esperar 30, 60 ou 90 dias. Antecipe suas invoices e receba em até 24 horas
+                    com as menores taxas do mercado.
+                </p>
+                <span class="feature-highlight">Taxa de apenas 2.9%</span>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">💳</div>
+                <h3 class="feature-title">Cartão Black Exclusivo</h3>
+                <p class="feature-description">
+                    5% de cashback em equipamentos, 3% em ads e marketing, 2% em todas as outras compras.
+                    Sem anuidade para creators ativos.
+                </p>
+                <span class="feature-highlight">Até R$ 10K/mês em cashback</span>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">💰</div>
+                <h3 class="feature-title">Crédito Inteligente</h3>
+                <p class="feature-description">
+                    Linha de crédito baseada em seus contratos futuros e histórico de campanhas.
+                    Até R$ 500K pré-aprovados.
+                </p>
+                <span class="feature-highlight">Aprovação em 30 segundos</span>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">📊</div>
+                <h3 class="feature-title">Dashboard Financeiro</h3>
+                <p class="feature-description">
+                    Acompanhe todas suas receitas, organize por cliente, calcule impostos automaticamente
+                    e exporte relatórios.
+                </p>
+                <span class="feature-highlight">Integrado com RD Station</span>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🌍</div>
+                <h3 class="feature-title">Conta Global</h3>
+                <p class="feature-description">
+                    Receba em dólar, euro ou real. Cartão internacional aceito em 180 países.
+                    Câmbio com spread de apenas 1%.
+                </p>
+                <span class="feature-highlight">SWIFT e IBAN inclusos</span>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🎯</div>
+                <h3 class="feature-title">Metas e Investimentos</h3>
+                <p class="feature-description">
+                    Crie cofrinhos para seus objetivos. Invista em CDB, Tesouro ou nossa carteira
+                    exclusiva para creators com rendimento de CDI + 2%.
+                </p>
+                <span class="feature-highlight">Rendimento diário</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="calculator" id="calculator">
+        <div class="calculator-container">
+            <h2 class="calculator-title">💰 Quanto você vai economizar?</h2>
+            
+            <div class="calculator-inputs">
+                <div class="input-group">
+                    <label class="input-label">Faturamento mensal (R$)</label>
+                    <input type="number" class="input-field" id="revenue" value="50000" onchange="calculate()">
+                </div>
+                
+                <div class="input-group">
+                    <label class="input-label">Prazo médio de pagamento (dias)</label>
+                    <input type="range" class="slider" id="days" min="30" max="90" value="60" onchange="calculate()">
+                    <span style="text-align: center; color: var(--primary);" id="daysValue">60 dias</span>
+                </div>
+                
+                <div class="input-group">
+                    <label class="input-label">Número de campanhas/mês</label>
+                    <input type="number" class="input-field" id="campaigns" value="5" onchange="calculate()">
+                </div>
+                
+                <div class="input-group">
+                    <label class="input-label">Gastos mensais com equipamentos (R$)</label>
+                    <input type="number" class="input-field" id="expenses" value="3000" onchange="calculate()">
+                </div>
+            </div>
+
+            <div class="calculator-results">
+                <div class="result-title">Sua economia anual com Soller Bank</div>
+                <div class="result-amount" id="totalSavings">R$ 47.280</div>
+                
+                <div class="result-details">
+                    <div class="detail-item">
+                        <div class="detail-value" id="cashbackAmount">R$ 1.800</div>
+                        <div class="detail-label">Cashback/ano</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-value" id="timeSaved">45 dias</div>
+                        <div class="detail-label">Tempo economizado</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-value" id="creditLine">R$ 150K</div>
+                        <div class="detail-label">Crédito disponível</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials" id="testimonials">
+        <h2 class="section-title">Creators que já mudaram de vida</h2>
+        
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <p class="testimonial-quote">
+                    "Antes eu esperava 90 dias pra receber da Nike. Agora recebo em 1 dia e uso o dinheiro
+                    pra investir em equipamentos novos. Meu faturamento dobrou em 6 meses!"
+                </p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">👟</div>
+                    <div class="author-info">
+                        <div class="author-name">Pedro Sneakers</div>
+                        <div class="author-handle">@pedrosneakers</div>
+                        <div class="author-followers">850K seguidores</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-card">
+                <p class="testimonial-quote">
+                    "O cashback de 5% em equipamentos já me rendeu R$ 15K esse ano. É literalmente
+                    dinheiro grátis que eu uso pra reinvestir no meu conteúdo."
+                </p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">📸</div>
+                    <div class="author-info">
+                        <div class="author-name">Ana Photography</div>
+                        <div class="author-handle">@anaphotography</div>
+                        <div class="author-followers">1.2M seguidores</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-card">
+                <p class="testimonial-quote">
+                    "A linha de crédito baseada nos meus contratos futuros salvou minha vida quando
+                    precisei investir R$ 50K em um curso. Paguei em 6 meses sem stress."
+                </p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">💄</div>
+                    <div class="author-info">
+                        <div class="author-name">Mari Beauty</div>
+                        <div class="author-handle">@maribeauty</div>
+                        <div class="author-followers">2.3M seguidores</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section" id="waitlist">
+        <h2 class="cta-title">Seja um dos primeiros</h2>
+        <p class="cta-subtitle">
+            Entre na lista de espera e ganhe isenção de taxas por 6 meses + 
+            R$ 500 de bônus na primeira antecipação
+        </p>
+        
+        <form class="waitlist-form" onsubmit="event.preventDefault(); alert('Parabéns! Você está na lista de espera. Entraremos em contato em breve!');">
+            <input type="email" class="waitlist-input" placeholder="seu@email.com" required>
+            <button type="submit" class="waitlist-btn">Garantir Vaga</button>
+        </form>
+        
+        <p style="margin-top: 2rem; color: rgba(255,255,255,0.5);">
+            🔥 12.847 creators na lista de espera
+        </p>
+    </section>
+
+    <footer class="footer">
+        <p>© 2025 Soller Bank - CNPJ: 00.000.000/0001-00</p>
+        <p style="margin-top: 0.5rem;">Soller Bank é uma instituição de pagamento autorizada pelo Banco Central do Brasil</p>
+    </footer>
+
+    <script>
+        // Calculator logic
+        function calculate() {
+            const revenue = parseFloat(document.getElementById('revenue').value) || 0;
+            const days = parseFloat(document.getElementById('days').value) || 60;
+            const campaigns = parseFloat(document.getElementById('campaigns').value) || 0;
+            const expenses = parseFloat(document.getElementById('expenses').value) || 0;
+            
+            // Update days display
+            document.getElementById('daysValue').textContent = days + ' dias';
+            
+            // Calculate savings
+            const yearlyRevenue = revenue * 12;
+            const anticipationSavings = (yearlyRevenue * 0.029) * (days / 30); // Opportunity cost
+            const cashback = (expenses * 12 * 0.05) + (yearlyRevenue * 0.001); // 5% on expenses + 0.1% on revenue
+            const timeSaved = Math.floor(days - 1);
+            const creditLine = Math.floor(revenue * 3 / 1000) * 1000; // 3x monthly revenue
+            
+            const totalSavings = anticipationSavings + cashback;
+            
+            // Update display
+            document.getElementById('totalSavings').textContent = 'R$ ' + totalSavings.toLocaleString('pt-BR', { maximumFractionDigits: 0 });
+            document.getElementById('cashbackAmount').textContent = 'R$ ' + cashback.toLocaleString('pt-BR', { maximumFractionDigits: 0 });
+            document.getElementById('timeSaved').textContent = timeSaved + ' dias';
+            document.getElementById('creditLine').textContent = 'R$ ' + (creditLine / 1000) + 'K';
+        }
+
+        // Initial calculation
+        calculate();
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Animate numbers on scroll
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.feature-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'all 0.5s ease';
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>

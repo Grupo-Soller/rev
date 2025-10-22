@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soller - Marketplace de Marketing de Influência</title>
+    
+    <!-- Meta Tags -->
+    <meta name="description" content="Conecte-se com os melhores influenciadores do Brasil. Campanhas autênticas, resultados mensuráveis.">
+    <meta property="og:title" content="Soller - Marketing de Influência">
+    <meta property="og:description" content="O marketplace que democratiza o marketing de influência no Brasil">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/influencers.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/ico" href="assets/logo.ico">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+    <div class="container">
+        <div class="header-content">
+            <a href="index.html" class="logo">
+                <div class="logo-container">
+                    <img src="assets/logo.png" alt="Soller">
+                </div>
+                <span>Marketplace</span>
+            </a>
+            
+            <nav class="nav-menu">
+                <div class="nav-tabs">
+                    <a href="index.html" class="nav-tab active">
+                        <span class="tab-icon">✨</span>
+                        Influenciadores
+                    </a>
+                    <a href="empresas.html" class="nav-tab">
+                        <span class="tab-icon">🏢</span>
+                        Empresas
+                    </a>
+                    <a href="agencias.html" class="nav-tab">
+                        <span class="tab-icon">🤝</span>
+                        Agências
+                    </a>
+                </div>
+            </nav>
+            
+            <div class="nav-actions">
+    <a href="perfil.html" class="btn btn-secondary">
+        Entrar
+    </a>
+    <a href="login.html#register" class="btn btn-primary">
+        Criar Conta
+    </a>
+</div>
+</div>
+            
+        </div>
+    </div>
+</header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    Conecte sua marca aos 
+                    <span class="gradient-text1">influenciadores certos</span>
+                </h1>
+                <p class="hero-subtitle">
+                    Descubra e colabore com criadores de conteúdo autênticos que conversam diretamente com seu público
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Search Section -->
+    <section class="search-section">
+        <div class="container">
+            <!-- Search Bar -->
+            <div class="search-container">
+                <div class="search-bar">
+                    <i class="fas fa-search search-icon"></i>
+                    <input 
+                        type="text" 
+                        id="search-input" 
+                        class="search-input" 
+                        placeholder="Buscar por nome, categoria, nicho específico..."
+                    >
+                    <button class="btn btn-outline-primary btn-sm" id="filter-toggle-btn">
+                        <i class="fas fa-sliders-h"></i>
+                        Filtros
+                    </button>
+                    <button class="btn btn-primary btn-sm" id="create-campaign-btn">
+                        <i class="fas fa-plus"></i>
+                        Criar Campanha
+                    </button>
+                </div>
+            </div>
+
+            <!-- Quick Filter Pills -->
+            <div class="quick-filters">
+                <button class="filter-pill active" data-filter="all">
+                    Todos
+                </button>
+                <button class="filter-pill soller-exclusive" data-filter="soller">
+                    <span class="soller-star">⭐</span>
+                    Casting Soller
+                </button>
+                <button class="filter-pill" data-filter="trending">
+                    Em Alta
+                </button>
+                <button class="filter-pill" data-filter="beauty">
+                    Beauty
+                </button>
+                <button class="filter-pill" data-filter="fashion">
+                    Fashion
+                </button>
+                <button class="filter-pill" data-filter="lifestyle">
+                    Lifestyle
+                </button>
+                <button class="filter-pill" data-filter="fitness">
+                    Fitness
+                </button>
+                <button class="filter-pill" data-filter="business">
+                    Business
+                </button>
+            </div>
+
+            <!-- Advanced Filters Bar (Hidden by default) -->
+            <div class="advanced-filters-bar" id="advanced-filters">
+                <!-- Alcance de Seguidores -->
+                <div class="filter-group-inline">
+                    <label>Alcance de Seguidores</label>
+                    <div class="segment-control">
+                        <button class="segment-btn active" data-followers="all">Todos</button>
+                        <button class="segment-btn" data-followers="micro">Pequeno<br><small>10K-100K</small></button>
+                        <button class="segment-btn" data-followers="mid">Médio<br><small>100K-500K</small></button>
+                        <button class="segment-btn" data-followers="macro">Grande<br><small>500K-1M</small></button>
+                        <button class="segment-btn" data-followers="mega">Mega<br><small>1M+</small></button>
+                    </div>
+                </div>
+
+                <!-- Taxa de Engajamento -->
+                <div class="filter-group-inline">
+                    <label>Taxa de Engajamento</label>
+                    <div class="engagement-slider">
+                        <input type="range" id="engagement-range" min="0" max="5.0" step="0.1" value="0">
+                        <span id="engagement-value">0.0%</span>
+                    </div>
+                </div>
+
+                <!-- Faixa de Investimento -->
+                <div class="filter-group-inline">
+                    <label>Faixa de Investimento</label>
+                    <div class="price-inputs">
+                        <input type="number" id="price-min" placeholder="Min" class="compact-input">
+                        <span>até</span>
+                        <input type="number" id="price-max" placeholder="Max" class="compact-input">
+                    </div>
+                </div>
+
+                <!-- Localização -->
+                <div class="filter-group-inline">
+                    <label>Localização</label>
+                    <select id="location-filter" class="compact-select">
+                        <option value="">Todas as regiões</option>
+                        <option value="SP">São Paulo</option>
+                        <option value="RJ">Rio de Janeiro</option>
+                        <option value="MG">Minas Gerais</option>
+                        <option value="RS">Rio Grande do Sul</option>
+                        <option value="PR">Paraná</option>
+                        <option value="BA">Bahia</option>
+                        <option value="DF">Brasília</option>
+                        <option value="CE">Ceará</option>
+                        <option value="PE">Pernambuco</option>
+                    </select>
+                </div>
+
+                <!-- Plataformas (Multi-select dropdown) -->
+                <div class="filter-group-inline">
+                    <label>Plataformas</label>
+                    <div class="multi-select-wrapper">
+                        <button class="multi-select-trigger" id="platform-select-trigger">
+                            <span>Selecionar</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="multi-select-dropdown" id="platform-dropdown">
+                            <label><input type="checkbox" value="instagram"> Instagram</label>
+                            <label><input type="checkbox" value="tiktok"> TikTok</label>
+                            <label><input type="checkbox" value="youtube"> YouTube</label>
+                            <label><input type="checkbox" value="linkedin"> LinkedIn</label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Botões de Ação -->
+                <div class="filter-actions">
+                    <button class="btn btn-outline-secondary btn-sm" id="clear-filters">
+                        <i class="fa fa-rotate-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Results Count 
+            <div class="results-info">
+                <span id="results-count">Carregando influenciadores...</span>
+                <div class="view-options">
+                    <button class="view-btn active" data-view="grid">
+                        <i class="fas fa-th"></i>
+                    </button>
+                    <button class="view-btn" data-view="list">
+                        <i class="fas fa-list"></i>
+                    </button>
+                </div>
+            </div>-->
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <section class="main-content">
+        <div class="container">
+            <!-- Influencers Grid -->
+            <div class="influencers-container" id="influencers-container">
+                <!-- Cards serão inseridos aqui via JavaScript -->
+                <div class="loading-state">
+                    <div class="spinner"></div>
+                    <p>Carregando influenciadores...</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-influencers">
+        <div class="container">
+            <div class="cta-content">
+                <h2>É influenciador? Junte-se à Soller</h2>
+                <p>Conecte-se com marcas relevantes e monetize sua audiência de forma autêntica</p>
+                <button class="btn btn-white btn-lg" onclick="openRegisterModal('influencer')">
+                    Cadastrar como Influenciador
+                    <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p class="footer-text">© Soller Ltda 2025 - Todos os direitos reservados</p>
+        </div>
+    </footer>
+
+    <!-- Modals -->
+    <div class="modal-overlay" id="proposal-modal">
+        <div class="modal">
+            <button class="modal-close" onclick="closeModal('proposal-modal')">
+                <i class="fas fa-times"></i>
+            </button>
+            
+            <div class="modal-header">
+                <h2 class="modal-title">Enviar Proposta</h2>
+                <p>Preencha os detalhes da sua campanha</p>
+            </div>
+            
+            <div class="modal-body">
+                <form id="proposal-form">
+                    <div class="form-group">
+                        <label class="form-label">Nome da Campanha</label>
+                        <input type="text" class="form-input" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Objetivo</label>
+                        <select class="form-select" required>
+                            <option value="">Selecione</option>
+                            <option value="awareness">Awareness</option>
+                            <option value="engagement">Engajamento</option>
+                            <option value="conversion">Conversão</option>
+                            <option value="branding">Branding</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Orçamento</label>
+                        <input type="number" class="form-input" placeholder="R$" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Detalhes da Proposta</label>
+                        <textarea class="form-textarea" rows="4" required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary btn-block">
+                        Enviar Proposta
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript Files -->
+     <script src="js/main.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/filters.js"></script>
+</body>
+</html>

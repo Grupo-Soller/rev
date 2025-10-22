@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soller para Agências - Escale suas Campanhas de Influência</title>
+    
+    <!-- Meta Tags -->
+    <meta name="description" content="Plataforma completa para agências de marketing gerenciarem campanhas de influência em escala. Dashboard unificado, relatórios em tempo real.">
+    <meta property="og:title" content="Soller para Agências">
+    <meta property="og:description" content="Gerencie todas as suas campanhas de influência em um só lugar">
+    <meta property="og:image" content="assets/images/og-agencias.jpg">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" href="assets/logo.ico" type="image/x-icon" />
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/agencias.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+    <div class="container">
+        <div class="header-content">
+            <a href="index.html" class="logo">
+                <div class="logo-container">
+                    <img src="assets/logo.png" alt="Soller">
+                </div>
+                <span>Marketplace</span>
+            </a>
+            
+            <nav class="nav-menu">
+                <div class="nav-tabs">
+                    <a href="index.html" class="nav-tab">
+                        <span class="tab-icon">✨</span>
+                        Influenciadores
+                    </a>
+                    <a href="empresas.html" class="nav-tab">
+                        <span class="tab-icon">🏢</span>
+                        Empresas
+                    </a>
+                    <a href="agencias.html" class="nav-tab active">
+                        <span class="tab-icon">🤝</span>
+                        Agências
+                    </a>
+                </div>
+            </nav>
+            
+            <div class="nav-actions">
+    <a href="perfil.html" class="btn btn-secondary">
+        Entrar
+    </a>
+    <a href="login.html#register" class="btn btn-primary">
+        Criar Conta
+    </a>
+</div>
+</div>
+            
+        </div>
+    </div>
+</header>
+
+    <!-- Hero Section -->
+    <section class="hero-agencias">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <span class="hero-badge">Para Agências de Marketing</span>
+                    <h1 class="hero-title">
+                        Gerencie campanhas de influência
+                        <span class="gradient-text">em escala</span>
+                    </h1>
+                    <p class="hero-description" style="margin-bottom: 20px;">
+                        Dashboard unificado para todas as suas campanhas. 
+                        Automatize processos, economize tempo e entregue resultados excepcionais para seus clientes.
+                    </p>
+                    
+                    <div class="hero-cta">
+                        <button class="btn btn-primary btn-sm" onclick="scheduleDemo()">
+                            <i class="fas fa-calendar"></i>
+                            Agendar Demonstração
+                        </button>
+                        <button class="btn btn-secondary btn-sm" onclick="watchVideo()">
+                            <i class="fas fa-play-circle"></i>
+                            Assistir Vídeo
+                        </button>
+                    </div>
+                    
+                    <div class="hero-trust">
+                        <p>Confiado por agências líderes:</p>
+                        <div class="trust-logos">
+                            <img src="assets/logos/agency1.png" alt="Agency 1">
+                            <img src="assets/logos/agency2.png" alt="Agency 2">
+                            <img src="assets/logos/agency3.png" alt="Agency 3">
+                            <img src="assets/logos/agency4.png" alt="Agency 4">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="hero-visual">
+                    <div class="dashboard-preview">
+                        <img src="assets/images/dashboard-agencias.png" alt="Dashboard para Agências">
+                        <div class="dashboard-stat stat-1">
+                            <div class="stat-icon">📊</div>
+                            <div>
+                                <strong>15 Campanhas</strong>
+                                <span>Ativas</span>
+                            </div>
+                        </div>
+                        <div class="dashboard-stat stat-2">
+                            <div class="stat-icon">👥</div>
+                            <div>
+                                <strong>248 Influenciadores</strong>
+                                <span>Gerenciados</span>
+                            </div>
+                        </div>
+                        <div class="dashboard-stat stat-3">
+                            <div class="stat-icon">📈</div>
+                            <div>
+                                <strong>+312% ROI</strong>
+                                <span>Médio</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits -->
+    <section class="benefits">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">Benefícios</span>
+                <h2>Por que agências escolhem a Soller?</h2>
+                <p>Ferramentas profissionais para resultados extraordinários</p>
+            </div>
+            
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-layer-group"></i>
+                    </div>
+                    <h3>Gestão Multicliente</h3>
+                    <p>Gerencie todas as campanhas de seus clientes em um único dashboard, com separação clara e organizada</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3>Automação Inteligente</h3>
+                    <p>Automatize tarefas repetitivas como envio de propostas, follow-ups e geração de relatórios</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Analytics Avançado</h3>
+                    <p>Métricas em tempo real, ROI detalhado e insights acionáveis para cada campanha</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-users-cog"></i>
+                    </div>
+                    <h3>White Label</h3>
+                    <p>Personalize a plataforma com sua marca e ofereça aos clientes uma experiência única</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-file-contract"></i>
+                    </div>
+                    <h3>Contratos & Pagamentos</h3>
+                    <p>Gestão completa de contratos, aprovações e pagamentos centralizada na plataforma</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3>Suporte Prioritário</h3>
+                    <p>Account manager dedicado e suporte prioritário para sua agência e seus clientes</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Showcase -->
+    <section class="features-showcase">
+        <div class="container">
+            <div class="feature-row">
+                <div class="feature-content">
+                    <span class="feature-badge">Dashboard Unificado</span>
+                    <h2>Todas as suas campanhas em um só lugar</h2>
+                    <p>Visualize o status de todas as campanhas, métricas consolidadas e pendências em tempo real.</p>
+                    
+                    <ul class="feature-list">
+                        <li><i class="fas fa-check"></i> Visão 360° de todas as campanhas</li>
+                        <li><i class="fas fa-check"></i> Filtros avançados por cliente, status e data</li>
+                        <li><i class="fas fa-check"></i> Notificações e alertas personalizados</li>
+                        <li><i class="fas fa-check"></i> Exportação de dados em múltiplos formatos</li>
+                    </ul>
+                    
+                    <button class="btn btn-primary btn-sm">
+                        Ver Demonstração
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+                
+                <div class="feature-image">
+                    <img src="assets/images/feature-dashboard.png" alt="Dashboard Unificado">
+                </div>
+            </div>
+            
+            <div class="feature-row reverse">
+                <div class="feature-content">
+                    <span class="feature-badge">Relatórios Automáticos</span>
+                    <h2>Relatórios profissionais em segundos</h2>
+                    <p>Gere relatórios personalizados com a identidade visual do cliente automaticamente.</p>
+                    
+                    <ul class="feature-list">
+                        <li><i class="fas fa-check"></i> Templates customizáveis</li>
+                        <li><i class="fas fa-check"></i> Gráficos e visualizações interativas</li>
+                        <li><i class="fas fa-check"></i> Envio automático programado</li>
+                        <li><i class="fas fa-check"></i> Integração com apresentações</li>
+                    </ul>
+                    
+                    <button class="btn btn-primary btn-sm">
+                        Exemplo de Relatório
+                        <i class="fas fa-download"></i>
+                    </button>
+                </div>
+                
+                <div class="feature-image">
+                    <img src="assets/images/feature-reports.png" alt="Relatórios Automáticos">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing -->
+    <section class="pricing">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">Planos</span>
+                <h2>Escolha o plano ideal para sua agência</h2>
+                <p>Flexível, transparente e escalável</p>
+            </div>
+            
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3>Starter</h3>
+                        <p>Para agências em crescimento</p>
+                    </div>
+                    <div class="pricing-price">
+                        <span class="currency">R$</span>
+                        <span class="amount">497</span>
+                        <span class="period">/mês</span>
+                    </div>
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> Até 5 influenciadores</li>
+                        <li><i class="fas fa-check"></i> 20 campanhas/mês</li>
+                        <li><i class="fas fa-check"></i> Dashboard básico</li>
+                        <li><i class="fas fa-check"></i> Relatórios padrão</li>
+                        <li><i class="fas fa-check"></i> Suporte por email</li>
+                    </ul>
+                    <button class="btn btn-secondary btn-sm">
+                        Começar Teste Grátis
+                    </button>
+                </div>
+                
+                <div class="pricing-card featured">
+                    <div class="pricing-badge">Mais Popular</div>
+                    <div class="pricing-header">
+                        <h3>Professional</h3>
+                        <p>Para agências estabelecidas</p>
+                    </div>
+                    <div class="pricing-price">
+                        <span class="currency">R$</span>
+                        <span class="amount">997</span>
+                        <span class="period">/mês</span>
+                    </div>
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> Até 20 influenciadores</li>
+                        <li><i class="fas fa-check"></i> Campanhas ilimitadas</li>
+                        <li><i class="fas fa-check"></i> Dashboard avançado</li>
+                        <li><i class="fas fa-check"></i> Relatórios personalizados</li>
+                        <li><i class="fas fa-check"></i> White label básico</li>
+                        <li><i class="fas fa-check"></i> Suporte prioritário</li>
+                        <li><i class="fas fa-check"></i> Account manager</li>
+                    </ul>
+                    <button class="btn btn-primary btn-sm">
+                        Começar Teste Grátis
+                    </button>
+                </div>
+                
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3>Enterprise</h3>
+                        <p>Para grandes agências</p>
+                    </div>
+                    <div class="pricing-price">
+                        <span class="custom">Personalizado</span>
+                    </div>
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> Clientes ilimitados</li>
+                        <li><i class="fas fa-check"></i> Campanhas ilimitadas</li>
+                        <li><i class="fas fa-check"></i> Dashboard customizado</li>
+                        <li><i class="fas fa-check"></i> API completa</li>
+                        <li><i class="fas fa-check"></i> White label completo</li>
+                        <li><i class="fas fa-check"></i> Suporte 24/7</li>
+                        <li><i class="fas fa-check"></i> Treinamento dedicado</li>
+                        <li><i class="fas fa-check"></i> SLA garantido</li>
+                    </ul>
+                    <button class="btn btn-secondary btn-sm">
+                        Falar com Vendas
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Success Stories -->
+    <section class="success-stories">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">Cases de Sucesso</span>
+                <h2>Agências que transformaram seus resultados</h2>
+            </div>
+            
+            <div class="stories-grid">
+                <div class="story-card">
+                    <div class="story-header">
+                        <img src="assets/logos/agency1.png" alt="Digital Plus">
+                        <div class="story-metrics">
+                            <div class="metric">
+                                <span class="value">+450%</span>
+                                <span class="label">Crescimento</span>
+                            </div>
+                        </div>
+                    </div>
+                    <blockquote>
+                        "A Soller nos permitiu escalar nossas operações de influência de 10 para 150 campanhas mensais, mantendo a qualidade e reduzindo o tempo de gestão em 70%."
+                    </blockquote>
+                    <div class="story-author">
+                        <img src="https://randomuser.me/api/portraits/women/4.jpg" alt="Ana Costa">
+                        <div>
+                            <strong>Ana Costa</strong>
+                            <span>CEO - Digital Plus</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="story-card">
+                    <div class="story-header">
+                        <img src="assets/logos/agency2.png" alt="Creative Mind">
+                        <div class="story-metrics">
+                            <div class="metric">
+                                <span class="value">85%</span>
+                                <span class="label">Retenção</span>
+                            </div>
+                        </div>
+                    </div>
+                    <blockquote>
+                        "Os relatórios automáticos da Soller impressionam nossos clientes. Conseguimos aumentar nossa retenção e ticket médio significativamente."
+                    </blockquote>
+                    <div class="story-author">
+                        <img src="https://randomuser.me/api/portraits/men/5.jpg" alt="Carlos Mendes">
+                        <div>
+                            <strong>Carlos Mendes</strong>
+                            <span>Diretor - Creative Mind</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="story-card">
+                    <div class="story-header">
+                        <img src="assets/logos/agency3.png" alt="Impact Agency">
+                        <div class="story-metrics">
+                            <div class="metric">
+                                <span class="value">3x</span>
+                                <span class="label">Produtividade</span>
+                            </div>
+                        </div>
+                    </div>
+                    <blockquote>
+                        "A automação da Soller liberou nossa equipe para focar em estratégia. Triplicamos nossa produtividade sem aumentar o time."
+                    </blockquote>
+                    <div class="story-author">
+                        <img src="https://randomuser.me/api/portraits/women/5.jpg" alt="Julia Martins">
+                        <div>
+                            <strong>Julia Martins</strong>
+                            <span>COO - Impact Agency</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Pronto para escalar suas campanhas de influência?</h2>
+                <p>Agende uma demonstração personalizada e descubra como a Soller pode transformar sua agência</p>
+                
+                <div class="cta-buttons">
+                    <button class="btn btn-primary btn-sm" onclick="scheduleDemo()">
+                        <i class="fas fa-calendar"></i>
+                        Agendar Demonstração
+                    </button>
+                    <button class="btn btn-secondary btn-sm" onclick="startFreeTrial()">
+                        <i class="fas fa-rocket"></i>
+                        Teste Grátis por 14 Dias
+                    </button>
+                </div>
+                
+                <p class="cta-note">
+                    <i class="fas fa-shield-alt"></i> Dados seguros&nbsp;&nbsp;&nbsp;&nbsp;
+                    <i class="fas fa-clock"></i> Setup em 5 minutos&nbsp;&nbsp;&nbsp;&nbsp;
+                    <i class="fas fa-users"></i> Suporte dedicado
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p class="footer-text">© Soller Ltda 2025 - Todos os direitos reservados</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/global.js"></script>
+    <script src="js/agencias.js"></script>
+</body>
+</html>
