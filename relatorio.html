@@ -1,0 +1,1582 @@
+<!-- ULTIMO -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RevOps | Grupo Soller</title>
+    <link rel="icon" href="images/logo.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+<script src="ClientScatter3D.js"></script>
+<link rel="stylesheet" href="strategic-matrix.css">
+</head>
+<body>
+    <!-- Header Principal -->
+    <header class="main-header">
+        <div class="header-wrapper">
+            <div class="header-content">
+                <div class="logo-section">
+                    <h1 class="main-title">Grupo Soller</h1>
+                    <span class="main-subtitle">RevOps, Sumário Executivo</span>
+                </div>
+                <div class="header-stats">
+                    <div class="header-stat">
+                        <span class="stat-label">GMV Total</span>
+                        <span class="stat-value">R$ 59.4M</span>
+                    </div>
+                    <div class="header-stat">
+                        <span class="stat-label">Lucro Bruto</span>
+                        <span class="stat-value">R$ 12.4M</span>
+                    </div>
+                    <div class="header-stat">
+                        <span class="stat-label">Contratos</span>
+                        <span class="stat-value">3.232</span>
+                    </div>
+                    <div class="header-stat">
+                        <span class="stat-label">Ticket Médio</span>
+                        <span class="stat-value">R$ 18.4K</span>
+                    </div>
+                </div>
+            </div>
+            <div class="header-meta">
+                <span>Dados entre Jan/2023 e Set/2025</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="main-nav">
+        <div class="nav-wrapper">
+            <button class="nav-item active" data-section="overview" onclick="showSection('overview', event)">
+                <span class="nav-icon">📊</span>
+                Panorama
+            </button>
+            <button class="nav-item" data-section="financial" onclick="showSection('financial', event)">
+                <span class="nav-icon">📈</span>
+                Performance
+            </button>
+            <button class="nav-item" data-section="finops" onclick="showSection('finops', event)">
+    <span class="nav-icon">💰</span>
+    FinOps
+</button>
+            <button class="nav-item" data-section="acquisition" onclick="showSection('acquisition', event)">
+                <span class="nav-icon">🎯</span>
+                Aquisição & Retenção
+            </button>
+            <button class="nav-item" data-section="operations" onclick="showSection('operations', event)">
+                <span class="nav-icon">⚙️</span>
+                SalesOps
+            </button>
+            <button class="nav-item" data-section="tech" onclick="showSection('tech', event)">
+                <span class="nav-icon">🚀</span>
+                Tech
+            </button>
+            <button class="nav-item" data-section="strategy" onclick="showSection('strategy', event)">
+                <span class="nav-icon">🎲</span>
+                Tática & Estratégia
+            </button>
+            <button class="nav-item" data-section="forecast" onclick="showSection('forecast', event)">
+                <span class="nav-icon">🔭</span>
+                Forecast
+            </button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Seção: Visão Geral -->
+            <section id="overview" class="content-section active">
+                <h2 class="section-title">
+                    <span class="title-icon">📊</span>
+                    Visão Geral do Negócio
+                </h2>
+
+                <!-- Alert Principal -->
+                <div class="alert alert-critical">
+                    <div class="alert-icon">⚠️</div>
+                    <div class="alert-content">
+                        <h3>Crescimento em Risco</h3>
+                        <p>Combinação de 60.6% de churn com lateralização na aquisição de novas empresas compromete a trajetória de crescimento a longo prazo.</p>
+                    </div>
+                </div>
+
+                <!-- KPIs Principais -->
+                <div class="subsection">
+                    <h3>Indicadores-Chave de Performance</h3>
+                    <div class="kpi-grid">
+                        <div class="kpi-card danger" onclick="window.open(window.SollerData.dataSources.churnAnalysis, '_blank')" style="cursor: pointer;">
+                            <div class="kpi-header">
+                                <span class="kpi-label">Taxa de Churn (3m)</span>
+                                <span class="kpi-badge">Crítico</span>
+                            </div>
+                            <div class="kpi-value">60.6%</div>
+                            <div class="kpi-detail">644 churns nos últimos 12m</div>
+                            <div class="kpi-trend negative">
+                                <span class="trend-icon">↓</span>
+                                <span>Meta: <50% em 6 meses</span>
+                            </div>
+                        </div>
+
+                        <div class="kpi-card warning" onclick="window.open(window.SollerData.dataSources.firstDeal, '_blank')" style="cursor: pointer;">
+                            <div class="kpi-header">
+                                <span class="kpi-label">Aquisição Mensal</span>
+                                <span class="kpi-badge">Alerta</span>
+                            </div>
+                            <div class="kpi-value">40</div>
+                            <div class="kpi-detail">Novas marcas/mês em 2025</div>
+                            <div class="kpi-trend neutral">
+                                <span class="trend-icon">→</span>
+                                <span>2024: 36 | 2023: 43</span>
+                            </div>
+                        </div>
+
+                        <div class="kpi-card info" onclick="window.open(window.SollerData.dataSources.top61Influencers, '_blank')" style="cursor: pointer;">
+                            <div class="kpi-header">
+                                <span class="kpi-label">Influs Top 5</span>
+                                <span class="kpi-badge">Risco</span>
+                            </div>
+                            <div class="kpi-value">38.9%</div>
+                            <div class="kpi-detail">do Valor Soller</div>
+                            <div class="kpi-trend neutral">
+                                <span class="trend-icon">→</span>
+                                <span>023: 39% | 024: 37% | 025: 42%</span>
+                            </div>
+                        </div>
+
+                        <div class="kpi-card success" onclick="window.open(window.SollerData.dataSources.margemAgencia, '_blank')" style="cursor: pointer;">
+                            <div class="kpi-header">
+                                <span class="kpi-label">Margem Média</span>
+                                <span class="kpi-badge">Saudável</span>
+                            </div>
+                            <div class="kpi-value">20,7%</div>
+                            <div class="kpi-detail">Sem agência: 20,9% | Com: 20,2%</div>
+                            <div class="kpi-trend positive">
+                                <span class="trend-icon">↑</span>
+                                <span>023: 20% | 024: 21% | 025: 22%</span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="subsection">
+</div>
+
+<!-- Análise por Agência Parceira (garantir que existe) -->
+<div class="subsection">
+    <h3>Números por Agência Parceira</h3>
+    <div id="agencyAnalysis"></div>
+</div>
+
+<!-- Top 5 Nichos (garantir que existe com estrutura correta) -->
+<div class="subsection" style="margin-bottom: 110px;">
+    <h3>Top 5 Influenciadores por Valor Soller</h3>
+    <div class="chart-container-niche">
+        <canvas id="nichesChart"></canvas>
+    </div>
+</div>
+
+<div class="subsection" style="margin-bottom: 120px;">
+    <h3>Maiores Variações 2025 vs 2024</h3>
+    <div class="chart-container-niche">
+        <canvas id="comparisonChart"></canvas>
+    </div>
+</div>
+
+<div class="subsection" style="margin-bottom: 50px; position: relative;" id="influsChartSection">
+    <h3>
+        Dependência de Influenciadores
+    </h3>
+    <div class="view-toggle" style="position: absolute; top: 10px; right: 20px; display: flex; align-items: center; z-index: 10;">
+        <span class="toggle-label" style="margin-right: 10px; color: #a0a0a0; font-size: 0.9rem;">Top 5 → 20%</span>
+        <label class="toggle-switch">
+            <input type="checkbox" id="influsViewToggle">
+            <span class="toggle-slider"></span>
+        </label>
+    </div>
+    <div class="chart-container-niche">
+        <canvas id="influsChart"></canvas>
+    </div>
+</div>
+
+            </section>
+
+
+            <!-- Seção: FinOps & Controle Financeiro -->
+<section id="finops" class="content-section">
+    <h2 class="section-title">
+        <span class="title-icon">💰</span>
+        FinOps & Controle Financeiro
+    </h2>
+
+    <!-- Alert BPO Decision -->
+    <div class="alert alert-warning">
+        <div class="alert-icon">⚠️</div>
+        <div class="alert-content">
+            <h3>Decisão Pendente</h3>
+            <p>Avaliação BPO vs Funcionário Interno em andamento. Impacto direto em custos fixos e escalabilidade operacional.</p>
+        </div>
+    </div>
+
+    <!-- Comparativo BPO vs Interno -->
+    <div class="subsection">
+        <h3>BPO vs Funcionário Interno</h3>
+        <div class="bpo-comparison">
+            <div class="comparison-table">
+                <table class="finops-table">
+                    <thead>
+                        <tr>
+                            <th>Critério</th>
+                            <th class="bpo-column">BPO Financeiro</th>
+                            <th>Funcionário Interno</th>
+                            <th>Recomendação</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Custos</td>
+                            <td class="bpo-column">
+                                <span class="badge success">Redução custos fixos</span>
+                            </td>
+                            <td>
+                                <span class="badge warning">Custos trabalhistas</span>
+                            </td>
+                            <td><span class="recommend-bpo">BPO ✓</span></td>
+                        </tr>
+                        <tr>
+                            <td>Escalabilidade</td>
+                            <td class="bpo-column">
+                                <span class="badge success">Alta escalabilidade</span>
+                            </td>
+                            <td>
+                                <span class="badge danger">Menor escalabilidade</span>
+                            </td>
+                            <td><span class="recommend-bpo">BPO ✓</span></td>
+                        </tr>
+                        <tr>
+                            <td>Controle</td>
+                            <td class="bpo-column">
+                                <span class="badge warning">Dependência fornecedor</span>
+                            </td>
+                            <td>
+                                <span class="badge success">Controle total</span>
+                            </td>
+                            <td><span class="recommend-internal">Interno ✓</span></td>
+                        </tr>
+                        <tr>
+                            <td>Expertise</td>
+                            <td class="bpo-column">
+                                <span class="badge success">Acesso a especialistas</span>
+                            </td>
+                            <td>
+                                <span class="badge warning">Requer capacitação</span>
+                            </td>
+                            <td><span class="recommend-bpo">BPO ✓</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="bpo-recommendation">
+                <h4>💡 Conclusão</h4>
+                <p>Para empresas em <strong>crescimento acelerado</strong> como a Soller, o BPO oferece melhor custo-benefício com redução de custos fixos, acesso a especialistas e tecnologia automatizada.</p>
+                <div class="decision-score">
+                    <div class="score-bar">
+                        <div class="score-bpo" style="width: 75%">BPO</div>
+                        <div class="score-internal" style="width: 25%">Interno</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Inserir após a tabela comparativa qualitativa existente -->
+<!-- Análise Quantitativa de Custos -->
+<div class="subsection">
+    <h3>Análise de Custos</h3>
+    <div class="cost-comparison-grid">
+        <!-- Cenário 1: BPO -->
+        <div class="cost-scenario-card">
+            <h4 class="scenario-title">Cenário 1: Manutenção BPO Financeiro</h4>
+            <div class="cost-breakdown">
+                <div class="cost-item">
+                    <span class="cost-label">BPO Integral</span>
+                    <span class="cost-value included">Incluso</span>
+                </div>
+                <div class="cost-item">
+                    <span class="cost-label">Sistema Omie</span>
+                    <span class="cost-value included">Incluso</span>
+                </div>
+                <div class="cost-item">
+                    <span class="cost-label">BI (Dashboards)</span>
+                    <span class="cost-value included">Incluso</span>
+                </div>
+                <div class="cost-total">
+                    <span class="total-label">TOTAL MENSAL</span>
+                    <span class="total-value">R$ 4.000</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Cenário 2: CLT -->
+        <div class="cost-scenario-card">
+            <h4 class="scenario-title">Cenário 2: Contratação CLT + Ferramentas</h4>
+            <div class="cost-breakdown">
+                <div class="cost-item">
+                    <span class="cost-label">Salário CLT</span>
+                    <span class="cost-value">R$ 4.500</span>
+                </div>
+                <div class="cost-item">
+                    <span class="cost-label">Encargos (~70%)</span>
+                    <span class="cost-value">R$ 3.150</span>
+                </div>
+                <div class="cost-item">
+                    <span class="cost-label">Omie (licença)</span>
+                    <span class="cost-value">R$ 1.000</span>
+                </div>
+                <div class="cost-item">
+                    <span class="cost-label">BI (Omie)</span>
+                    <span class="cost-value">R$ 1.500</span>
+                </div>
+                <div class="cost-total">
+                    <span class="total-label">TOTAL MENSAL</span>
+                    <span class="total-value warning">R$ 10.150</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ROI Analysis -->
+    <div class="roi-analysis">
+        <h4>🎯 Economia com BPO</h4>
+        <div class="roi-metrics">
+            <div class="roi-card">
+                <span class="roi-value">R$ 6.150</span>
+                <span class="roi-label">Economia Mensal</span>
+            </div>
+            <div class="roi-card">
+                <span class="roi-value">60,6%</span>
+                <span class="roi-label">Redução de Custo</span>
+            </div>
+            <div class="roi-card">
+                <span class="roi-value">R$ 73.800</span>
+                <span class="roi-label">Economia Anual</span>
+            </div>
+            <div class="roi-card">
+                <span class="roi-value">2,54x</span>
+                <span class="roi-label">CLT mais caro</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <!-- Metas e Cronograma -->
+    <div class="subsection">
+        <h3>Metas até Dezembro 2025</h3>
+        <div class="goals-timeline">
+            <div class="timeline-container">
+                <div class="timeline-item completed">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <h4>Acompanhamento</h4>
+                        <ul>
+                            <li>Confirmar cronograma de fechamento BPO e Padoque</li>
+                            <li>Revisar e garantir a entrega do fechamento contábil adequado, contabilizações e provisões</li>
+                            <li>Acompanhamento de emissão de notas (PJs) Soller</li>
+                            <li>Garantir todos os impostos serão pagos corretamente, obrigações acessórias em dia e antecipação de possíveis ajustes</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="timeline-item in-progress">
+    <div class="timeline-marker"></div>
+    <div class="timeline-content">
+        <h4>BPO</h4>
+        
+        <h5 style="color: var(--success-green); margin-top: 15px; margin-bottom: 5px;">Ações concluídas:</h5>
+        <ul style="list-style: none; padding-left: 0; margin-left: 0;">
+            <li style="padding: 5px 0;">Alteração nos horários de envios de pagamentos e aprovações bancárias para reduzir riscos de falhas/atrasos</li>
+            <li style="padding: 5px 0;">Solicitada a antecipação da entrega do fechamento do BPO para habilitar a equipe da Padoque (tempo hábil para material final e apresentação)</li>
+        </ul>
+        
+        <h5 style="color: var(--warning-yellow); margin-top: 15px; margin-bottom: 5px;">Em andamento:</h5>
+        <ul style="list-style: none; padding-left: 0; margin-left: 0;">
+            <li style="padding: 5px 0;">Correções e classificações</li>
+            <li style="padding: 5px 0;">Fechamento financeiro até dia 08</li>
+        </ul>
+    </div>
+</div>
+                
+                <div class="timeline-item pending">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <h4>Padoque</h4>
+                        <ul>
+                            <li>Fluxo de caixa (semanal/mensal/anual)</li>
+                            <li>Fechamento dia 15</li>
+                            <li>Análise orçado x realizado 2025</li>
+                            <li>Revisão de metas e indicadores até Dez/25</li>
+                            <li>Orçamento 2026</li>
+                        </ul>
+                    </div>
+                </div>
+                </div><div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Volumetria e Cash Flow -->
+    <div class="subsection">
+        <h3>Volumetria Financeira & Fluxo de Caixa</h3>
+        <div class="finops-metrics-grid">
+            <div class="finops-card">
+                <div class="finops-icon">📊</div>
+                <div class="finops-content">
+                    <h4>Volumetria de Lançamentos</h4>
+                    <div class="volume-stats">
+                        <div class="volume-item">
+                            <span class="volume-label">Receitas</span>
+                            <span class="volume-value positive">290</span>
+                        </div>
+                        <div class="volume-item">
+                            <span class="volume-label">Despesas</span>
+                            <span class="volume-value negative">230</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="finops-card">
+                <div class="finops-icon">🎯</div>
+                <div class="finops-content">
+                    <h4>Pontos de Atenção</h4>
+                    <ul class="attention-list">
+                        <li class="info">Fundo de emergência</li>
+                        <li class="success">Alocação em aplicações</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+                                <div class="insight-box" style="margin-top: 15px;">
+                            <h4>Forma de Pagamento</h4>
+                            <div class="payment-split">
+                                <div class="cash">40,1% À Vista</div>
+                                <div class="installments">59,9% Parcelado</div>
+                            </div>
+                            
+                        </div>
+                        <div class="subsection" style="margin-top: 15px;">
+            <h3>Aging Médio</h3>
+            <div id="agingChartContainer">
+                </div>
+        </div>
+    </div>
+
+    <!-- Unit Economics Dashboard -->
+    <div class="subsection" style="display: none;">
+        <h3>Métricas Financeiras</h3>
+        <div class="unit-economics">
+            <div class="ue-card">
+                <h4>CAC Médio</h4>
+                <div class="ue-value">R$ ?</div>
+                <div class="ue-trend positive">↓ -x% vs Q1</div>
+            </div>
+            <div class="ue-card">
+                <h4>LTV/CAC</h4>
+                <div class="ue-value">?x</div>
+                <div class="ue-trend warning">Meta: ?x</div>
+            </div>
+            <div class="ue-card">
+                <h4>Payback</h4>
+                <div class="ue-value">? meses</div>
+                <div class="ue-trend warning">Meta: X meses</div>
+            </div>
+            <div class="ue-card">
+                <h4>Burn Rate</h4>
+                <div class="ue-value">R$ ?K/m</div>
+                <div class="ue-trend negative">↑ +x% vs Q1</div>
+            </div>
+            <div class="ue-card">
+                <h4>Runway</h4>
+                <div class="ue-value">? meses</div>
+                <div class="ue-trend info">Com caixa atual</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notas Fiscais e Compliance -->
+    <!-- Substituir a seção "Compliance Fiscal & Emissão de NFs" por: -->
+<div class="subsection">
+    <h3>Emissão de Notas Fiscais PJ</h3>
+    <div id="nfEmissionChartContainer">
+        <!-- Será preenchido dinamicamente via JavaScript -->
+    </div>
+</div>
+</section>
+
+            <!-- Seção: Aquisição & Retenção -->
+            <section id="acquisition" class="content-section">
+                <h2 class="section-title">
+                    <span class="title-icon">🎯</span>
+                    Aquisição & Retenção de Clientes
+                </h2>
+
+                <!-- Evolução de Contratos -->
+                <div class="subsection" style="margin-top: -16px;">
+    <h3>Evolução de Contratos Formalizados</h3>
+    <div class="chart-container large">
+        <canvas id="contractsChart"></canvas>
+    </div>
+    <h3 style="margin-top: 46px;">Média de Contratos por Mês</h3>
+    <div class="metrics-summary">
+        <div class="metric">
+            <span class="metric-label" style="color: black;">2023</span>
+            <span id="avg-2023" class="metric-value st">81 /mês</span>
+        </div>
+        <div class="metric">
+            <span class="metric-label" style="color: black;">2024</span>
+            <span id="avg-2024" class="metric-value med">96 /mês</span>
+        </div>
+        <div class="metric">
+            <span class="metric-label" style="color: black;">2025 (até Jul)</span>
+            <span id="avg-2025" class="metric-value up">122 /mês</span>
+        </div>
+    </div>
+</div>
+
+                <!-- Origem dos Leads -->
+                <div class="subsection">
+                    <h3>Origem dos Contratos</h3>
+                    
+                    <div class="source-analysis">
+                        <div class="source-chart">
+                            <canvas id="sourceChart"></canvas>
+                        </div>
+                        <div class="source-insights">
+                            <div class="insight-card">
+                                <h3>Inbound (59%)</h3>
+                                <p>Liderando as conversões, mas sem estrutura otimizada:</p>
+                                <ul>
+                                    <li>❌ Blog inativo</li>
+                                    <li>❌ Sem newsletter ou listas de transmissão</li>
+                                    <li>❌ Ads inativo</li>
+                                    <li>🔄 Cases não indexados</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="insight-card">
+                                <h3>Outbound (41%)</h3>
+                                <p>Quase metade do pipeline, mas sem automação:</p>
+                                <ul>
+                                    <li>❌ Sem ABM estruturado</li>
+                                    <li>❌ WhatsApp manual</li>
+                                    <li>🔄 RD MKT em implementação</li>
+                                    <li>🔄 CRM em implementação</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="subsection">
+    <h3>Marcas por Quadrante</h3>
+    <div id="client-scatter" style="position: relative; width: 100%; height: 700px;"></div>
+</div>
+
+</section>
+
+            <!-- Seção: Performance Financeira -->
+            <section id="financial" class="content-section">
+                <h2 class="section-title">
+                    <span class="title-icon">📈</span>
+                    Performance
+                </h2>
+
+                <!-- GMV Evolution -->
+                <div class="subsection" style="margin-top: -16px;">
+                    <h3>Evolução do GMV, Valor Soller e Margem</h3>
+                    <div class="chart-container large">
+                        <canvas id="gmvChart"></canvas>
+                    </div>
+                    <div class="gmv-insights">
+                        <div class="insight-box">
+                            <h4>GMV Total Histórico</h4>
+                            <p class="big-number"> R$ 59.387.930</p>
+                            <p class="detail">023: 16.086.290 | 024: 19.907.604 | 025: 22.754.123</p>
+                        </div>
+                        <div class="insight-box">
+                            <h4>Valor Soller Histórico</h4>
+                            <p class="big-number">R$ 12.350.415</p>
+                            <p class="detail">023: 3.262.105 | 024: 4.068.791 | 025: 5.019.518</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Análise de Margens -->
+                <div class="subsection">
+                    <h3>Evolução do GMV e Valor Soller por Serviço</h3>
+                    <div class="chart-container large">
+                        <canvas id="servicesChart9"></canvas>
+                    </div>
+                    <h3>Margens por Serviço</h3>
+                    <div class="margins-comparison">                 
+                        <div class="margin-card">
+                            <h4>Casting</h4>    
+                            <div class="margin-value">19,8%</div>
+                            <div class="margin-bar" style="--margin: 19.8%"></div>
+                            <p>75% dos Contratos e 71% do Valor Soller</p>
+                        </div>
+                        <div class="margin-card average">
+                            <h4>Mailing</h4>    
+                            <div class="margin-value">17,3%</div>
+                            <div class="margin-bar" style="--margin: 17.3%"></div>
+                            <p>19% dos Contratos e 20% do Valor Soller</p>
+                        </div>
+                        <div class="margin-card highlight">
+                            <h4>Produto e Mentoria</h4>
+                            <div class="margin-value">96,8%</div>
+                            <div class="margin-bar" style="--margin: 96.8%"></div>
+                            <p>5% dos Contratos e 9% do Valor Soller</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Adicionar esta estrutura dentro da section id="financial" após o gráfico de margens -->
+
+<!-- Análise de Composição de Serviços -->
+<div class="subsection">
+    <h3>Composição de Receita e Lucro Bruto</h3>
+    
+    <!-- Controles do Gráfico de Pizza -->
+    <div class="pizza-controls">
+        <div class="control-row">
+            <div class="control-item">
+                <label class="control-label">Tipo de Valor</label>
+                <div class="radio-toggle">
+                    <input type="radio" id="pizzaValorTotal" name="pizzaTipoValor" value="total" checked>
+                    <label for="pizzaValorTotal">Valor Total</label>
+                    <input type="radio" id="pizzaValorSoller" name="pizzaTipoValor" value="soller">
+                    <label for="pizzaValorSoller">Valor Soller</label>
+                </div>
+            </div>
+            
+            <div class="control-item">
+                <label class="control-label">Período</label>
+                <select id="pizzaPeriodoSelect" class="control-select">
+                    <option value="all">Todos os Períodos</option>
+                    <option value="2023">2023 Completo</option>
+                    <option value="2024">2024 Completo</option>
+                    <option value="2025">2025 (Q1+Q2)</option>
+                    <option disabled>──────────</option>
+                    <option value="0">Q1 2023</option>
+                    <option value="1">Q2 2023</option>
+                    <option value="2">Q3 2023</option>
+                    <option value="3">Q4 2023</option>
+                    <option value="4">Q1 2024</option>
+                    <option value="5">Q2 2024</option>
+                    <option value="6">Q3 2024</option>
+                    <option value="7">Q4 2024</option>
+                    <option value="8">Q1 2025</option>
+                    <option value="9">Q2 2025</option>
+                    <option value="10">Q3 2025</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Container do Gráfico de Pizza -->
+    <div class="pizza-chart-container">
+        <div class="chart-wrapper">
+            <canvas id="servicesPieChart"></canvas>
+        </div>
+        
+        <!-- Cards de Estatísticas -->
+        <div class="pizza-stats-grid" id="pizzaStatsContainer">
+            <!-- Stats serão inseridas dinamicamente via JavaScript -->
+        </div>
+    </div>
+
+        <h3 style="margin-top: 46px;">Ticket Médio e Margem dos Contratos</h3>
+    <div class="chart-container-niche">
+        <canvas id="nichesChart8"></canvas>
+    </div>
+</div>
+            </section>
+
+            <!-- Seção: Operações & RevOps -->
+            <section id="operations" class="content-section">
+                <h2 class="section-title">
+                    <span class="title-icon">⚙️</span>
+                    Operações de Vendas
+                </h2>
+
+                <!-- AS IS vs TO BE -->
+                <div class="subsection" style="margin-top: -15px;">
+                    <h3>Transformação Operacional</h3>
+                    <div class="transformation-grid">
+                        <div class="as-is">
+                            <h4>AS IS (Atual)</h4>
+                            <ul>
+                                <li class="pain-point">❌ 200+ grupos WhatsApp</li>
+                                <li class="pain-point">❌ Processos manuais e planilhas dispersas</li>
+                                <li class="pain-point">❌ Sem CRM centralizado funcional</li>
+                                <li class="pain-point">❌ Ciclo de vendas inconsistente</li>
+                                <li class="pain-point">❌ Métricas não confiáveis</li>
+                                <li class="pain-point">❌ LGPD (sem opt-in/opt-out)</li>
+                            </ul>
+                        </div>
+                        <div class="transformation-arrow">→</div>
+                        <div class="to-be">
+                            <h4>TO BE (Objetivo)</h4>
+                            <ul>
+                                <li class="success-point">✓ WhatsApp Business API integrado</li>
+                                <li class="success-point">✓ RD CRM como fonte única do comercial</li>
+                                <li class="success-point">✓ Automações end-to-end</li>
+                                <li class="success-point">✓ Ciclo de vendas de 15~20 dias</li>
+                                <li class="success-point">✓ Dashboards real-time</li>
+                                <li class="success-point">✓ Compliance LGPD para disparos</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Métricas War Room -->
+                <!--<div class="subsection">
+                    <h3>Métricas Operacionais - War Room</h3>
+                    <div class="metrics-grid">
+                        <div class="metric-card">
+                            <span class="metric-label">Taxa de Automação</span>
+                            <span class="metric-value">15%</span>
+                            <span class="metric-target">Meta: 70%</span>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 21.4%"></div>
+                            </div>
+                        </div>
+                        <div class="metric-card">
+                            <span class="metric-label">Adoção RD Station</span>
+                            <span class="metric-value">45%</span>
+                            <span class="metric-target">Meta: 100%</span>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 45%"></div>
+                            </div>
+                        </div>
+                        <div class="metric-card">
+                            <span class="metric-label">Qualidade de Dados</span>
+                            <span class="metric-value">62%</span>
+                            <span class="metric-target">Meta: 95%</span>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 65.3%"></div>
+                            </div>
+                        </div>
+                        <div class="metric-card">
+                            <span class="metric-label">Ciclo de Vendas</span>
+                            <span class="metric-value">26 dias</span>
+                            <span class="metric-target">Meta: 15 dias</span>
+                            <div class="progress-bar">
+                                <div class="progress-fill warning" style="width: 57.7%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>-->
+
+                <!-- Processo de Vendas -->
+                <div class="subsection">
+                    <h3>Etapas e Gargalos do Funil Comercial</h3>
+                    <div class="funnel-stages">
+                        <div class="stage">
+                            <h4>1. Entrada</h4>
+                            <p>Inb e Outb manuais</p>
+                            <span class="issuegreen">Automações de MKT</span>
+                        </div>
+                        <div class="stage">
+                            <h4>2. Qualificação</h4>
+                            <p>ICP não estruturado</p>
+                            <span class="issuegreen">Material ABM</span>
+                        </div>
+                        <div class="stage">
+                            <h4>3. Negociação</h4>
+                            <p>Infos descentralizadas</p>
+                            <span class="issuegreen">CRM e Matriz de objeção</span>
+                        </div>
+                        <div class="stage">
+                            <h4>4. Formalização</h4>
+                            <p>Sistemas isolados</p>
+                            <span class="issuegreen">RD ↔ Monday ↔ Omie</span>
+                        </div>
+                        <div class="stage">
+                            <h4>5. Execução</h4>
+                            <p>Infos descentralizadas</p>
+                            <span class="issuegreen">Gestão via Monday → RD</span>
+                        </div>
+                        <div class="stage">
+                            <h4>6. Pós-venda</h4>
+                            <p>Atendimento ≠ CS</p>
+                            <span class="issuegreen">Cust. Success bilateral</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Seção: Tech Stack & Automação -->
+            <section id="tech" class="content-section">
+                <h2 class="section-title">
+                    <span class="title-icon">🚀</span>
+                    Tech Stack
+                </h2>
+
+                <!-- Stack Tecnológico -->
+                <div class="subsection" style="margin-top: -15px;">
+    <h3>Stack Tecnológico</h3>
+    <div class="roadmap-timeline">
+        
+        <div class="roadmap-phase">
+            <h4>Q3 2025</h4>
+            <ul>
+                <li class="status-active">D4Sign</li>
+<li class="status-active">Espresso</li>
+<li class="status-active">Oitchau</li>
+<li class="status-active">Omie ERP</li>
+<li class="status-transition">RD Station</li>
+<li class="status-transition">Sheets → Monday.com</li>
+
+            </ul>
+        </div>
+        
+        <div class="roadmap-phase" id="q3-phase-target"> 
+            <h4>Q4 2025</h4> <ul>
+                <li class="status-active">Copilot & tl;dv</li>
+<li class="status-active">Dashboards Monday</li>                
+<li class="status-transition"> RD APIs → Azure → Power BI</li>
+<li class="status-transition">RD CRM ↔ Monday ↔ Omie</li>
+<li class="status-transition">RD Station CRM ↔ MKT</li>
+<li class="status-transition">Relatórios semanais influs</li>
+            </ul>
+        </div>
+                        <div class="roadmap-phase">
+                            <h4>Q1 2026</h4>
+                            <ul>
+                                <li>Azure com todas as APIs</li>
+                                <li>Calculadora ROI de campanha</li>
+                                <li>Dashs Power BI por área</li>    
+                                <li>Portal self-service v2</li>
+                                <li>WhatsApp Business API</li>
+                            </ul>
+                        </div>
+                        <div class="roadmap-phase">
+                            <h4>Q2 2026</h4>
+                            <ul>
+                                <li>APIs customizadas</li>
+<li>App mobile</li>
+<li>Marketplace MVP</li>
+<li>ML para matching</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Seção: Estratégia & Roadmap -->
+            <section id="strategy" class="content-section" style="margin-bottom: 30px;">
+                <h2 class="section-title">
+                    <span class="title-icon">🎲</span>
+                    Tática & Estratégia
+                </h2>
+
+                <!-- Plano de Ação -->
+                <div class="subsection" style="margin-top: -15px;">
+                    <h3>Plano de Ação Tático</h3>
+                    <div class="actions-grid">
+                        <div class="action-item priority-1">
+                            <span class="priority-badge">P1</span>
+                            <h4>Programa Anti-Churn</h4>
+                            <p>Reduzir churn de 3 meses para menos de 50% das marcas</p>
+                            <ul>
+                                <li>NPS por contrato</li>
+                                <li>Programa de fidelidade</li>
+                                <li>Atendimento → Cust Success</li>
+                            </ul>
+                        </div>
+                        <div class="action-item priority-1">
+                            <span class="priority-badge">P2</span>
+                            <h4>Aumentar Aquisição</h4>
+                            <p>Ampliar capilaridade com novas marcas na base</p>
+                            <ul>
+                                <li>Implementar SDR team</li>
+                                <li>Content marketing B2B</li>
+                                <li>Cadências no RD Station</li>
+                            </ul>
+                        </div>
+                        <div class="action-item priority-2">
+                            <span class="priority-badge">P3</span>
+                            <h4>Automação Completa</h4>
+                            <p>Todos os processos automáticos e automatizados</p>
+                            <ul>
+                                <li>RD Station CRM ↔ MKT</li>
+                                <li>Dashs e WhatsApp Biz API</li>
+                                <li>RD ↔ Monday ↔ D4S ↔ Omie</li>
+                            </ul>
+                        </div>
+                        <div class="action-item priority-2">
+                            <span class="priority-badge">P4</span>
+                            <h4>Diversificar Portfolio</h4>
+                            <p>Reduzir concentração para <70% dos influenciadores</p>
+                            <ul>
+                                <li>Parcerias estratégicas</li>
+                                <li>Digital: SaaS & Marketplace</li>
+                                <li>Programa micro-influencers</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Visão Estratégica -->
+                <div class="subsection">
+                    <h3>Longo Prazo: De Agência a Plataforma Tech</h3>
+                    <div class="vision-stages">
+                        <div class="vision-stage current">
+                            <h4>Em 2025</h4>
+                            <p>Agência de Influência</p>
+                            <ul>
+                                <li>Modelo de serviço</li>
+                                <li>Automatização das operações</li>
+                                <li>159 influs (65 casting e 94 mailing)</li>
+                            </ul>
+                        </div>
+                        <div class="vision-stage">
+                            <h4>6 Meses</h4>
+                            <p>Agência Digital</p>
+                            <ul>
+                                <li>Operação automatizada</li>
+                                <li>Portal self-service marcas</li>
+                                <li>Educação com micro influenciadores</li>
+                            </ul>
+                        </div>
+                        <div class="vision-stage">
+                            <h4>12 Meses</h4>
+                            <p>Marketplace & Enterprise</p>
+                            <ul>
+                                <li>Plataforma + serviço</li>
+                                <li>Member get member</li>
+                                <li>Influenciadores âncora</li>
+                            </ul>
+                        </div>
+                        <div class="vision-stage target">
+                            <h4>24 Meses</h4>
+                            <p>Plataforma SaaS</p>
+                            <ul>
+                                <li>Projetos digitais</li>
+                                <li>Educação integrada</li>
+                                <li>Marketplace bidirecional</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recomendações Finais -->
+                <div class="subsection">
+                    <h3>Sugestões</h3>
+                    <div class="recommendations-list">
+                        <div class="recommendation">
+                            <div class="rec-number">1</div>
+                            <div class="rec-content">
+                                <h4>Dados como Ativo Estratégico</h4>
+                                <p>Implementar estrutura, governança e visualização de dados robusta. Tudo conectado, tornando toda decisão baseada em métricas confiáveis, não em intuição.</p>
+                            </div>
+                        </div>
+                        <div class="recommendation">
+                            <div class="rec-number">2</div>
+                            <div class="rec-content">
+                                <h4>Cultura de Resultado</h4>
+                                <p>OKRs e KPIs claros, visíveis e alcançáveis; rituais de performance, de 1o1 a All Hands, e incentivos alinhados com crescimento sustentável, não apenas faturamento mensal.</p>
+                            </div>
+                        </div>
+                        <div class="recommendation">
+                            <div class="rec-number">3</div>
+                            <div class="rec-content">
+                                <h4>Foco em Retenção</h4>
+                                <p>Customer Success como prioridade máxima, do onboarding ao pós-venda para retroalimentar o funil. Cada cliente retido vale 4~5x mais que um novo.</p>
+                            </div>
+                        </div>
+                        <div class="recommendation">
+                            <div class="rec-number">4</div>
+                            <div class="rec-content">
+                                <h4>Educação & Captação de Influenciadores</h4>
+                                <p>Cursos online de influenciadores para micro‑influenciadores com selo "Soller Certified" e acesso a empresas; gera pipeline qualificado e oportunidades de assessoria.</p>
+                            </div>
+                        </div>
+                        <div class="recommendation">
+                            <div class="rec-number">5</div>
+                            <div class="rec-content">
+                                <h4>Nutrição Inbound & Cadências Outbound</h4>
+                                <p>Fluxos automáticos multicanal (e‑mail, blog, WhatsApp e redes sociais) & Cadências automatizadas de e‑mails, tarefas e ABM, garantindo follow‑up ágil e conversão escalável.</p>
+                            </div>
+                        </div>
+                </div>
+            </section>
+
+<section id="forecast" class="content-section forecast-section">
+    <div class="container" style="margin-bottom: -80px; margin-top: -55px;">
+        <div class="forecast-header">
+            <h2>🔭 Forecast & Simulação de Cenários</h2>
+            <p>Projeções financeiras e análise de cenários para os próximos 2 anos baseadas em alavancas e benchmarks</p>
+        </div>
+
+        <div class="scenario-tabs">
+            <button class="scenario-tab" data-scenario="pessimista" onclick="loadScenario('pessimista')">
+                ⚠️ Pessimista
+            </button>
+            <button class="scenario-tab active" data-scenario="realista" onclick="loadScenario('realista')">
+                🎯 Realista
+            </button>
+            <button class="scenario-tab" data-scenario="otimista" onclick="loadScenario('otimista')">
+                🚀 Otimista
+            </button>
+        </div>
+
+        <div class="scenario-bar">
+            <div class="scenario-bar-fill" id="scenarioBarFill" style="width: 50%;"></div>
+        </div>
+        <div class="forecast-metrics-summary">
+            <div class="metric-card">
+                <div class="metric-label">
+                    <span>💰 GMV</span>
+                </div>
+                <div class="metric-value" id="gmvProjected">R$ 0</div>
+                <div class="metric-change" id="gmvGrowth">+0%</div>
+            </div>
+            
+            <div class="metric-card">
+                <div class="metric-label">
+                    <span>📈 Valor Soller</span>
+                </div>
+                <div class="metric-value" id="valorSollerProjected">R$ 0</div>
+                <div class="metric-change" id="marginProjected">0% margem</div>
+            </div>
+            
+            <div class="metric-card clickable-card" onclick="toggleValuationModal()">
+                <div class="metric-label">
+                    <span>🎯 Valuation</span>
+                </div>
+                <div class="metric-value" id="valuationProjected">R$ 0</div>
+                <div class="metric-change" id="multipleUsed">0x revenue</div>
+            </div>
+        </div>
+
+        <div class="forecast-charts-container">
+            <div class="chart-section full-width">
+                <div class="chart-header">
+                    <h4>Projeção de Cenário</h4>
+                </div>
+                <div class="chart-container large">
+                    <canvas id="mainProjectionChart"></canvas>
+                </div>
+            </div>
+
+            <div class="chart-section full-width">
+                <div class="chart-header">
+                    <h4>Contribuição por Iniciativa ao Valor Soller</h4>
+                </div>
+                <div class="chart-container large">
+                    <canvas id="gatilhosImpactChart"></canvas>
+                </div>
+            </div>
+
+            <div class="chart-section full-width">
+                <div class="chart-header">
+                    <h4>Composição &nbsp;&nbsp;&nbsp;&nbsp;<br><span id="compositionMonth" style="display:block;margin-top:-26px;font-size: 0.97rem;">Mês 24</span></h4>
+                    <input type="range" id="monthSelector" min="0" max="23" value="23" 
+                           oninput="updateCompositionChart(this.value)" 
+                           style="width: 100%; margin-top: 10px;">
+                </div>
+                <div class="chart-container large">
+                    <canvas id="compositionChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <div class="monte-carlo-section">
+            <div class="monte-carlo-header">
+                <h3>🎲 Simulação Monte Carlo</h3>
+                <p>Análise probabilística com 10.000 cenários com leves variabilidades nos parâmetros</p>
+            </div>
+            
+            <div class="action-buttons">
+    <button class="btn btn-primary" onclick="runMonteCarloSimulation()">
+    🎲 Rodar Simulação
+</button>
+    <button class="btn btn-secondary" onclick="showStrategicInsights()" title="Execute primeiro a Simulação Monte Carlo">
+    💡 Gerar Insights
+</button>
+</div>
+
+            <div id="monteCarloResults" style="display: none;"></div>
+        </div>
+
+        <div class="alerts-section">
+            <div class="alerts-header">
+                <span>💡</span>
+                <h3>Insights</h3>
+            </div>
+            <div id="alertsList">
+                <div class="alert-item success">✓ Nenhum alerta identificado</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<button class="floating-settings-button custom-scenario" onclick="toggleCustomPanel()">
+    <span class="gear-wrapper">
+        <span class="gear-icon" aria-hidden="true">⚙️</span>
+    </span>
+</button>
+
+<button class="floating-unicorn-button" onclick="toggleUnicornModal()">
+    <span class="unicorn-wrapper">
+        <span class="unicorn-icon" aria-hidden="true">🦄</span>
+    </span>
+</button>
+
+<div class="modal-overlay" id="customPanelModal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3 class="modal-title">⚙️ Parâmetros de Simulação</h3>
+            <button class="modal-close" onclick="toggleCustomPanel()">✕</button>
+        </div>
+        <div class="scenario-bar">
+            <div class="scenario-bar-fill" id="modalScenarioBarFill" style="width: 50%;"></div>
+        </div>
+        <div class="modal-body">
+            <div class="controls-grid">
+                <div class="control-group">
+                    <h4 class="control-group-title">📊 Parâmetros Operacionais</h4>
+                    
+                    <div class="control-item">
+                        <label for="churnRateSlider">
+                            Taxa de Churn
+                            <span class="control-value" id="churnRateValue">60.6%</span>
+                        </label>
+                        <input type="range" id="churnRateSlider" min="10" max="90" value="60.6" step="0.1">
+                    </div>
+
+                    <div class="control-item">
+                        <label for="ticketMedioSlider">
+                            Ticket Médio
+                            <span class="control-value" id="ticketMedioValue">R$ 17.9K</span>
+                        </label>
+                        <input type="range" id="ticketMedioSlider" min="5000" max="50000" value="17950" step="500">
+                    </div>
+
+                    <div class="control-item">
+                        <label for="contratosMesSlider">
+                            Contratos/Mês
+                            <span class="control-value" id="contratosMesValue">156</span>
+                        </label>
+                        <input type="range" id="contratosMesSlider" min="50" max="500" value="156" step="10">
+                    </div>
+
+                    <div class="control-item">
+                        <label for="margemSlider">
+                            Margem
+                            <span class="control-value" id="margemValue">21.7%</span>
+                        </label>
+                        <input type="range" id="margemSlider" min="10" max="30" value="21.7" step="0.1">
+                    </div>
+
+                    <div class="control-item">
+                        <label for="equipeSlider">
+                            Equipe de Vendas
+                            <span class="control-value" id="equipeValue">15</span>
+                        </label>
+                        <input type="range" id="equipeSlider" min="5" max="50" value="15" step="1">
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <h4 class="control-group-title">⚡ Operações de Vendas (0-6 meses)</h4>
+                    
+                    <div class="toggle-group">
+                        <div class="toggle-item">
+                            <span class="toggle-label">CRM & Marketing</span>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="crmToggle">
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+
+                        <div class="toggle-item">
+                            <span class="toggle-label">Automação 360º</span>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="salesAutomationToggle">
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+
+                        <div class="toggle-item">
+                            <span class="toggle-label">Customer Success Team</span>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="customerSuccessToggle">
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <h4 class="control-group-title">🚀 Tech Stack (6-18 meses)</h4>
+                    
+                    <div class="toggle-group">
+                        <div class="toggle-item">
+                            <span class="toggle-label">Marketplace Beta</span>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="marketplaceBetaToggle">
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+
+                        <div class="toggle-item">
+                            <span class="toggle-label">Self-Service Platform</span>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="selfServiceToggle">
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+
+                        <div class="toggle-item">
+                            <span class="toggle-label">Mobile App</span>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="mobileAppToggle">
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                        
+                        <div class="toggle-item">
+                            <span class="toggle-label">Programa Microinfluencers</span>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="microinfluencersToggle">
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="control-item" style="margin-top: 20px;">
+                        <label for="techInvestmentSlider">
+                            Investimento em Tech
+                            <span class="control-value" id="techInvestmentValue">R$ 0</span>
+                        </label>
+                        <input type="range" id="techInvestmentSlider" min="0" max="5000000" value="0" step="100000">
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <h4 class="control-group-title">🎯 Estratégia (18+ meses)</h4>
+                    
+                    <div class="toggle-group">
+                        <div class="toggle-item">
+                            <span class="toggle-label">Full Marketplace</span>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="marketplaceFullToggle">
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+
+                        <div class="toggle-item">
+                            <span class="toggle-label">SaaS Revenue Stream</span>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="saasRevenueToggle">
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+
+                        <div class="toggle-item">
+                            <span class="toggle-label">Enterprise & LatAm</span>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="internationalToggle">
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="control-item" style="margin-top: 20px;">
+                        <label for="brandInvestmentSlider">
+                            Investimento em Marca
+                            <span class="control-value" id="brandInvestmentValue">R$ 0</span>
+                        </label>
+                        <input type="range" id="brandInvestmentSlider" min="0" max="10000000" value="0" step="250000">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal-overlay" id="valuationModal">
+    <div class="modal-content" style="max-width: 800px;">
+        <div class="modal-header">
+            <h3 class="modal-title">Evolução do Valuation</h3>
+            <button class="modal-close" onclick="toggleValuationModal()">✕</button>
+        </div>
+        <div class="modal-body">
+            <div class="chart-container" style="margin-bottom: -20px; margin-top: -7px;    height: 400px;">
+                <canvas id="valuationModalChart"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal Unicorn Matrix -->
+<div class="modal-overlay" id="unicornModal">
+    <div class="modal-content unicorn-modal-content">
+        <div class="modal-header">
+            <h3 class="modal-title">🦄 Unicorn Matrix</h3>
+            <div class="modal-header-buttons">
+                <button class="modal-close" onclick="toggleUnicornModal()">✕</button>
+            </div>
+        </div>
+        <div class="modal-body unicorn-modal-body">
+            <div class="matrix-main-container">
+                <div class="matrix-visualization">
+                    <div id="matrix3d-container"></div>
+                </div>
+                <div class="matrix-sidebar">
+                    <div class="matrix-info-card">
+                        <h4>Cenário</h4>
+                        <div class="position-metrics" id="currentPosition"></div>
+                    </div>
+                    <div class="matrix-info-card">
+                        <h4>Match   </h4>
+                        <div class="proximity-list" id="proximityList"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="footer-content">
+            <p>Sumário Executivo Grupo Soller © 2025 | Dados entre Jan/2023 e Set/2025</p>
+            <p>Confidencial</p>
+        </div>
+    </footer>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
+<script src="data.js"></script>
+<script src="charts.js"></script>
+<script src="projection-calculator.js"></script>
+<script src="projection-charts.js"></script>
+<script src="projection-functions.js"></script>
+<script src="main.js"></script>
+<script src="initiatives-manager.js"></script>
+<script src="strategic-matrix-data.js"></script>
+<script src="strategic-matrix-engine.js"></script>
+<script src="strategic-matrix.js"></script>
+<script src="marketplace-integrator.js"></script>
+<script>
+let dashboardInitialized = false;
+let forecastInitialized = false;
+
+function showSection(sectionId, event) {
+    if (event) {
+        event.preventDefault();
+        event.stopPropagation();
+    }
+    
+    window.history.pushState(null, null, '#' + sectionId);
+    
+    document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
+    document.querySelectorAll('.content-section').forEach(section => {
+        section.classList.remove('active');
+        section.style.display = 'none';
+    });
+    
+    if (event && event.currentTarget) {
+        event.currentTarget.classList.add('active');
+    } else {
+        const navItem = document.querySelector(`[data-section="${sectionId}"]`);
+        if (navItem) navItem.classList.add('active');
+    }
+
+    const unicornBtn = document.querySelector('.floating-unicorn-button');
+    const settingsBtn = document.querySelector('.floating-settings-button');
+    
+    if (sectionId === 'forecast') {
+        if (unicornBtn) unicornBtn.style.display = 'flex';
+        if (settingsBtn) settingsBtn.style.display = 'flex';
+    } else {
+        if (unicornBtn) unicornBtn.style.display = 'none';
+        if (settingsBtn) settingsBtn.style.display = 'none';
+    }
+    
+    const targetSection = document.getElementById(sectionId);
+    if (targetSection) {
+        targetSection.style.display = 'block';
+        targetSection.offsetHeight;
+        targetSection.classList.add('active');
+        
+        if (sectionId === 'forecast' && !forecastInitialized) {
+            initializeForecastSection();
+        }
+    }
+    
+    return false;
+}
+
+function initializeForecastSection() {
+    if (forecastInitialized) return;
+    
+    if (typeof window.SollerProjections === 'undefined' || typeof Chart === 'undefined') {
+        setTimeout(initializeForecastSection, 500);
+        return;
+    }
+    
+    try {
+        // Inicializar calculadora
+        if (!window.projectionCalculator) {
+            window.projectionCalculator = new window.SollerProjections();
+        }
+        
+        // Carregar cenário realista (não conservador!)
+        if (typeof loadScenario === 'function') {
+            loadScenario('realista');
+        }
+        
+        // Inicializar gráficos diretamente
+        if (window.projectionCalculator && window.ForecastCharts) {
+            const projections = window.projectionCalculator.calculateProjections();
+            window.ForecastCharts.init(projections);
+        }
+        
+        forecastInitialized = true;
+        
+    } catch (error) {
+        console.error('Erro ao inicializar Forecast:', error);
+    }
+}
+
+function setupClickableLinks() {
+    document.querySelectorAll('.kpi-card[onclick]').forEach(card => {
+        card.style.cursor = 'pointer';
+        
+        card.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-2px)';
+            this.style.boxShadow = '0 4px 12px rgba(0,0,0,0.15)';
+        });
+        
+        card.addEventListener('mouseleave', function() {
+            this.style.transform = '';
+            this.style.boxShadow = '';
+        });
+    });
+    
+    window.SollerData.dataSources = window.SollerData.dataSources || {
+        churnAnalysis: '#',
+        firstDeal: '#',
+        margemAgencia: '#',
+        top61Influencers: '#'
+    };
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    const forecastSection = document.getElementById('forecast');
+    if (forecastSection && forecastSection.style.display !== 'none') {
+        setTimeout(() => {
+            if (typeof window.initializeProjectionsCalculator === 'function') {
+                window.initializeProjectionsCalculator();
+            }
+        }, 500);
+    }
+});
+
+function highlightQ3AsCurrent() {
+    // Procura o elemento h4 da coluna Q3 2025
+    const q3Phase = document.getElementById('q3-phase-target');
+
+    if (q3Phase) {
+        const q3Title = q3Phase.querySelector('h4');
+
+        // Adiciona a classe para a borda verde e fundo
+        q3Phase.classList.add('current-phase');
+
+        // Adiciona o texto '(Imediato)' e a tag 'ATUAL' ao título, SE AINDA NÃO EXISTIREM
+    }
+}
+
+function initializeDashboard() {
+    if (dashboardInitialized) return;
+    
+    if (typeof window.initializeMainDashboard === 'function') {
+        window.initializeMainDashboard();
+    }
+    
+    if (typeof window.createAllCharts === 'function') {
+        window.createAllCharts();
+    }
+
+    highlightQ3AsCurrent();
+    
+    dashboardInitialized = true;
+}
+
+function calculateDaysInOperation() {
+    const startDate = new Date('2023-01-01');
+    const today = new Date();
+    const diffTime = Math.abs(today - startDate);
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+    
+    const element = document.getElementById('daysInOperation');
+    if (element) {
+        element.textContent = diffDays.toLocaleString('pt-BR');
+    }
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    initializeDashboard();
+    calculateDaysInOperation();
+    setupClickableLinks();
+    
+    document.querySelectorAll('.nav-item').forEach(item => {
+        item.addEventListener('click', function(e) {
+            e.preventDefault();
+            const sectionId = this.getAttribute('data-section');
+            showSection(sectionId, e);
+            return false;
+        });
+    });
+    
+    const currentHash = window.location.hash.substring(1);
+    if (currentHash === 'forecast' || document.getElementById('forecast')?.style.display === 'block') {
+        setTimeout(initializeForecastSection, 500);
+    }
+});
+
+window.addEventListener('load', function() {
+    const hash = window.location.hash.substring(1);
+    if (hash) {
+        const navItem = document.querySelector(`[data-section="${hash}"]`);
+        if (navItem) {
+            navItem.click();
+        }
+    }
+});
+
+window.addEventListener('popstate', function() {
+    const hash = window.location.hash.substring(1) || 'overview';
+    const navItem = document.querySelector(`[data-section="${hash}"]`);
+    if (navItem) {
+        navItem.click();
+    }
+});
+
+window.showSection = showSection;
+window.setupClickableLinks = setupClickableLinks;
+window.initializeDashboard = initializeDashboard;
+window.calculateDaysInOperation = calculateDaysInOperation;
+</script>
+</body> 
+</html>
